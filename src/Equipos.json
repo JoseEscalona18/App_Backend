@@ -1,0 +1,10 @@
+[
+    {
+        "Serial": 123456,
+        "Nombre": "Camara Sony",
+        "Descripcion": "Camara de fotos",
+        "Adquisicion": "2023-01-28",
+        "Estatus": "Disponible"
+    }
+
+]
