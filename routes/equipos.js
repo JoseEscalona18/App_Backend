@@ -12,23 +12,7 @@ const controller = require('../controllers/equipos.c')
 router.get('/',controller.consulta);
 
 // CONSULTA MEDIANTE UN PARAMS SERIALES ESPECIFICOS, EJEM: http://localhost:3000/api/equipos/123456 ↓
-router.get('/:Serial', function(req, res){
-  con = 'No'
-  const CSerial  = req.params
-  const SSerial = Number(CSerial.Serial)
-
-  // RECORRE TODO EL JSON EN BUSQUEDA DE UN SERIAL IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
-  for (let f = 0; f < Mostrar_equipos.length; f++){
-
-    if (Mostrar_equipos[f].Serial ==  SSerial){
-      res.send(Mostrar_equipos[f])
-      con = 'Si'
-    }
-  }
-  if(con == 'No') {
-    res.send('No se encontraron equipos con ese Serial')
-  }
-});
+router.get('/:Serial',controller.consultaSerial);
 
 router.post('/', (req,res) => {
 
