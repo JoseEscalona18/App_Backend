@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const Mostrar_equipos = require('../src/Equipos.json');
+const _ = require('underscore')
 let Agg
 let con = 'No'
+let el = 'No'
 
 // CONSULTA TODOS LOS EQUIPOS ↓
 router.get('/', function(req, res){
@@ -36,15 +38,25 @@ router.post('/', (req,res) => {
   // CONDICION PARA VER SI TODO LOS CAMPOS ESTÁN LLEGANDO ↓
   if (Serial && Nombre && Descripcion && Adquisicion && Estatus) {
 
-    for (i = 0; i < Mostrar_equipos.length; i++){
+    if (Mostrar_equipos.length == 0) {
 
-      if (Mostrar_equipos[i].Serial === Serial){
-        res.send('No puede haber Seriales duplicados')
-        Agg = 'No'
-      }else{
-        Agg = 'Si'
+      const nuevo_equipo =  {...req.body}
+      Mostrar_equipos.push(nuevo_equipo)
+      res.send('Guardado correctamente')
+    }else{
+
+      for (i = 0; i < Mostrar_equipos.length; i++){
+
+        if (Mostrar_equipos[i].Serial === Serial){
+          res.send('No puede haber Seriales duplicados')
+          Agg = 'No'
+        }else{
+          Agg = 'Si'
+        }
       }
+      
     }
+
     if (Agg == 'Si'){
       // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
 
@@ -62,6 +74,28 @@ router.post('/', (req,res) => {
     res.status(500).send('Peticion Erronea')
   }
 });
+
+router.delete('/:Serial', function(req, res){
+  el = 'No'
+  const ECSerial  = req.params
+  const ESSerial = Number(ECSerial.Serial)
+  _.each(Mostrar_equipos,(equipo, i) =>{
+
+    if (equipo.Serial == ESSerial){
+      Mostrar_equipos.splice(i,1)
+      console.log('Eliminado correctamente')
+      el = 'Si'
+      res.send(Mostrar_equipos)
+    }
+  });
+  if(con == 'No') {
+    res.send('No se encontraron equipos con ese Serial')
+  }
+ 
+});
+
+
+
 
 module.exports = router;
  
