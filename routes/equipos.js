@@ -54,7 +54,7 @@ router.post('/', (req,res) => {
           Agg = 'Si'
         }
       }
-      
+
     }
 
     if (Agg == 'Si'){
@@ -91,8 +91,31 @@ router.delete('/:Serial', function(req, res){
   if(con == 'No') {
     res.send('No se encontraron equipos con ese Serial')
   }
- 
 });
+
+router.put('/:Serial', function(req, res){
+  mo = 'No'
+  const MCSerial  = req.params
+  const MSSerial = Number(MCSerial.Serial)
+  const { Nombre , Descripcion ,  Adquisicion , Estatus} = req.body
+  if ( Nombre && Descripcion && Adquisicion && Estatus) {
+    _.each(Mostrar_equipos,(equipo, i) =>{
+      equipo.Nombre = Nombre
+      equipo.Descripcion = Descripcion
+      equipo.Adquisicion = Adquisicion
+      equipo.Estatus = Estatus
+      console.log('Datos modificados correctamente')
+      mo = 'Si'
+      res.send(Mostrar_equipos)
+    })
+    if(mo == 'No') {
+      res.send('No se encontraron equipos con ese Serial')
+    }
+    
+  }else{
+    res.status(500).send('Peticion Erronea')
+  }
+})
 
 
 
