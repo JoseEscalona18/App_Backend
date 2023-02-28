@@ -1,5 +1,6 @@
 const controller = {};
 const Mostrar_equipos = require('../src/Equipos.json');
+const _ = require('underscore')
 
     controller.consulta = function(req, res){
         res.send(Mostrar_equipos)
@@ -21,6 +22,27 @@ const Mostrar_equipos = require('../src/Equipos.json');
         if(con == 'No') {
           res.send('No se encontraron equipos con ese Serial')
         }
+      };
+
+    controller.agregarEquipo
+
+    controller.eliminarEquipo = function(req, res){
+        el = 'No'
+        const ECSerial  = req.params
+        const ESSerial = Number(ECSerial.Serial)
+        _.each(Mostrar_equipos,(equipo, i) =>{
+      
+          if (equipo.Serial == ESSerial){
+            Mostrar_equipos.splice(i,1)
+            console.log('Eliminado correctamente')
+            el = 'Si'
+            res.send(Mostrar_equipos)
+          }
+        });
+        if(con == 'No') {
+          res.send('No se encontraron equipos con ese Serial')
+        }
+       
       };
 
 module.exports = controller
