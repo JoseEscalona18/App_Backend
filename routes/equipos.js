@@ -2,10 +2,30 @@ var express = require('express');
 var router = express.Router();
 const Mostrar_equipos = require('../src/Equipos.json');
 let Agg
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json(Mostrar_equipos);
+let con = 'No'
 
+// CONSULTA TODOS LOS EQUIPOS ↓
+router.get('/', function(req, res){
+  res.send(Mostrar_equipos)
+});
+
+// CONSULTA MEDIANTE UN PARAMS SERIALES ESPECIFICOS, EJEM: http://localhost:3000/api/equipos/123456 ↓
+router.get('/:Serial', function(req, res){
+  con = 'No'
+  const CSerial  = req.params
+  const SSerial = Number(CSerial.Serial)
+
+  // RECORRE TODO EL JSON EN BUSQUEDA DE UN SERIAL IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
+  for (let f = 0; f < Mostrar_equipos.length; f++){
+
+    if (Mostrar_equipos[f].Serial ==  SSerial){
+      res.send(Mostrar_equipos[f])
+      con = 'Si'
+    }
+  }
+  if(con == 'No') {
+    res.send('No se encontraron equipos con ese Serial')
+  }
 });
 
 router.post('/', (req,res) => {
@@ -25,11 +45,11 @@ router.post('/', (req,res) => {
         Agg = 'Si'
       }
     }
-console.log(Agg)
     if (Agg == 'Si'){
       // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
-      const nuevo_equipo =  {...req.body}
 
+      const nuevo_equipo =  {...req.body}
+      
       // AGREGA LOS DATOS EL JSON ↓
       Mostrar_equipos.push(nuevo_equipo)
       
@@ -39,7 +59,7 @@ console.log(Agg)
 
   } else {
     // EN CASO DE QUE ALGUN CAMPO NO ESTÉ COLOCADO, SE EJECUTA ESTA CONDICIÓN ↓
-    res.send('Peticion Erronea')
+    res.status(500).send('Peticion Erronea')
   }
 });
 
