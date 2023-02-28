@@ -1,0 +1,21 @@
+[
+    {
+        "Nombre":"Estudio 1", 
+        "Descripcion": "Estudio de grabacion numero 1", 
+        "Direccion": "Salon N16", 
+        "Estatus":"Disponible"
+
+    },
+    {
+        "Nombre":"Estudio 2",
+        "Descripcion": "Estudio de grabacion numero 2",
+        "Direccion": "Salon N17",
+        "Estatus": "Ocupado"
+    },
+    {
+        "Nombre":"Estudio 3", 
+        "Descripcion": "Estudio de grabacion numero 3", 
+        "Direccion": "Salon N18", 
+        "Estatus":"Ocupado"
+    }
+]
