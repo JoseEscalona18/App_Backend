@@ -34,6 +34,8 @@ router.get('/:Code', function(req, res){
   }
 });
 
+/// AGREGAR ESPACIOS
+
 router.post('/', (req,res) => {
 
   // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
@@ -95,7 +97,7 @@ router.delete('/:Code', function(req, res){
     }
   });
   if(Nei == 'No') {
-    res.send('No se encontraron equipos con ese codigo de lugar')
+    res.send('No se encontraron espacios con ese codigo de lugar')
   }
 });
 

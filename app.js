@@ -9,6 +9,8 @@ var equiposRouter = require('./routes/equipos');
 var espaciosRouter = require('./routes/espacios');
 var personalRouter = require('./routes/personal');
 var solicitantesRouter = require('./routes/solicitantes');
+var reservasequiRouter = require('./routes/reservasequipo');
+var reservasespaRouter = require('./routes/reservasespacio');
 
 
 
@@ -37,6 +39,8 @@ app.use('/api/equipos', equiposRouter);
 app.use('/api/espacios', espaciosRouter);
 app.use('/api/personal', personalRouter);
 app.use('/api/solicitantes', solicitantesRouter)
+app.use('/api/reservasequipo', reservasequiRouter)
+app.use('/api/reservasespacio', reservasespaRouter)
 
 
 

@@ -7,7 +7,6 @@ var Esso = 'No'
 
 
 var Mostrar_solicitantes = require('../src/Solicitantes.json');
-console.log(Mostrar_solicitantes)
 
 //VER TODO
 router.get('/', function(req, res, next) {
@@ -99,20 +98,20 @@ router.delete('/:CiS', function(req, res){
     if(Ness == 'No') {
       res.send('No se encontraron solicitantes con ese numero de cedula ')
     }
-  });
+});
 
-   /// ACTUALIZAR NombreUS, ContraS y NumT
+/// ACTUALIZAR NombreUS, ContraS y NumT
 
    router.put('/:CiS', function(req, res){
     const QCiS = req.params
     const NaCiS = (QCiS.CiS)
     console.log(NaCiS);
     const { NombreUS, contraS, NumT} = req.body;
-    if (NombreUS && ontraS && NumT) {
+    if (NombreUS && contraS && NumT) {
       sU.each(Mostrar_solicitantes, (solicitante, i) => {
         if(solicitante.CiS == NaCiS ){
             solicitante.NombreUS = NombreUS;
-            solicitante.contraS = ContraS;
+            solicitante.contraS = contraS;
             solicitante.NumT = NumT
         }
       });
@@ -121,4 +120,4 @@ router.delete('/:CiS', function(req, res){
     else{
       res.status(500).json({error: "Hubo un error"})
     }
-  })
+})

@@ -5,6 +5,14 @@
         "Descripcion": "Camara de fotos",
         "Adquisicion": "2023-01-28",
         "Estatus": "Disponible"
+    },
+
+    {
+        "Serial": 85722, 
+        "Nombre": "MacBook AIR M1 2020",
+        "Descripcion": "Laptop para edicion y diseño",
+        "Adquisicion": "2020-02-9",
+        "Estatus": "Ocupado"
     }
 
 

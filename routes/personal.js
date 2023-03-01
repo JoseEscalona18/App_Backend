@@ -16,13 +16,13 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 
-// CONSULTAR MEDIANTE CODIGO DE LUGAR, EJEM: http://localhost:3000/api/equipos/9292 ↓
+// CONSULTAR MEDIANTE CEDULA DE IDENTIDAD, EJEM: http://localhost:3000/api/equipos/30302836 ↓
 router.get('/:CI', function(req, res){
     Nei = 'No'
     const CCedula  = req.params
     const SCedula = Number(CCedula.CI)
   
-    // RECORRE TODO EL JSON EN BUSQUEDA DE UN SERIAL IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
+    // RECORRE TODO EL JSON EN BUSQUEDA DE UN CI IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
     for (let f = 0; f < Mostrar_personal.length; f++){
   
       if (Mostrar_personal[f].CI ==  SCedula){
@@ -33,9 +33,9 @@ router.get('/:CI', function(req, res){
     if(Nel == 'No') {
       res.send('No se encontraron personas con ese numero de cedula')
     }
-  });
+});
 
-  /// AGREGAR PERSONAL
+/// AGREGAR PERSONAL
 
 router.post('/', (req,res) => {
 

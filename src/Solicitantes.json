@@ -2,7 +2,7 @@
     {
         "Nombre":"Juan Rosales",
         "CiS":"30912875",
-        "FechaN":"19/03/1999",
+        "FechaN":"19-03-1999",
         "DireccionC":"Valera",
         "NombreUS":"JuaRo",
         "contraS":"1932453",
@@ -12,7 +12,7 @@
     {
         "Nombre":"Maradona Fernandez",
         "CiS":"27352164",
-        "FechaN":"25/9/1992",
+        "FechaN":"25-9-1992",
         "DireccionC":"La Cejita",
         "NombreUS":"MarFer",
         "contraS":"19253",
