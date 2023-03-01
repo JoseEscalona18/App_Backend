@@ -108,11 +108,11 @@ router.delete('/:CiS', function(req, res){
     const NaCiS = (QCiS.CiS)
     console.log(NaCiS);
     const { NombreUS, contraS, NumT} = req.body;
-    if (NombreUS && contraS && NumT) {
+    if (NombreUS && ontraS && NumT) {
       sU.each(Mostrar_solicitantes, (solicitante, i) => {
         if(solicitante.CiS == NaCiS ){
             solicitante.NombreUS = NombreUS;
-            solicitante.contraS = contraS;
+            solicitante.contraS = ContraS;
             solicitante.NumT = NumT
         }
       });

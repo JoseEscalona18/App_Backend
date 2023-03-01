@@ -1,34 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const Mostrar_equipos = require('../src/Equipos.json');
-const _ = require('underscore')
 let Agg
-let con = 'No'
-let el = 'No'
+const controller = require('../controllers/equipos.c')
+const _ = require('underscore')
 
 // CONSULTA TODOS LOS EQUIPOS ↓
-router.get('/', function(req, res){
-  res.send(Mostrar_equipos)
-});
+router.get('/',controller.consulta);
 
 // CONSULTA MEDIANTE UN PARAMS SERIALES ESPECIFICOS, EJEM: http://localhost:3000/api/equipos/123456 ↓
-router.get('/:Serial', function(req, res){
-  con = 'No'
-  const CSerial  = req.params
-  const SSerial = Number(CSerial.Serial)
+router.get('/:Serial',controller.consultaSerial);
 
-  // RECORRE TODO EL JSON EN BUSQUEDA DE UN SERIAL IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
-  for (let f = 0; f < Mostrar_equipos.length; f++){
-
-    if (Mostrar_equipos[f].Serial ==  SSerial){
-      res.send(Mostrar_equipos[f])
-      con = 'Si'
-    }
-  }
-  if(con == 'No') {
-    res.send('No se encontraron equipos con ese Serial')
-  }
-});
 
 router.post('/', (req,res) => {
 
@@ -118,6 +100,12 @@ router.put('/:Serial', function(req, res){
   }
 })
 
+//BORRAR LOS EQUIPOS POR SERIAL ↓
+router.delete('/:Serial',controller.eliminarEquipo);
+
+
+//ACTUALIZAR EQUIPOS POR SERIAL ↓
+router.put('/:Serial',controller.editarEquipo);
 
 module.exports = router;
  
