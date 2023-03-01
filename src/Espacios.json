@@ -1,18 +1,23 @@
 [
     {
+        "Code" : 9292,
         "Nombre":"Estudio 1", 
         "Descripcion": "Estudio de grabacion numero 1", 
         "Direccion": "Salon N16", 
         "Estatus":"Disponible"
 
     },
+
     {
+        "Code": 5292,
         "Nombre":"Estudio 2",
         "Descripcion": "Estudio de grabacion numero 2",
         "Direccion": "Salon N17",
         "Estatus": "Ocupado"
     },
+
     {
+        "Code": 2923,
         "Nombre":"Estudio 3", 
         "Descripcion": "Estudio de grabacion numero 3", 
         "Direccion": "Salon N18", 

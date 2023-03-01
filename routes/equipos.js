@@ -75,6 +75,8 @@ router.post('/', (req,res) => {
   }
 });
 
+//// ELIMINAR POR SERIAL
+
 router.delete('/:Serial', function(req, res){
   el = 'No'
   const ECSerial  = req.params
@@ -93,31 +95,28 @@ router.delete('/:Serial', function(req, res){
   }
 });
 
+//// ACTUALIZAR POR SERIAL
+
 router.put('/:Serial', function(req, res){
-  mo = 'No'
-  const MCSerial  = req.params
+  const MCSerial= req.params
   const MSSerial = Number(MCSerial.Serial)
-  const { Nombre , Descripcion ,  Adquisicion , Estatus} = req.body
-  if ( Nombre && Descripcion && Adquisicion && Estatus) {
-    _.each(Mostrar_equipos,(equipo, i) =>{
-      equipo.Nombre = Nombre
-      equipo.Descripcion = Descripcion
-      equipo.Adquisicion = Adquisicion
-      equipo.Estatus = Estatus
-      console.log('Datos modificados correctamente')
-      mo = 'Si'
-      res.send(Mostrar_equipos)
-    })
-    if(mo == 'No') {
-      res.send('No se encontraron equipos con ese Serial')
-    }
-    
-  }else{
-    res.status(500).send('Peticion Erronea')
+  console.log(MSSerial);
+  const { Nombre , Descripcion, Adquisicion, Estatus} = req.body;
+  if (Nombre && Descripcion && Adquisicion && Estatus) {
+    _.each(Mostrar_equipos, (equipo, i) => {
+      if(equipo.Serial == MSSerial ){
+        equipo.Nombre = Nombre;
+        equipo.Descripcion = Descripcion;
+        equipo.Adquisicion = Adquisicion
+        equipo.Estatus = Estatus
+      }
+    });
+    res.send(Mostrar_equipos)
+  }
+  else{
+    res.status(500).json({error: "Hubo un error"})
   }
 })
-
-
 
 
 module.exports = router;
