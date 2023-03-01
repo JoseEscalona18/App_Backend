@@ -14,7 +14,6 @@ router.get('/:Serial',controller.consultaSerial);
 // AGREGAR EQUIPOS ↓
 router.post('/', controller.agregarEquipo);
 
-
 //BORRAR LOS EQUIPOS POR SERIAL ↓
 router.delete('/:Serial',controller.eliminarEquipo);
 

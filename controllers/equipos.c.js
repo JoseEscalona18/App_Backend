@@ -101,6 +101,8 @@ let el = 'No'
               equipo.Descripcion = Descripcion;
               equipo.Adquisicion = Adquisicion
               equipo.Estatus = Estatus
+            } else {
+                res.send('No se encontraron equipos con ese Serial')  
             }
           });
           res.send(Mostrar_equipos)
