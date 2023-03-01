@@ -9,7 +9,6 @@ const pse = require('underscore')
 //VARIABLES
 var non = "No"
 var pe = "No"
-let aggre
 var nanot= "No"
 ///DOS VARIABLES"NO", RECORDAR
 
@@ -50,39 +49,23 @@ router.post('/', (req,res) => {
     const { IDE, Nombre_Solicitante, FechaInicio, FechaFin, HoraInicio, HoraFin, Motivo, Equipos} = req.body
   
     // CONDICION PARA VER SI TODO LOS CAMPOS ESTÁN LLEGANDO ↓
-    if (IDE && Nombre_Solicitante && FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Equipos) {
-  
+    if (Nombre_Solicitante && FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Equipos) {
+      let IDE
       if (Mostrar_reservasEqui.length == 0) {
-  
-        const nueva_reservaequi =  {...req.body}
+        IDE = 1
+        const nueva_reservaequi =  {IDE, ...req.body}
         Mostrar_reservasEqui.push(nueva_reservaequi)
         res.send('Guardado correctamente')
+
       }else{
-  
-        for (i = 0; i < Mostrar_reservasEqui.length; i++){
-  
-          if (Mostrar_reservasEqui[i].IDE === IDE){
-            res.send('No pueden haber 2 reservas de equipos con el mismo IDE')
-            aggre = 'No'
-          }else{
-            aggre = 'Si'
-          }
-        }
-  
-      }
-  
-      if (aggre == 'Si'){
+        IDE = Mostrar_reservasEqui.length + 1
         // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
-  
-        const nueva_reservaequi =  {...req.body}
-        
+        const nueva_reservaequi =  {IDE, ...req.body}
         // AGREGA LOS DATOS EL JSON ↓
         Mostrar_reservasEqui.push(nueva_reservaequi)
-        
         // MENSAJE QUE INDICA QUE SE GUARDÓ CORRECTAMENTE ↓
         res.send('Guardado correctamente')
       }
-  
     } else {
       // EN CASO DE QUE ALGUN CAMPO NO ESTÉ COLOCADO, SE EJECUTA ESTA CONDICIÓN ↓
       res.status(500).send('Peticion Erronea')
@@ -157,3 +140,19 @@ router.get('/Fecha/:FechaInicio', function(req, res){
       res.send(AcumuladorReservas)
     }
 });
+
+///CONSULTAR RESERVAS POR RANGO DE FECHAS DE INICIO ↓
+
+router.get('/Rango1/:Fecha1/Rango2/:Fecha2', function(req, res){
+
+  //RANGOS GUARDA :FECHA1 Y :FECHA2 COMO PARAMETROS ↓
+  const Rangos  = req.params
+  //FINICIO GUARADA LA :FECHA1 ↓
+  const Finicio = Rangos.Fecha1
+  //FFIN GUARADA LA :FECHA2 ↓
+  const FFin = Rangos.Fecha2
+
+  ///HACE UN FILTRO QUE BUSCA POR LOS RANGOS DE FECHAS COLOCADAS ↓
+  let buscarrango = Mostrar_reservasEqui.filter(n => n.FechaInicio >= Finicio && n.FechaInicio <= FFin)
+  res.send(buscarrango)
+})
