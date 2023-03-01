@@ -2,7 +2,6 @@
 var express = require('express');
 var router = express.Router();
 var Mostrar_reservasEspacio= require('../src/ReservasEspacios.json');
-console.log(Mostrar_reservasEspacio)
 
 const pos = require('underscore')
 
@@ -140,17 +139,22 @@ router.get('/:FechaInicio', function(req, res){
     nono = 'No'
     const sansoini  = req.params
     const sansifinish = sansoini
+    let AcumuladorReservasE = []
+    let acum = 0
     console.log(sansifinish)
   
     // RECORRE TODO EL JSON EN BUSQUEDA DE UNA FECHA IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
     for (let f = 0; f < Mostrar_reservasEspacio.length; f++){
   
-      if (Mostrar_reservasEspacio[f].FechaInicio ==  sansifinish){
-        res.send(Mostrar_reservasEspacio[f])
-        nono = 'Si'
+      if (Mostrar_reservasEspacio[f].FechaInicio == sansifinish){
+        AcumuladorReservasE[acum] = Mostrar_reservasEspacio[f]
+        acum = acum + 1
+        nanot = 'Si'
       }
     }
     if(nono == 'No') {
       res.send('No se encontraron reservas con esa fecha de inicio')
+    }else{
+      res.send(AcumuladorReservasE)
     }
 });

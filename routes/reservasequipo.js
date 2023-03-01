@@ -41,6 +41,7 @@ router.get('/:IDE', function(req, res){
     }
 });
 
+
 //AGREGAR RESERVAS DE EQUIPO /// HAY QUE ACTUALIZAR LO QUE ESTA EN EQUIPOS IGUALMENTE, EL ESTATUS ESPECIFICAMENTE
 
 router.post('/', (req,res) => {
@@ -132,22 +133,27 @@ router.put('/:IDE', function(req, res){
   }
 });
 
-
-router.get('/:FechaInicio', function(req, res){
+///CONSULTAR RESERVAS POR FECHAS DE INICIO
+router.get('/Fecha/:FechaInicio', function(req, res){
     nanot = 'No'
     const sansini  = req.params
-    const sansfinish = sansini
+    const sansfinish = sansini.FechaInicio
+    let AcumuladorReservas = []
+    let acum = 0
     console.log(sansfinish)
   
     // RECORRE TODO EL JSON EN BUSQUEDA DE UNA FECHA IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
     for (let f = 0; f < Mostrar_reservasEqui.length; f++){
   
-      if (Mostrar_reservasEqui[f].FechaInicio ==  sansfinish){
-        res.send(Mostrar_reservasEqui[f])
+      if (Mostrar_reservasEqui[f].FechaInicio == sansfinish){
+        AcumuladorReservas[acum] = Mostrar_reservasEqui[f]
+        acum = acum + 1
         nanot = 'Si'
       }
     }
     if(nanot == 'No') {
       res.send('No se encontraron reservas con esa fecha de inicio')
+    }else{
+      res.send(AcumuladorReservas)
     }
 });

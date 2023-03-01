@@ -21,4 +21,3 @@ router.delete('/:Serial',controller.eliminarEquipo);
 router.put('/:Serial',controller.editarEquipo);
 
 module.exports = router;
-//PRUEBA
