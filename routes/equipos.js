@@ -23,4 +23,4 @@ router.put('/:Serial',controller.editarEquipo);
 
 
 module.exports = router;
- 
+//PRUEBA
