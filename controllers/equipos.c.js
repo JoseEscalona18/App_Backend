@@ -89,5 +89,25 @@ let el = 'No'
         }
       };
 
+    controller.editarEquipo = function(req, res){
+        const MCSerial= req.params
+        const MSSerial = Number(MCSerial.Serial)
+        console.log(MSSerial);
+        const { Nombre , Descripcion, Adquisicion, Estatus} = req.body;
+        if (Nombre && Descripcion && Adquisicion && Estatus) {
+          _.each(Mostrar_equipos, (equipo, i) => {
+            if(equipo.Serial == MSSerial ){
+              equipo.Nombre = Nombre;
+              equipo.Descripcion = Descripcion;
+              equipo.Adquisicion = Adquisicion
+              equipo.Estatus = Estatus
+            }
+          });
+          res.send(Mostrar_equipos)
+        }
+        else{
+          res.status(500).json({error: "Hubo un error"})
+        }
+      };
 
 module.exports = controller
