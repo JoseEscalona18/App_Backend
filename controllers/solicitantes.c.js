@@ -1,7 +1,7 @@
 const controller = {};
 let Aggs
 var Ness = 'No'
-var Esso = 'No'
+let mo = 'No'
 var Mostrar_solicitantes = require('../src/Solicitantes.json');
 const sU = require('underscore')
 
@@ -73,18 +73,21 @@ controller.agregarSolicitante = (req,res) => {
 };
 
 controller.eliminarSolicitante = function(req, res){
-    Esso = 'No'
+    Ness = 'No'
     const Cedulita  = req.params
     const Cedulito = Number(Cedulita.CiS)
     sU.each(Mostrar_solicitantes,(solicitante, i) =>{
   
       if (solicitante.CiS == Cedulito){
-        Mostrar_solicitantes.splice(i,1)
-        console.log('Eliminado correctamente')
-        Esso = 'Si'
-        res.send(Mostrar_solicitantes)
+        pos = i
+        Ness = 'Si'
       }
     });
+    if (Ness == 'Si'){
+      Mostrar_solicitantes.splice(pos,1)
+      console.log('Eliminado correctamente')
+      res.send(Mostrar_solicitantes)
+    }
     if(Ness == 'No') {
       res.send('No se encontraron solicitantes con ese numero de cedula ')
     }
@@ -93,7 +96,7 @@ controller.eliminarSolicitante = function(req, res){
 controller.editarSolicitante = function(req, res){
     const QCiS = req.params
     const NaCiS = (QCiS.CiS)
-    console.log(NaCiS);
+    mo = 'No'
     const { NombreUS, contraS, NumT} = req.body;
     if (NombreUS && contraS && NumT) {
       sU.each(Mostrar_solicitantes, (solicitante, i) => {
@@ -101,9 +104,15 @@ controller.editarSolicitante = function(req, res){
             solicitante.NombreUS = NombreUS;
             solicitante.contraS = contraS;
             solicitante.NumT = NumT
+            console.log('Datos modificados correctamente')
+            mo = 'Si'
+            res.send(equipo)
         }
       });
-      res.send(Mostrar_solicitantes)
+
+      if (mo == 'No') {
+        res.send('No se encontró solicitantes con esa Cedula')  
+    }
     }
     else{
       res.status(500).json({error: "Hubo un error"})

@@ -3,8 +3,8 @@ var MostEspacios = require('../src/Espacios.json');
 const s = require('underscore')
 let Agge
 let Nei = 'No'
-let elle = 'No'
-
+let mo = 'No'
+let pos
 controller.consulta = function(req, res, next) {
     res.send(MostEspacios)
   };
@@ -73,18 +73,23 @@ controller.consulta = function(req, res, next) {
   };
 
   controller.eliminarEspacio = function(req, res){
-    elle = 'No'
+    Nei = 'No'
     const VXCode  = req.params
     const SSCode = Number(VXCode.Code)
+
     s.each(MostEspacios,(espacio, i) =>{
   
       if (espacio.Code == SSCode){
-        MostEspacios.splice(i,1)
-        console.log('Eliminado correctamente')
-        elle = 'Si'
-        res.send(MostEspacios)
+        Nei = 'Si'
+        pos = i
       }
     });
+
+    if (Nei == 'Si'){
+      MostEspacios.splice(pos,1)
+      console.log('Eliminado correctamente')
+      res.send(MostEspacios)
+    }
     if(Nei == 'No') {
       res.send('No se encontraron espacios con ese codigo de lugar')
     }
@@ -93,18 +98,27 @@ controller.consulta = function(req, res, next) {
   controller.editarEspacio = function(req, res){
     const RQCode = req.params
     const GUCode = Number(RQCode.Code)
-    console.log(GUCode);
+    mo = 'No'
     const { Nombre , Descripcion, Direccion, Estatus} = req.body;
     if (Nombre && Descripcion && Direccion && Estatus) {
+
       s.each(MostEspacios, (espacio, i) => {
         if(espacio.Code == GUCode ){
           espacio.Nombre = Nombre;
           espacio.Descripcion = Descripcion;
           espacio.Direccion = Direccion;
           espacio.Estatus = Estatus
+          res.send(espacio)
+          mo = 'Si'
+          console.log('Datos modificados correctamente')
+
         }
       });
-      res.send(MostEspacios)
+
+      if (mo == 'No'){
+        res.send('No se encontraron espacios con ese Código')  
+      }
+      
     }
     else{
       res.status(500).json({error: "Hubo un error"})

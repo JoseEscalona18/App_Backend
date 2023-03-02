@@ -5,9 +5,8 @@ const pos = require('underscore')
 
 //VARIABLES
 var none= "No"
-var pedekratos = "No"
-let aggria
 var nono = "No"
+let mo= 'No'
 ///DOS VARIABLES "NO", RECORDAR
 
 controller.consulta = function(req, res, next) {
@@ -62,18 +61,23 @@ controller.agregarResEsp = (req,res) => {
 };
 
 controller.eliminarResEsp = function(req, res){
-    pedekratos = 'No'
+    none = 'No'
     const SIDD  = req.params
     const IDDA = Number(SIDD.IDD)
     pos.each(Mostrar_reservasEspacio,(reservaespa, i) =>{
   
       if (reservaespa.IDD == IDDA){
-        Mostrar_reservasEspacio.splice(i,1)
-        console.log('Eliminado correctamente')
-        pedekratos = 'Si'
-        res.send(Mostrar_reservasEspacio)
+        pos = i
+        none = 'Si'
       }
     });
+
+    if (none == 'Si'){
+      Mostrar_reservasEspacio.splice(pos,1)
+      console.log('Eliminado correctamente')
+      res.send(Mostrar_reservasEspacio)
+    } 
+
     if(none == 'No') {
       res.send('No se encontro ninguna reserva de espacio con ese numero de IDD')
     }
@@ -81,8 +85,8 @@ controller.eliminarResEsp = function(req, res){
 
 controller.editarResEsp = function(req, res){
     const REQUIEM = req.params
+    mo = 'No'
     const GIDDO = (REQUIEM.IDD)
-    console.log(GIDDO);
     const {Nombre_Solicitante, FechaInicio, FechaFin, HoraInicio, HoraFin, Motivo, Tecnico, PersonasEspacio } = req.body;
     if (Nombre_Solicitante && FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Tecnico && PersonasEspacio) {
       pos.each(Mostrar_reservasEspacio, (reservaespa, i) => {
@@ -95,9 +99,14 @@ controller.editarResEsp = function(req, res){
             reservaespa.Motivo = Motivo;
             reservaespa.Tecnico = Tecnico;
             reservaespa.PersonasEspacio = PersonasEspacio;
-        }
+            console.log('Datos modificados correctamente')
+            mo = 'Si'
+            res.send(reservaespa)
+        }   
       });
-      res.send(Mostrar_reservasEspacio)
+      if (mo == 'No') {
+        res.send('No se encontraron Reservas con ese ID')  
+    }
     }
     else{
       res.status(500).json({error: "Hubo un error"})

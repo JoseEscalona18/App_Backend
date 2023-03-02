@@ -5,8 +5,8 @@ const pse = require('underscore')
 
 //VARIABLES
 var non = "No"
-var pe = "No"
 var nanot= "No"
+let mo = 'No'
 ///DOS VARIABLES"NO", RECORDAR
 
 controller.consulta = function(req, res, next) {
@@ -61,29 +61,34 @@ controller.agregarResEqu = (req,res) => {
 };
 
 controller.eliminarResEqu = function(req, res){
-    pe = 'No'
+    non = 'No'
     const SCID  = req.params
     const PID = Number(SCID.IDE)
     pse.each(Mostrar_reservasEqui,(reservaequi, i) =>{
   
       if (reservaequi.IDE == PID){
-        Mostrar_reservasEqui.splice(i,1)
-        console.log('Eliminado correctamente')
-        pe = 'Si'
-        res.send(Mostrar_reservasEqui)
+        non = 'Si'
+        pos = i
       }
     });
+
+    if (non == 'Si'){
+      Mostrar_reservasEqui.splice(pos,1)
+      console.log('Eliminado correctamente')
+      res.send(Mostrar_reservasEqui)
+    }
     if(non == 'No') {
-      res.send('No se encontro ninguna de reserva equipo con ese IDD')
+      res.send('No se encontro ninguna de reserva equipo con ese ID')
     }
 };
 
 controller.editarResEqu = function(req, res){
     const RQID = req.params
     const GUID = Number(RQID.IDE)
-    console.log(GUID);
+    mo = 'No'
     const { FechaInicio, FechaFin, HoraInicio, HoraFin, Motivo, Equipos} = req.body;
     if (FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Equipos) {
+      
       pse.each(Mostrar_reservasEqui, (reservaequi, i) => {
         if(reservaequi.IDE == GUID ){
           reservaequi.FechaInicio = FechaInicio;
@@ -92,9 +97,14 @@ controller.editarResEqu = function(req, res){
           reservaequi.HoraFin = HoraFin;
           reservaequi.Motivo = Motivo;
           reservaequi.Equipos = Equipos;
+          console.log('Datos modificados correctamente')
+          mo = 'Si'
+          res.send(reservaequi)
         }
       });
-      res.send(Mostrar_reservasEqui)
+      if (mo == 'No') {
+        res.send('No se encontraron reservas con ese ID')  
+    }
     }
     else{
       res.status(500).json({error: "Hubo un error"})

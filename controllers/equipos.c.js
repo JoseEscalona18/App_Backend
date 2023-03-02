@@ -3,6 +3,8 @@ const Mostrar_equipos = require('../src/Equipos.json');
 const _ = require('underscore')
 let con = 'No'
 let el = 'No'
+let mo = 'No'
+let pos
 
 controller.consulta = function(req, res){
   res.send(Mostrar_equipos)
@@ -75,39 +77,48 @@ controller.eliminarEquipo = function(req, res){
   el = 'No'
   const ECSerial  = req.params
   const ESSerial = Number(ECSerial.Serial)
+
   _.each(Mostrar_equipos,(equipo, i) =>{
-      
-    if (equipo.Serial == ESSerial){
-      Mostrar_equipos.splice(i,1)
-      console.log('Eliminado correctamente')
-      el = 'Si'
-      res.send(Mostrar_equipos)
+    if (equipo.Serial === ESSerial){
+      pos = i
+      el = 'Si'    
     }
   });
-  if(con == 'No') {
+
+  if(el == 'Si'){
+    Mostrar_equipos.splice(pos,1)
+    console.log('Eliminado correctamente')
+    res.send(Mostrar_equipos)
+  }
+
+  if(el === 'No') {
     res.send('No se encontraron equipos con ese Serial')
   }
 };
 
 controller.editarEquipo = function(req, res){
   const MCSerial= req.params
+  mo = 'No'
   const MSSerial = Number(MCSerial.Serial)
-  console.log(MSSerial);
   const { Nombre , Descripcion, Adquisicion, Estatus} = req.body;
   if (Nombre && Descripcion && Adquisicion && Estatus) {
+
     _.each(Mostrar_equipos, (equipo, i) => {
       if(equipo.Serial == MSSerial ){
         equipo.Nombre = Nombre;
         equipo.Descripcion = Descripcion;
         equipo.Adquisicion = Adquisicion
         equipo.Estatus = Estatus
-      } else {
-          res.send('No se encontraron equipos con ese Serial')  
+        console.log('Datos modificados correctamente')
+        mo = 'Si'
+        res.send(equipo)
       }
-    });
-    res.send(Mostrar_equipos)
-  }
-  else{
+    })
+
+    if (mo == 'No') {
+        res.send('No se encontraron equipos con ese Serial')  
+    }
+  } else{
     res.status(500).json({error: "Hubo un error"})
   }
 };

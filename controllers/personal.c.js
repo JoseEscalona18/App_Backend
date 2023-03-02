@@ -2,7 +2,7 @@ const controller = {};
 const p = require('underscore')
 let Agge
 var Nel = 'No'
-var elio = 'No'
+var mo = 'No'
 var Mostrar_personal = require('../src/Personal.json');
 
 controller.consulta = function(req, res, next) {
@@ -73,18 +73,23 @@ controller.agregarPersonal = (req,res) => {
   };
 
 controller.eliminarPersonal = function(req, res){
-    elle = 'No'
+  Nei = 'No'
     const CIII  = req.params
     const SCI = Number(CIII.CI)
     p.each(Mostrar_personal,(personal, i) =>{
   
       if (personal.CI == SCI){
-        Mostrar_personal.splice(i,1)
-        console.log('Eliminado correctamente')
-        elio = 'Si'
-        res.send(Mostrar_personal)
+        pos = i
+        Nei = 'Si'
       }
     });
+
+    if(Nei == 'Si'){
+      Mostrar_personal.splice(pos,1)
+      console.log('Eliminado correctamente')
+      res.send(Mostrar_personal)
+    }
+
     if(Nei == 'No') {
       res.send('No se encontro ninguna persona con ese numero de cedula')
     }
@@ -93,9 +98,11 @@ controller.eliminarPersonal = function(req, res){
 controller.editarPersonal = function(req, res){
     const RQCI = req.params
     const GUCCI = (RQCI.CI)
+    mo = 'No'
     console.log(GUCCI);
     const { Cargo, Usuario, Especialidad, Contraseña, Estatus} = req.body;
     if (Cargo && Usuario && Especialidad && Contraseña && Estatus) {
+      
       p.each(Mostrar_personal, (persona, i) => {
         if(persona.CI == GUCCI ){
           persona.Cargo = Cargo;
@@ -103,9 +110,16 @@ controller.editarPersonal = function(req, res){
           persona.Especialidad = Especialidad;
           persona.Contraseña = Contraseña
           persona.Estatus = Estatus
+          console.log('Datos modificados correctamente')
+          mo = 'Si'
+          res.send(equipo)
         }
       });
-      res.send(Mostrar_personal)
+    
+      if (mo == 'No') {
+        res.send('No se encontró personal con esa Cedula')  
+    }
+    
     }
     else{
       res.status(500).json({error: "Hubo un error"})
