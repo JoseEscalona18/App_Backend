@@ -5,6 +5,7 @@ let con = 'No'
 let el = 'No'
 let mo = 'No'
 let pos
+let Agg = 'Si'
 
 controller.consulta = function(req, res){
   res.send(Mostrar_equipos)
@@ -28,8 +29,8 @@ controller.consultaSerial = function(req, res){
   };
 };
 
-  controller.agregarEquipo = (req,res) => {
-
+  controller.agregarEquipo = (req,res) => { 
+    Agg = 'Si'
   // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
   const { Serial , Nombre , Descripcion ,  Adquisicion , Estatus} = req.body
       
@@ -46,15 +47,15 @@ controller.consultaSerial = function(req, res){
       for (i = 0; i < Mostrar_equipos.length; i++){
       
         if (Mostrar_equipos[i].Serial === Serial){
-          res.send('No puede haber Seriales duplicados')
           Agg = 'No'
-        }else{
-          Agg = 'Si'
         }
       }
             
     }
       
+    if (Agg == 'No'){
+      res.send('No puede haber Seriales duplicados')
+    }
     if (Agg == 'Si'){
       // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
       

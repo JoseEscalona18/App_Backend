@@ -1,6 +1,6 @@
 const controller = {};
 const p = require('underscore')
-let Agge
+let Agge = 'Si'
 var Nel = 'No'
 var mo = 'No'
 var Mostrar_personal = require('../src/Personal.json');
@@ -28,7 +28,7 @@ controller.consultaCI = function(req, res){
 };
 
 controller.agregarPersonal = (req,res) => {
-
+  Agge = 'Si'
     // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
     const { Nombre, CI, Cargo , Usuario , Contraseña, Especialidad, Estatus} = req.body
   
@@ -45,16 +45,15 @@ controller.agregarPersonal = (req,res) => {
         for (i = 0; i < Mostrar_personal.length; i++){
   
           if (Mostrar_personal[i].CI === CI){
-            res.send('No pueden haber 2 personas con el mismo número de cedula')
-            Aggr = 'No'
-          }else{
-            Aggr = 'Si'
+            Agge = 'No'
           }
         }
   
       }
-  
-      if (Aggr == 'Si'){
+      if (Agge == 'No'){
+        res.send('No pueden haber 2 personas con el mismo número de cedula')
+      }
+      if (Agge == 'Si'){
         // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
   
         const nuevo_personal =  {...req.body}

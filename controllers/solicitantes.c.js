@@ -1,5 +1,5 @@
 const controller = {};
-let Aggs
+let Agg = 'Si'
 var Ness = 'No'
 let mo = 'No'
 var Mostrar_solicitantes = require('../src/Solicitantes.json');
@@ -28,7 +28,7 @@ controller.consultaCI = function(req, res){
 };
 
 controller.agregarSolicitante = (req,res) => {
-
+  Agg = 'Si'
     // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
     const { Nombre, CiS, FechaN, DireccionC, NombreUS, contraS, NumT} = req.body
   
@@ -45,16 +45,17 @@ controller.agregarSolicitante = (req,res) => {
         for (i = 0; i < Mostrar_solicitantes.length; i++){
   
           if (Mostrar_solicitantes[i].CiS === CiS){
-            res.send('No pueden haber 2 solicitantes con el mismo número de cedula')
-            Aggs = 'No'
-          }else{
-            Aggs = 'Si'
+            Agg = 'No'
           }
         }
   
       }
   
-      if (Aggs == 'Si'){
+      if (Agg == 'No'){
+        res.send('No pueden haber 2 solicitantes con el mismo número de cedula')
+      }
+      
+      if (Agg == 'Si'){
         // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
   
         const nuevo_solicitante =  {...req.body}

@@ -1,7 +1,7 @@
 const controller = {};
 var MostEspacios = require('../src/Espacios.json');
 const s = require('underscore')
-let Agge
+let Agge = 'Si'
 let Nei = 'No'
 let mo = 'No'
 let pos
@@ -28,7 +28,7 @@ controller.consulta = function(req, res, next) {
   };
 
   controller.agregarEspacio = (req,res) => {
-
+    Agge = 'Si'
     // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
     const { Code, Nombre , Descripcion ,  Direccion , Estatus} = req.body
   
@@ -39,21 +39,23 @@ controller.consulta = function(req, res, next) {
   
         const nuevo_espacio =  {...req.body}
         MostEspacios.push(nuevo_espacio)
+        
         res.send('Guardado correctamente')
       }else{
   
         for (i = 0; i < MostEspacios.length; i++){
   
           if (MostEspacios[i].Code === Code){
-            res.send('No pueden haber 2 espacios con el mismo codigo de lugar')
             Agge = 'No'
-          }else{
-            Agge = 'Si'
           }
         }
   
       }
   
+      if (Agge == 'No'){
+        res.send('No pueden haber 2 espacios con el mismo codigo de lugar')
+      }
+
       if (Agge == 'Si'){
         // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
   
