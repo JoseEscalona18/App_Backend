@@ -106,7 +106,7 @@ controller.editarSolicitante = function(req, res){
             solicitante.NumT = NumT
             console.log('Datos modificados correctamente')
             mo = 'Si'
-            res.send(equipo)
+            res.send(solicitante)
         }
       });
 

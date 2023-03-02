@@ -112,7 +112,7 @@ controller.editarPersonal = function(req, res){
           persona.Estatus = Estatus
           console.log('Datos modificados correctamente')
           mo = 'Si'
-          res.send(equipo)
+          res.send(persona)
         }
       });
     
