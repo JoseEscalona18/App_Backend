@@ -67,13 +67,13 @@ controller.eliminarResEsp = function(req, res){
     pos.each(Mostrar_reservasEspacio,(reservaespa, i) =>{
   
       if (reservaespa.IDD == IDDA){
-        pos = i
+        poss = i
         none = 'Si'
       }
     });
 
     if (none == 'Si'){
-      Mostrar_reservasEspacio.splice(pos,1)
+      Mostrar_reservasEspacio.splice(poss,1)
       console.log('Eliminado correctamente')
       res.send(Mostrar_reservasEspacio)
     } 
