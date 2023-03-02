@@ -26,6 +26,6 @@ router.put('/:IDD', controller.editarResEsp);
 
 ///CONSULTAR RESERVAS POR FECHAS DE INICIO
 
-router.get('/:FechaInicio', controller.consultaFecha);
+router.get('/fecha/:FechaInicio', controller.consultaFecha);
 
 router.get('/Rango1/:Fecha1/Rango2/:Fecha2', controller.consultaRangoFecha);

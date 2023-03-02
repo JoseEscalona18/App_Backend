@@ -107,7 +107,7 @@ controller.editarResEsp = function(req, res){
 controller.consultaFecha = function(req, res){
     nono = 'No'
     const sansoini  = req.params
-    const sansifinish = sansoini
+    const sansifinish = sansoini.FechaInicio
     let AcumuladorReservasE = []
     let acum = 0
     console.log(sansifinish)
@@ -118,7 +118,7 @@ controller.consultaFecha = function(req, res){
       if (Mostrar_reservasEspacio[f].FechaInicio == sansifinish){
         AcumuladorReservasE[acum] = Mostrar_reservasEspacio[f]
         acum = acum + 1
-        nanot = 'Si'
+        nono = 'Si'
       }
     }
     if(nono == 'No') {

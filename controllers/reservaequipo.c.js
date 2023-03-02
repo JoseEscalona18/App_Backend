@@ -101,7 +101,7 @@ controller.editarResEqu = function(req, res){
     }
   };
 
-  controller.consultaFechaInicio = function(req, res){
+controller.consultaFechaInicio = function(req, res){
     nanot = 'No'
     const sansini  = req.params
     const sansfinish = sansini.FechaInicio
