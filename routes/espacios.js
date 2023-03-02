@@ -6,8 +6,6 @@ const controller = require('../controllers/espacios.c')
 //VER TODO
 router.get('/', controller.consulta);
 
-module.exports = router;
-
 // CONSULTAR MEDIANTE CODIGO DE LUGAR, EJEM: http://localhost:3000/api/equipos/9292 ↓
 router.get('/:Code', controller.consultaSerial);
 
@@ -22,3 +20,5 @@ router.delete('/:Code', controller.eliminarEspacio);
 /// ACTUALIZAR POR CODIGO
 
 router.put('/:Code', controller.editarEspacio);
+
+module.exports = router;
