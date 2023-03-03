@@ -98,12 +98,13 @@ controller.editarSolicitante = function(req, res){
     const QCiS = req.params
     const NaCiS = (QCiS.CiS)
     mo = 'No'
-    const { NombreUS, contraS, NumT} = req.body;
-    if (NombreUS && contraS && NumT) {
+    const { NombreUS, contraS, DireccionC, NumT} = req.body;
+    if (NombreUS && contraS && DireccionC && NumT) {
       sU.each(Mostrar_solicitantes, (solicitante, i) => {
         if(solicitante.CiS == NaCiS ){
             solicitante.NombreUS = NombreUS;
             solicitante.contraS = contraS;
+            solicitante.DireccionC = DireccionC;
             solicitante.NumT = NumT
             console.log('Datos modificados correctamente')
             mo = 'Si'
