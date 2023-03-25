@@ -7,7 +7,9 @@ let mo = 'No'
 let pos
 let Agg = 'Si'
 var {consultarequipos} = require('../src/sqlequipos.js')
+var {registrarequipos} = require('../src/sqlequipos.js')
 
+// CONSULTA TODOS LOS EQUIPOS
 controller.consulta = function(req, res){
   res.send(consultarequipos())
 };
@@ -32,43 +34,15 @@ controller.consultaSerial = function(req, res){
 
   controller.agregarEquipo = (req,res) => { 
     Agg = 'Si'
+    agregarequipos = consultarequipos()
   // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
   const { Serial , Nombre , Descripcion ,  Adquisicion , Estatus} = req.body
-      
   // CONDICION PARA VER SI TODO LOS CAMPOS ESTÁN LLEGANDO ↓
   if (Serial && Nombre && Descripcion && Adquisicion && Estatus) {
-      
-    if (Mostrar_equipos.length == 0) {
-      
-      const nuevo_equipo =  {...req.body}
-      Mostrar_equipos.push(nuevo_equipo)
-      res.send('Guardado correctamente')
-    }else{
-      
-      for (i = 0; i < Mostrar_equipos.length; i++){
-      
-        if (Mostrar_equipos[i].Serial === Serial){
-          Agg = 'No'
-        }
-      }
-            
-    }
-      
-    if (Agg == 'No'){
-      res.send('No puede haber Seriales duplicados')
-    }
-    if (Agg == 'Si'){
-      // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
-      
-      const nuevo_equipo =  {...req.body}
-            
-      // AGREGA LOS DATOS EL JSON ↓
-      Mostrar_equipos.push(nuevo_equipo)
-            
-      // MENSAJE QUE INDICA QUE SE GUARDÓ CORRECTAMENTE ↓
-      res.send('Guardado correctamente')
-    }
-      
+    
+    registrarequipos(Serial, Nombre, Descripcion, Adquisicion, Estatus)
+    res.send('Datos agregados correctamente')
+    
   } else {
     // EN CASO DE QUE ALGUN CAMPO NO ESTÉ COLOCADO, SE EJECUTA ESTA CONDICIÓN ↓
     res.status(500).send('Peticion Erronea')

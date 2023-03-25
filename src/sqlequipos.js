@@ -15,4 +15,13 @@ const consultarequipos = () => {
     return consultaequipos
 }
 
-module.exports = {consultarequipos}
+const registrarequipos = (Serial, Nombre, Descripcion, Adquisicion, Estatus) => {
+
+    conection.query('Insert into equipos VALUES (' + Serial + ',"' + Nombre + '","' + Descripcion + '","' + Adquisicion + '","' + Estatus + '");', (err, rows) =>{
+        if(err) throw err
+        console.log('Datos Agregados correctamente')
+    }); 
+}
+
+
+module.exports = {consultarequipos, registrarequipos}
