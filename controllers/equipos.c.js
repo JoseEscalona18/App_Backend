@@ -6,9 +6,10 @@ let el = 'No'
 let mo = 'No'
 let pos
 let Agg = 'Si'
+var {consultarequipos} = require('../src/sqlequipos.js')
 
 controller.consulta = function(req, res){
-  res.send(Mostrar_equipos)
+  res.send(consultarequipos())
 };
 
 controller.consultaSerial = function(req, res){
