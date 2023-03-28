@@ -1,152 +1,90 @@
-const controller = {};
-var Mostrar_reservasEqui = require('../src/ReservasEquipos.json');
 
-const pse = require('underscore')
+const { promiseImpl } = require('ejs');
+const { reject } = require('underscore');
+var reservasequiFuente = require('../src/sqlreservasequipos.js')
 
-//VARIABLES
-var non = "No"
-var nanot= "No"
-let mo = 'No'
-///DOS VARIABLES"NO", RECORDAR
 
-controller.consulta = function(req, res, next) {
-    res.send(Mostrar_reservasEqui)
-};
+class reservadeequipoontroller {
+  listarREQ(){
+    return new Promise ((resolve, reject)=>{
+        console.log("Funciona Controlador 1")
+        reservasequiFuente.listarRequi()
+        .then((resultado)=>{
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  }
 
-controller.consultaIDE = function(req, res){
-    non = 'No'
-    const CID  = req.params
-    const SID = Number(CID.IDE)
-  
-    // RECORRE TODO EL JSON EN BUSQUEDA DE UN IDE IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
-    for (let f = 0; f < Mostrar_reservasEqui.length; f++){
-  
-      if (Mostrar_reservasEqui[f].IDE ==  SID){
-        res.send(Mostrar_reservasEqui[f])
-        non = 'Si'
-      }
-    }
-    if(non == 'No') {
-      res.send('No se encontraron reservas con ese IDE')
-    }
-};
+   ///MOSTRAR UNA RESERVA DE EQUIPO
 
-controller.agregarResEqu = (req,res) => {
+   mostrarReservaEQ(reservadeequipo){
+    return new Promise ((resolve, reject)=>{
+      console.log("Funciona Controlador 2")
+        reservasequiFuente.mostrarREQ(reservadeequipo)
+        .then((resultado)=>{
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  }  
 
-    // AGREGA LOS DATOS QUE SE ESTAN MANDANDO DEL BODY EN LAS RESPECTIVAS CONSTANTES ↓
-    const { IDE, Nombre_Solicitante, FechaInicio, FechaFin, HoraInicio, HoraFin, Motivo, Equipos} = req.body
-  
-    // CONDICION PARA VER SI TODO LOS CAMPOS ESTÁN LLEGANDO ↓
-    if (Nombre_Solicitante && FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Equipos) {
-      let IDE
-      if (Mostrar_reservasEqui.length == 0) {
-        IDE = 1
-        const nueva_reservaequi =  {IDE, ...req.body}
-        Mostrar_reservasEqui.push(nueva_reservaequi)
-        res.send('Guardado correctamente')
-
-      }else{
-        IDE = Mostrar_reservasEqui.length + 1
-        // AGREGA LOS DATOS EN UNA NUEVA CONSTANTE ↓
-        const nueva_reservaequi =  {IDE, ...req.body}
-        // AGREGA LOS DATOS EL JSON ↓
-        Mostrar_reservasEqui.push(nueva_reservaequi)
-        // MENSAJE QUE INDICA QUE SE GUARDÓ CORRECTAMENTE ↓
-        res.send('Guardado correctamente')
-      }
-    } else {
-      // EN CASO DE QUE ALGUN CAMPO NO ESTÉ COLOCADO, SE EJECUTA ESTA CONDICIÓN ↓
-      res.status(500).send('Peticion Erronea')
-    }
-};
-
-controller.eliminarResEqu = function(req, res){
-    non = 'No'
-    const SCID  = req.params
-    const PID = Number(SCID.IDE)
-    pse.each(Mostrar_reservasEqui,(reservaequi, i) =>{
-  
-      if (reservaequi.IDE == PID){
-        non = 'Si'
-        pos = i
-      }
-    });
-
-    if (non == 'Si'){
-      Mostrar_reservasEqui.splice(pos,1)
-      console.log('Eliminado correctamente')
-      res.send(Mostrar_reservasEqui)
-    }
-    if(non == 'No') {
-      res.send('No se encontro ninguna de reserva equipo con ese ID')
-    }
-};
-
-controller.editarResEqu = function(req, res){
-    const RQID = req.params
-    const GUID = Number(RQID.IDE)
-    mo = 'No'
-    const { FechaInicio, FechaFin, HoraInicio, HoraFin, Motivo, Equipos} = req.body;
-    if (FechaInicio && FechaFin && HoraInicio && HoraFin && Motivo && Equipos) {
-      
-      pse.each(Mostrar_reservasEqui, (reservaequi, i) => {
-        if(reservaequi.IDE == GUID ){
-          reservaequi.FechaInicio = FechaInicio;
-          reservaequi.FechaFin = FechaFin;
-          reservaequi.HoraInicio = HoraInicio;
-          reservaequi.HoraFin = HoraFin;
-          reservaequi.Motivo = Motivo;
-          reservaequi.Equipos = Equipos;
-          console.log('Datos modificados correctamente')
-          mo = 'Si'
-          res.send(reservaequi)
+  registrar(reservadeequipo){
+    return new Promise ((resolve, reject)=>{
+        if (!reservadeequipo.Nombre_Solicitante || !reservadeequipo.CI_Solicitante || !reservadeequipo.FechaInicio|| !reservadeequipo.FechaFin|| !reservadeequipo.HoraInicio|| !reservadeequipo.HoraFi|| !reservadeequipo.SerialesE|| !reservadeequipo.Equipos|| !reservadeequipo.Motivo) {
+            return resolve("Compruebe uno de los datos a ingresar.");
         }
-      });
-      if (mo == 'No') {
-        res.send('No se encontraron reservas con ese ID')  
-    }
-    }
-    else{
-      res.status(500).json({error: "Hubo un error"})
-    }
-  };
+        console.log("Contrlador de registrar tecnicos")
+        reservasequiFuente.RegistrarReservasDeEquipos(reservadeequipo)
+        .then((resultado)=>{
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
 
-controller.consultaFechaInicio = function(req, res){
-    nanot = 'No'
-    const sansini  = req.params
-    const sansfinish = sansini.FechaInicio
-    let AcumuladorReservas = []
-    let acum = 0
-    console.log(sansfinish)
-  
-    // RECORRE TODO EL JSON EN BUSQUEDA DE UNA FECHA IGUAL AL QUE SE COLOCÓ, SI NO ENCUENTRA NINGUNO MANDA UN MENSAJE ↓
-    for (let f = 0; f < Mostrar_reservasEqui.length; f++){
-  
-      if (Mostrar_reservasEqui[f].FechaInicio == sansfinish){
-        AcumuladorReservas[acum] = Mostrar_reservasEqui[f]
-        acum = acum + 1
-        nanot = 'Si'
-      }
-    }
-    if(nanot == 'No') {
-      res.send('No se encontraron reservas con esa fecha de inicio')
-    }else{
-      res.send(AcumuladorReservas)
-    }
-};
+  }
 
-controller.consultaRangoFecha =  function(req, res){
+  actualizar(reservadeequipo, IDeq){
+    console.log("Controlador de Actualizar Espacio")
 
-    //RANGOS GUARDA :FECHA1 Y :FECHA2 COMO PARAMETROS ↓
-    const Rangos  = req.params
-    //FINICIO GUARADA LA :FECHA1 ↓
-    const Finicio = Rangos.Fecha1
-    //FFIN GUARADA LA :FECHA2 ↓
-    const FFin = Rangos.Fecha2
-  
-    ///HACE UN FILTRO QUE BUSCA POR LOS RANGOS DE FECHAS COLOCADAS ↓
-    let buscarrango = Mostrar_reservasEqui.filter(n => n.FechaInicio >= Finicio && n.FechaInicio <= FFin)
-    res.send(buscarrango)
-  };
+    return new Promise ((resolve, reject) => {
+        if (!reservadeequipo.Nombre_Solicitante || !reservadeequipo.CI_Solicitante || !reservadeequipo.FechaInicio|| !reservadeequipo.FechaFin|| !reservadeequipo.HoraInicio|| !reservadeequipo.HoraFi|| !reservadeequipo.SerialesE|| !reservadeequipo.Equipos|| !reservadeequipo.Motivo) {
+            return resolve("No se actualizaron los datos del tecnico, se requiere de los parametros correctos");
+        }
+        reservasequiFuente.ActualizarDatos(reservadeequipo,IDeq)
+        .then((resultado)=>{
+            resolve (resultado)
+        })
+        .catch((err)=>{
+            reject(err)
+        })
+    })
+  }
+  ///BORRAR PERSONAL DEL REGISTRO A PARTIR DE SU CEDULA
+  borrar(reservadeequipo){
+      console.log('Controlador de Borrado')
+      return new Promise ((resolve, reject) => {
+          reservasequiFuente.BorrarReserva(reservadeequipo)
+          .then((resultado)=>{
+              resolve (resultado)
+          })
+          .catch((err)=>{
+              reject(err)
+          })
+      })
+    }  
 
-module.exports = controller
+
+}
+
+
+
+const reservadeequipo= new reservadeequipoontroller()
+
+module.exports = reservadeequipo

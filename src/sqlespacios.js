@@ -86,6 +86,30 @@ class EspaciosFuente {
         })
     }
 
+    RegistrarPersonal(personal){
+        let nombre = '"'+personal.Nombre+'"'
+        let ci = '"'+personal.CI+'"'
+        let cargo = '"'+personal.Cargo+'"'
+        let usuario = '"'+personal.Usuario+'"'
+        let contraseña = '"'+personal.Contraseña+'"'
+        let especialidad = '"'+personal.Especialidad+'"'
+        let estatus =  '"'+personal.Estatus+'"'
+
+        console.log(personal)
+
+        return new Promise((resolve, reject) => {
+            console.log('Funciona el SQL de crear')
+            conection.query('INSERT INTO personal (Nombre, CI, Cargo, Usuario, Contraseña, Especialidad, Estatus) VALUES (' +nombre+ ', ' +ci+ ', ' +cargo+ ', ' +usuario+ ',' +contraseña+ ',' +especialidad+ ',' +estatus+ ')',
+            function (error, results, fields){
+                if(error) throw error;
+                console.log('Se ha registrado a la persona en el sistema');
+                console.log(results);
+                resolve(personal)
+            }
+        );
+        })
+    }
+
 }
 
 const espaciosF = new EspaciosFuente();

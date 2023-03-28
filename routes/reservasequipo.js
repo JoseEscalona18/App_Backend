@@ -6,29 +6,81 @@ var router = express.Router();
 const controller = require('../controllers/reservaequipo.c')
 
 //VER TODO
-router.get('/', controller.consulta);
+router.get(
+    '/',  function(req, res) { controller
+    controller.listarREQ()
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-module.exports = router;
+///MOSTRAR POR CEDULA
+router.get(
+  '/:ID', function(req, res) { 
+    let reservasdeequipo = req.params.ID
+    console.log(reservasdeequipo)
+  controller.mostrarReservaEQ(reservasdeequipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
 
-// CONSULTAR LA RESERVA DE EQUIPO POR IDE
+///AGREGAR AL REGISTRO DE RESERVAS
+router.post(
+  '/',      function(req, res){
+    let reservadeequipo = req.body;
+  controller.registrar(reservadeequipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
 
-router.get('/:IDE', controller.consultaIDE);
+///ACTUALIZAR RESERVA POR ID
+router.put(
+  '/:ID',  function(req, res) {
+    let IDeq = req.params.ID
+    console.log(IDeq)
+    let reservadeequipo = req.body;
+  controller.actualizar(reservadeequipo,IDeq)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///BORRAR RESERVA DE EQUIPO POR ID
+
+router.delete(
+  '/:ID', function(req, res){
+    let reservadeequipo = req.params.ID;
+  controller.borrar(reservadeequipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
 
 
-//AGREGAR RESERVAS DE EQUIPO /// HAY QUE ACTUALIZAR LO QUE ESTA EN EQUIPOS IGUALMENTE, EL ESTATUS ESPECIFICAMENTE
 
-router.post('/', controller.agregarResEqu);
 
+//CONSULTAR LA RESERVA DE EQUIPO POR IDE
+//RESERVAS DE EQUIPO AGREGAR
 //BORRAR RESERVA DE EQUIPO POR IDE
-router.delete('/:IDE', controller.eliminarResEqu);
-
-
-///ACTUALIZAR RESERVAS DE EQUIPOS , !! HAY QUE ACTUALIZAR LO QUE ESTA EN EQUIPOS IGUALMENTE, EL ESTATUS ESPECIFICAMENTE
-router.put('/:IDE', controller.editarResEqu);
-
-///CONSULTAR RESERVAS POR FECHAS DE INICIO
-router.get('/Fecha/:FechaInicio', controller.consultaFechaInicio);
-
+//ACTUALIZAR RESERVAS DE EQUIPOS POR IDE
+//CONSULTAR RESERVAS POR FECHAS DE INICIO
 ///CONSULTAR RESERVAS POR RANGO DE FECHAS DE INICIO ↓
 
-router.get('/Rango1/:Fecha1/Rango2/:Fecha2',controller.consultaRangoFecha);
+module.exports = router
