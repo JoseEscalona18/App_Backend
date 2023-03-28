@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const { select } = require('underscore');
 
 const conection = mysql.createConnection({
-    host:'localhost',
-    user:'admin',
-    password:'123456',
-    database:'reservasdb'
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })
 
 

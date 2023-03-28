@@ -2,9 +2,10 @@ const { promiseImpl } = require('ejs');
 const { reject } = require('underscore');
 var equiposFuente = require('../src/sqlequipos.js')
 
-//CONSULTAR EQUIPOS
+///CLASE CONTROLADOR de EQUIPO
 
 class equiposController {
+    //CONSULTAR EQUIPOS
   listar(){
       return new Promise ((resolve, reject)=>{
           console.log("Funciona Controlador 1")
