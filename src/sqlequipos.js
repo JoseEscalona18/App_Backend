@@ -98,7 +98,7 @@ class EquiposFuente {
             conection.query('DELETE  FROM equipos WHERE Serial = '+ equipo, function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha borrado el equipo, puedes comprobarlo listando de nuevo o desde PHPMyAdmin', results);
-                resolve(equipo)
+                resolve('El equipo con el Serial:'+equipo+ ','+'ha sido eliminado')
             })
         })
 

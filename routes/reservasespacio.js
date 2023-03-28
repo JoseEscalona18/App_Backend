@@ -1,31 +1,81 @@
 ///CREAR ROUTER
 var express = require('express');
 var router = express.Router();
+
 const controller = require('../controllers/reservaespacio.c')
 
-//VER TODO
-router.get('/',controller.consulta);
 
-module.exports = router;
+////VER TODAS LAS RESERVAS DE ESPACIOS
+router.get(
+    '/',  function(req, res) { controller
+    controller.listarRES()
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-// CONSULTAR LA RESERVA DE EQUIPO POR IDD
+///MOSTRAR POR ID
+router.get(
+    '/:ID', function(req, res) { 
+      let reservadeespacio = req.params.ID
+      console.log(reservadeespacio)
+    controller.mostrarReservaES(reservadeespacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+  });
 
-router.get('/:IDD', controller.consultaIDD);
+///AGREGAR AL REGISTRO DE RESERVAS DE ESPACIOS
+router.post(
+    '/',      function(req, res){
+      let reservadeespacio = req.body;
+    controller.registrar(reservadeespacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
+
+///ACTUALIZAR RESERVA POR ID
+router.put(
+    '/:ID',  function(req, res) {
+      let IDes = req.params.ID
+      console.log(IDes)
+      let reservadeespacio = req.body;
+    controller.actualizar(reservadeespacio,IDes)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
+
+router.delete(
+    '/:ID', function(req, res){
+      let reservadeespacio = req.params.ID;
+    controller.borrar(reservadeespacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+  });  
 
 
-//AGREGAR RESERVAS DE EQUIPO /// HAY QUE ACTUALIZAR LO QUE ESTA EN EQUIPOS IGUALMENTE, EL ESTATUS ESPECIFICAMENTE
 
-router.post('/', controller.agregarResEsp);
-
-///BORRAR RESERVA DE ESPACIO POR IDD
-router.delete('/:IDD', controller.eliminarResEsp);
 
 //ACTUALIZAR RESERVA DE ESPACIO POR IDD // HAY QUE ACTUALIZAR LO QUE ESTA EN ESPACIOS Y PERSONAL IGUALMENTE, EL ESTATUS ESPECIFICAMENTE
 
-router.put('/:IDD', controller.editarResEsp);
-
 ///CONSULTAR RESERVAS POR FECHAS DE INICIO
 
-router.get('/fecha/:FechaInicio', controller.consultaFecha);
-
-router.get('/Rango1/:Fecha1/Rango2/:Fecha2', controller.consultaRangoFecha);
+module.exports = router

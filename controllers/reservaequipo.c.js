@@ -38,7 +38,7 @@ class reservadeequipoontroller {
         if (!reservadeequipo.Nombre_Solicitante || !reservadeequipo.CI_Solicitante || !reservadeequipo.FechaInicio|| !reservadeequipo.FechaFin|| !reservadeequipo.HoraInicio|| !reservadeequipo.HoraFi|| !reservadeequipo.SerialesE|| !reservadeequipo.Equipos|| !reservadeequipo.Motivo) {
             return resolve("Compruebe uno de los datos a ingresar.");
         }
-        console.log("Contrlador de registrar tecnicos")
+        console.log("Contrlador de registrar reservas de equipos")
         reservasequiFuente.RegistrarReservasDeEquipos(reservadeequipo)
         .then((resultado)=>{
             resolve (resultado)
@@ -66,6 +66,7 @@ class reservadeequipoontroller {
         })
     })
   }
+  
   ///BORRAR PERSONAL DEL REGISTRO A PARTIR DE SU CEDULA
   borrar(reservadeequipo){
       console.log('Controlador de Borrado')

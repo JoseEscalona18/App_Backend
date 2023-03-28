@@ -17,7 +17,7 @@ router.get(
       })
 });
 
-///MOSTRAR POR CEDULA
+///MOSTRAR POR ID
 router.get(
   '/:ID', function(req, res) { 
     let reservasdeequipo = req.params.ID
@@ -75,11 +75,6 @@ router.delete(
 
 
 
-
-//CONSULTAR LA RESERVA DE EQUIPO POR IDE
-//RESERVAS DE EQUIPO AGREGAR
-//BORRAR RESERVA DE EQUIPO POR IDE
-//ACTUALIZAR RESERVAS DE EQUIPOS POR IDE
 //CONSULTAR RESERVAS POR FECHAS DE INICIO
 ///CONSULTAR RESERVAS POR RANGO DE FECHAS DE INICIO ↓
 
