@@ -81,11 +81,9 @@ class EspaciosFuente {
             console.log('Funciona el SQL de Borrar');
             conection.query('DELETE  FROM espacios WHERE ID_Espacio = '+ espacio, function (error, results, fields){
                 if(error) throw error;
-                console.log('Se ha borrado el espacio, puedes comprobarlo listando de nuevo o desde PHPMyAdmin', results);
-                resolve(espacio)
+                resolve('Se ha borrado el espacio, puedes comprobarlo listando de nuevo o desde PHPMyAdmin')
             })
         })
-
     }
 
 }

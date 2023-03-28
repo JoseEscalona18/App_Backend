@@ -3,6 +3,9 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/espacios.c')
 
+
+///MOSTRAR TODOS LOS ESPACIOS
+
 router.get(
     '/',  function(req, res) { controller
     controller.listar()
@@ -28,6 +31,8 @@ router.get(
       })
 });
 
+///AGREGAR ESPACIOS
+
 router.post(
     '/',      function(req, res){
       let espacio = req.body;
@@ -40,8 +45,9 @@ router.post(
       })
 });
 
+///ACTUALIZAR ESPACIO POR ID
 router.put(
-    '/:ID_Espacio',  function(req, res, next) {
+    '/:ID_Espacio',  function(req, res) {
       let ID_Espacio = req.params.ID_Espacio
       console.log(ID_Espacio)
       let espacio = req.body;

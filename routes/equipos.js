@@ -3,8 +3,6 @@ var router = express.Router();
 const controller = require('../controllers/equipos.c')
 
 
-router.use(express.json());
-
 ///MOSTRAR TODO
 router.get(
     '/',  function(req, res) { controller
