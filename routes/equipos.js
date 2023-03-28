@@ -19,8 +19,8 @@ router.get(
 
 ///MOSTRAR POR SERIAL
 router.get(
-    '/:Nombre', function(req, res) { 
-      let equipo = req.params.Nombre
+    '/:Serial', function(req, res) { 
+      let equipo = req.params.Serial
       console.log(equipo)
     controller.mostrarEquipo(equipo)
       .then((resultado)=>{

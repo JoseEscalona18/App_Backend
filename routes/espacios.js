@@ -3,22 +3,69 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/espacios.c')
 
-//VER TODO
-router.get('/equiposC', controller.consulta);
+router.get(
+    '/',  function(req, res) { controller
+    controller.listar()
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-// CONSULTAR MEDIANTE CODIGO DE LUGAR, EJEM: http://localhost:3000/api/equipos/9292 ↓
-router.get('/:Code', controller.consultaSerial);
+///MOSTRAR POR ID
+router.get(
+    '/:ID_Espacio', function(req, res) { 
+      let espacio = req.params.ID_Espacio
+      console.log(espacio)
+    controller.mostrarEspacio(espacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-/// AGREGAR ESPACIOS
+router.post(
+    '/',      function(req, res){
+      let espacio = req.body;
+    controller.crear(espacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-router.post('/', controller.agregarEspacio);
+router.put(
+    '/:ID_Espacio',  function(req, res, next) {
+      let ID_Espacio = req.params.ID_Espacio
+      console.log(ID_Espacio)
+      let espacio = req.body;
+    controller.actualizar(espacio,ID_Espacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-// Borrar espacio por Codigo del Lugar
+///BORRAR ESPACIO POR ID
 
-router.delete('/:Code', controller.eliminarEspacio);
-
-/// ACTUALIZAR POR CODIGO
-
-router.put('/:Code', controller.editarEspacio);
+router.delete(
+    '/:ID_Espacio',      function(req, res){
+      let espacio = req.params.ID_Espacio;
+    controller.borrar(espacio)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
 module.exports = router;
