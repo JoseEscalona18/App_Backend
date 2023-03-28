@@ -2,19 +2,77 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/equipos.c')
 
-// CONSULTA TODOS LOS EQUIPOS ↓
-router.get('/',controller.consulta);
 
-// CONSULTA MEDIANTE UN PARAMS SERIALES ESPECIFICOS, EJEM: http://localhost:3000/api/equipos/123456 ↓
-router.get('/:Serial',controller.consultaSerial);
+router.use(express.json());
 
-// AGREGAR EQUIPOS ↓
-router.post('/',controller.agregarEquipo);
+///MOSTRAR TODO
+router.get(
+    '/',  function(req, res) { controller
+    controller.listar()
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-//BORRAR LOS EQUIPOS POR SERIAL ↓
-router.delete('/:Serial',controller.eliminarEquipo);
+///MOSTRAR POR SERIAL
+router.get(
+    '/:Nombre', function(req, res) { 
+      let equipo = req.params.Nombre
+      console.log(equipo)
+    controller.mostrarEquipo(equipo)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
 
-//ACTUALIZAR EQUIPOS POR SERIAL ↓
-router.put('/:Serial',controller.editarEquipo);
+///INGRESAR UN EQUIPO
+
+router.post(
+  '/',      function(req, res){
+    let equipo = req.body;
+  controller.crear(equipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///ACTUALIZAR EQUIPO POR SERIAL
+
+router.put(
+  '/:Serial',  function(req, res, next) {
+    let SerialE = req.params.Serial
+    console.log(SerialE)
+    let equipo = req.body;
+  controller.actualizar(equipo,SerialE)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///BORRAR EQUIPO POR SERIAL
+
+router.delete(
+  '/:Serial',      function(req, res){
+    let equipo = req.params.Serial;
+  controller.borrar(equipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
 
 module.exports = router;
