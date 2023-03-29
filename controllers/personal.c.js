@@ -29,6 +29,22 @@ class personalController {
         });
     })
   }
+
+  mostrarPersonalCargo(personal){
+    return new Promise ((resolve, reject)=>{
+        personalFuente.mostrarPersonalCarg(personal)
+        .then((resultado)=>{
+          if (resultado == ""){
+            resultado = "No se encontro ningun registro con ese cargo"
+            resolve (resultado)
+        }else
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  }
   
   ///REGISTRAR TECNICOS
 

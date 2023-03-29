@@ -33,6 +33,19 @@ class PersonalFuente {
         })
     }
 
+    mostrarPersonalCarg(personal){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar el Personal segun su cargo')
+            conection.query('SELECT * FROM `personal` WHERE Cargo = "'+ personal + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+
+    }
+
     RegistrarPersonal(personal){
         let nombre = '"'+personal.Nombre+'"'
         let ci = '"'+personal.CI+'"'

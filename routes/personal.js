@@ -29,6 +29,20 @@ router.get(
     })
 });
 
+///MOSTRAR POR CARGO
+router.get(
+  '/Cargo/:Cargo', function(req, res) { 
+    let personal = req.params.Cargo
+    console.log(personal)
+  controller.mostrarPersonalCargo(personal)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
 ///AGREGAR AL REGISTRO DE TECNICOS
 router.post(
   '/',      function(req, res){

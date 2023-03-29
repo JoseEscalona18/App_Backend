@@ -40,6 +40,7 @@ class equiposController {
           .then((resultado)=>{
             if (resultado == ""){
                 resultado = "No se encontro ningun registro con ese estatus"
+                resolve(resultado)
             }else
               resolve (resultado)
           })
