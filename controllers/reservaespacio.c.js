@@ -78,7 +78,7 @@ class reservaespaciocontroller {
     })
   }  
 
-  ///MOSTRAR UNA RESERVA DE EQUIPO POR FECHA
+  ///MOSTRAR UNA RESERVA DE ESPACIO POR FECHA
   mostrarRESFecha(reservadeespacio){
     return new Promise ((resolve, reject)=>{
       reservasespFuente.mostrarRESF(reservadeespacio)
@@ -95,7 +95,7 @@ class reservaespaciocontroller {
     })
   }  
 
-  ///MOSTRAR UNA RESERVA DE EQUIPO POR RANGO DE FECHAS
+  ///MOSTRAR UNA RESERVA DE ESPACIO POR RANGO DE FECHAS
   mostrarRESRangoFecha(reservadeespacio1, reservadeespacio2){
     return new Promise ((resolve, reject)=>{
       reservasespFuente.mostrarRESRango(reservadeespacio1, reservadeespacio2)
