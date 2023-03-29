@@ -35,6 +35,17 @@ class EquiposFuente {
         })
     }
 
+    mostrarEquipoEst(equipo){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar equipos segun el estatus')
+            conection.query('SELECT * FROM `equipos` WHERE Estatus = "'+ equipo +'"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+        })
+    }
+
     crear(equipo){
         let nombre = '"'+equipo.Nombre+'"'
         let descripcion = '"'+equipo.Descripcion+'"'

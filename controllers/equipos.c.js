@@ -33,6 +33,21 @@ class equiposController {
           });
       })
   }
+  ///MOSTRAR EQUIPO POR ESTATUS
+  mostrarEquipoEstatus(equipo){
+    return new Promise ((resolve, reject)=>{
+          equiposFuente.mostrarEquipoEst(equipo)
+          .then((resultado)=>{
+            if (resultado == ""){
+                resultado = "No se encontro ningun registro con ese estatus"
+            }else
+              resolve (resultado)
+          })
+          .catch((err)=>{
+            reject(err)
+          });
+      })
+  }
 
   ///CREAR EQUIPOS
 

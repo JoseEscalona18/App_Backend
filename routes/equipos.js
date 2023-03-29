@@ -29,6 +29,25 @@ router.get(
       })
 });
 
+///MOSTRAR POR ESTATUS
+router.get(
+  '/Estatus/:Estatus', function(req, res) { 
+    let equipo = req.params.Estatus
+    console.log(equipo)
+    if (equipo == "Disponible" || equipo == "Ocupado" || equipo == "disponible" || equipo == "ocupado"){
+      controller.mostrarEquipoEstatus(equipo)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+
+    } else
+      res.send("Estatus Erroneo")
+    
+});
+
 ///INGRESAR UN EQUIPO
 
 router.post(
