@@ -78,6 +78,40 @@ class reservaespaciocontroller {
     })
   }  
 
+  ///MOSTRAR UNA RESERVA DE EQUIPO POR FECHA
+  mostrarRESFecha(reservadeespacio){
+    return new Promise ((resolve, reject)=>{
+      reservasespFuente.mostrarRESF(reservadeespacio)
+        .then((resultado)=>{
+          if (resultado == ""){
+            resultado = "No se encontro ningun registro con esa fecha"
+            resolve (resultado)
+          }else
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  }  
+
+  ///MOSTRAR UNA RESERVA DE EQUIPO POR RANGO DE FECHAS
+  mostrarRESRangoFecha(reservadeespacio1, reservadeespacio2){
+    return new Promise ((resolve, reject)=>{
+      reservasespFuente.mostrarRESRango(reservadeespacio1, reservadeespacio2)
+        .then((resultado)=>{
+          if (resultado == ""){
+            resultado = "No se encontro ningun registro en ese rango de fechas"
+            resolve (resultado)
+          }else
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  } 
+
 
 }
 

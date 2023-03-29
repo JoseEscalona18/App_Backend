@@ -29,7 +29,39 @@ router.get(
       .catch((err)=>{
         res.send(err)
       })
-  });
+});
+
+///MOSTRAR POR FECHA
+router.get(
+  '/Fecha/:FechaInicio', function(req, res) { 
+    let reservadeespacio = req.params.FechaInicio
+    console.log(reservadeespacio)
+  controller.mostrarRESFecha(reservadeespacio)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///MOSTRAR POR RANGO DE FECHAS
+router.get(
+  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', function(req, res) { 
+    let reservadeespacio1 = req.params.FechaInicio
+    let reservadeespacio2 = req.params.FechaFin
+    console.log(reservadeespacio1)
+    console.log(reservadeespacio2)
+  controller.mostrarRESRangoFecha(reservadeespacio1, reservadeespacio2)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+
 
 ///AGREGAR AL REGISTRO DE RESERVAS DE ESPACIOS
 router.post(

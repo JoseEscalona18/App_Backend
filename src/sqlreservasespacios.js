@@ -95,6 +95,32 @@ class reservasespacioFuente {
             })
         })
     }
+
+    mostrarRESF(reservadeespacio){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar una reserva por fecha')
+            console.log(reservadeespacio)
+            conection.query('SELECT * FROM reservasespacios WHERE FechaInicio = "'+ reservadeespacio + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+
+    mostrarRESRango(reservadeespacio1, reservadeespacio2){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar una reserva por rango de fechas')
+            conection.query('SELECT * FROM reservasespacios WHERE FechaInicio BETWEEN "'+ reservadeespacio1 + '" AND "' + reservadeespacio2 + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+    
 }
 
 const reservasEspaF = new reservasespacioFuente();
