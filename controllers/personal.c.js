@@ -29,6 +29,7 @@ class personalController {
         });
     })
   }
+///MOSTRAR UN TECNICO POR CARGO
 
   mostrarPersonalCargo(personal){
     return new Promise ((resolve, reject)=>{
