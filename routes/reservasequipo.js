@@ -31,6 +31,36 @@ router.get(
     })
 });
 
+///MOSTRAR POR FECHA
+router.get(
+  '/Fecha/:FechaInicio', function(req, res) { 
+    let reservasdeequipo = req.params.FechaInicio
+    console.log(reservasdeequipo)
+  controller.mostrarREQFecha(reservasdeequipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///MOSTRAR POR RANGO DE FECHAS
+router.get(
+  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', function(req, res) { 
+    let reservasdeequipo1 = req.params.FechaInicio
+    let reservasdeequipo2 = req.params.FechaFin
+    console.log(reservasdeequipo1)
+    console.log(reservasdeequipo2)
+  controller.mostrarREQRangoFecha(reservasdeequipo1, reservasdeequipo2)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
 ///AGREGAR AL REGISTRO DE RESERVAS
 router.post(
   '/',      function(req, res){

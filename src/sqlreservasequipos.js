@@ -96,6 +96,31 @@ class reservasequiposFuente {
         })
     }
 
+    mostrarREQF(reservadeequipo){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar una reserva por fecha')
+            console.log(reservadeequipo)
+            conection.query('SELECT * FROM reservasequipos WHERE FechaInicio = "'+ reservadeequipo + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+
+    mostrarREQRango(reservadeequipo1, reservadeequipo2){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar una reserva por rango de fechas')
+            conection.query('SELECT * FROM reservasequipos WHERE FechaInicio BETWEEN "'+ reservadeequipo1 + '" AND "' + reservadeequipo2 + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+
 
 }
 
