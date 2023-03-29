@@ -121,6 +121,19 @@ class reservasequiposFuente {
         })
     }
 
+    mostrarREQCISoli(reservadeequipo){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar las reservas de un solicitante')
+            conection.query('SELECT * FROM reservasequipos WHERE CI_Solicitante = '+ reservadeequipo, function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+
+    }
+
 
 }
 

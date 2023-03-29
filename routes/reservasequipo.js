@@ -61,6 +61,20 @@ router.get(
     })
 });
 
+///MOSTRAR POR CEDULA DE SOLICITANTE
+router.get(
+  '/CedulaS/:CI_Solicitante', function(req, res) { 
+    let reservasdeequipo = req.params.CI_Solicitante
+    console.log(reservasdeequipo)
+  controller.mostrarREQCedulaS(reservasdeequipo)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
 ///AGREGAR AL REGISTRO DE RESERVAS
 router.post(
   '/',      function(req, res){
