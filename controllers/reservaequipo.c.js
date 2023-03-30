@@ -5,6 +5,7 @@ var reservasequiFuente = require('../src/sqlreservasequipos.js')
 
 
 class reservadeequipoontroller {
+  ///LISTAR RESERVA DE EQUIPO
   listarREQ(){
     return new Promise ((resolve, reject)=>{
         console.log("Funciona Controlador 1")
@@ -33,6 +34,8 @@ class reservadeequipoontroller {
     })
   }  
 
+  ///REGISTRAR RESERVA DE EQUIPO
+
   registrar(reservadeequipo){
     return new Promise ((resolve, reject)=>{
         if (!reservadeequipo.Nombre_Solicitante || !reservadeequipo.CI_Solicitante || !reservadeequipo.FechaInicio|| !reservadeequipo.FechaFin|| !reservadeequipo.HoraInicio|| !reservadeequipo.HoraFi|| !reservadeequipo.SerialesE|| !reservadeequipo.Equipos|| !reservadeequipo.Motivo) {
@@ -49,6 +52,8 @@ class reservadeequipoontroller {
     })
 
   }
+
+  ///ACTUALIZAR RESERVA DE EQUIPO
 
   actualizar(reservadeequipo, IDeq){
     console.log("Controlador de Actualizar Espacio")

@@ -91,7 +91,7 @@ class reservasespacioFuente {
             conection.query('DELETE  FROM reservasespacios WHERE ID = '+ reservadeespacio, function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha borrado la reserva del espacio, puedes comprobarlo listando de nuevo o desde PHPMyAdmin   ', results);
-                resolve('La reserva de equipo con el ID' + reservadeespacio + ',ha sido eliminada')
+                resolve('La reserva de espacio con el ID' + reservadeespacio + ',ha sido eliminada')
             })
         })
     }

@@ -14,6 +14,7 @@
     <p> Para agregar un equipo ingrese la información en el <b>postman</b>, dentro de la misma direccion: <b>http://localhost:3000/api/equipos </b></p>
     <p> Para Eliminar un equipo ingrese el serial como parametro, Ejemplo: <b>http://localhost:3000/api/equipos/123456 </b></p>
     <p> Para Modificar un equipo ingrese el serial como parametro y coloca los datos modificados en el <b>postman</b>, Ejemplo: <b>http://localhost:3000/api/equipos/123456 </b></p>
+    <p> Para consultar un equipo por estatus tiene que ingresar el estatus como parametro luego de estatus/ en el <b>postman</b>, Ejemplo: <b> http://localhost:3000/api/equipos/estatus/EstatusenCuestion </b></p>
     <hr></hr>
     <h1>ESPACIOS</h1>
     <p> Para consultar todos los espacios vaya a: <b>http://localhost:3000/api/espacios </b></p>
@@ -28,6 +29,8 @@
     <p> Para agregar un personal ingrese la información en el <b>postman</b>, dentro de la misma direccion: <b>http://localhost:3000/personal </b></p>
     <p> Para Eliminar un personal ingrese la cedula como parametro, Ejemplo: <b>http://localhost:3000/api/personal/29302745 </b></p>
     <p> Para Modificar un personal ingrese la cedula como parametro y coloca los datos modificados en el <b>postman</b>, Ejemplo: <b>http://localhost:3000/api/personal/29302745 </b></p>
+    <p> Para ver un personal por cargo, tiene que ingresar el cargo como parametro luego de cargo/ <b>postman</b>, Ejemplo: <b>http://localhost:3000/api/personal/Cargo/CargoenCuestion </b></p>
+
     <hr></hr>
     <h1>SOLICITANTES</h1>
     <p> Para consultar todos los solicitantes vaya a: <b>http://localhost:3000/api/solicitantes </b></p>
@@ -40,7 +43,8 @@
     <p> Para consultar todas las reservas de equipos vaya a: <b>http://localhost:3000/api/reservasequipo </b></p>
     <p> Para consultar una reserva de equipo por id, ingresa el id como parametro, Ejemplo: <b>http://localhost:3000/api/reservasequipo/1 </b></p>
     <p> Para consultar una reserva de equipo en por una fecha, ingresa a la dirrecion /Fecha y colocas la fecha a buscar, Ejemplo: <b>http://localhost:3000/api/reservasequipo/Fecha/2022-05-11 </b></p> 
-    <p> Para consultar una reserva de equipo por un rango de fechas, ingresas a la dirrecion /Rango1 y colocas la fecha de inico, seguido de eso ingresas a la dirrecion /Rango2 y colocas la fecha de final de busqueda, Ejemplo: <b>http://localhost:3000/api/reservasequipo/Rango1/2022-05-11/Rango2/2022-08-24 </b></p> 
+    <p> Para consultar una reserva de equipo por cedula del solicitante, ingresa el CI como parametro luego de Cedulas/, Ejemplo: <b>http://localhost:3000/api/reservasequipo/Cedulas/28732194 </b></p>
+    <p> Para consultar una reserva de equipo por un rango de fechas, ingresas a la dirrecion /Rango1 y colocas la fecha de inico, seguido de eso ingresas a la dirrecion /Rango2 y colocas la fecha de final de busqueda, Ejemplo: <b>http://localhost:3000/api/reservasequipo/Fecha1/2022-05-11/Fecha2/2022-08-24 </b></p> 
     <p> Para agregar una reserva de equipo ingrese la información en el <b>postman</b>, dentro de la misma direccion: <b>http://localhost:3000/reservasequipo </b></p>
     <p> Para Eliminar una reserva de equipo ingrese el id como parametro, Ejemplo: <b>http://localhost:3000/api/reservasequipo/1 </b></p>
     <p> Para Modificar una reserva de equipo ingrese el id como parametro y coloca los datos modificados en el <b>postman</b>, Ejemplo: <b>http://localhost:3000/api/reservasequipo/1 </b></p>
@@ -49,7 +53,7 @@
     <p> Para consultar todas las reservas de espacios vaya a: <b>http://localhost:3000/api/reservasespacio </b></p>
     <p> Para consultar una reserva de espacio por id, ingresa el id como parametro, Ejemplo: <b>http://localhost:3000/api/reservasespacio/1 </b></p>
     <p> Para consultar una reserva de espacio en por una fecha, ingresa a la dirrecion /Fecha y colocas la fecha a buscar, Ejemplo: <b>http://localhost:3000/api/reservasespacio/Fecha/2022-05-11 </b></p> 
-    <p> Para consultar una reserva de espacio por un rango de fechas, ingresas a la dirrecion /Rango1 y colocas la fecha de inico, seguido de eso ingresas a la dirrecion /Rango2 y colocas la fecha de final de busqueda, Ejemplo: <b>http://localhost:3000/api/reservasespacio/Rango1/2022-11-27/Rango2/2022-12-24 </b></p> 
+    <p> Para consultar una reserva de espacio por un rango de fechas, ingresas a la dirrecion /Rango1 y colocas la fecha de inico, seguido de eso ingresas a la dirrecion /Rango2 y colocas la fecha de final de busqueda, Ejemplo: <b>http://localhost:3000/api/reservasespacio/Fecha1/2022-11-27/Fecha2/2022-12-24 </b></p> 
     <p> Para agregar una reserva de espacio ingrese la información en el <b>postman</b>, dentro de la misma direccion: <b>http://localhost:3000/reservasespacio </b></p>
     <p> Para Eliminar una reserva de espacio ingrese el id como parametro, Ejemplo: <b>http://localhost:3000/api/reservasespacio/1 </b></p>
     <p> Para Modificar una reserva de espacui ingrese el id como parametro y coloca los datos modificados en el <b>postman</b>, Ejemplo: <b>http://localhost:3000/api/reservasespacio/1 </b></p>

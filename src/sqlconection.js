@@ -1,4 +1,4 @@
-
+///CONEXION CON LA BD
 const mysql = require('mysql');
 require('dotenv').config({path: ('./.env')});
 

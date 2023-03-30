@@ -91,6 +91,8 @@ router.put(
       })
 });
 
+///BORRAR RESERVA DE ESPACIO POR ID
+
 router.delete(
     '/:ID', function(req, res){
       let reservadeespacio = req.params.ID;

@@ -4,6 +4,7 @@ var reservasespFuente = require('../src/sqlreservasespacios.js')
 
 
 class reservaespaciocontroller {
+  ///LISTAR RESERVA DE ESPACIO
   listarRES(){
     return new Promise ((resolve, reject)=>{
         console.log("Funciona Controlador 1")
@@ -31,6 +32,8 @@ class reservaespaciocontroller {
     })
   }  
 
+  ///REGISTRAR RESERVA DE ESPACIOS
+
   registrar(reservadeespacio){
     return new Promise ((resolve, reject)=>{
         if (!reservadeespacio.Nombre_Solicitante || !reservadeespacio.CI_Solicitante || !reservadeespacio.FechaInicio|| !reservadeespacio.FechaFin|| !reservadeespacio.HoraInicio|| !reservadeespacio.HoraFi|| !reservadeespacio.ID_Espa|| !reservadeespacio.Espacio|| !reservadeespacio.Motivo|| !reservadeespacio.Tecnico|| !reservadeespacio.CI_Tecnico) {
@@ -48,6 +51,8 @@ class reservaespaciocontroller {
 
   }
 
+  ///ACTTUALIZAR RESERVA DE ESPACIOS
+
   actualizar(reservadeespacio, IDes){
     console.log("Controlador de Actualizar Espacio")
 
@@ -64,6 +69,8 @@ class reservaespaciocontroller {
         })
     })
   }
+
+  /// BORRAR RESERVA DE ESPACIO
 
   borrar(reservadeespacio){
     console.log('Controlador de Borrado')

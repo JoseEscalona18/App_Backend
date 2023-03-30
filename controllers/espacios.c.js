@@ -3,6 +3,7 @@ const { reject } = require('underscore');
 var espaciosFuente = require('../src/sqlespacios.js')
 
 class espaciosController {
+  /// LISTAR ESPACIOS
   listar(){
     return new Promise ((resolve, reject)=>{
         console.log("Funciona Controlador 1")

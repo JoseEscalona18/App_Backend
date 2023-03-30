@@ -3,6 +3,7 @@ const { reject } = require('underscore');
 var personalFuente = require('../src/sqlpersonal.js')
 
 class personalController {
+  ////MOSTRAR LISTA DEL PERSONAL
   listarP(){
     return new Promise ((resolve, reject)=>{
         console.log("Funciona Controlador 1")
@@ -65,6 +66,8 @@ class personalController {
     })
 
   }
+
+  //// ACTUALIZAR PERSONAL
 
   actualizar(personal, CIp){
     console.log("Controlador de Actualizar Espacio")

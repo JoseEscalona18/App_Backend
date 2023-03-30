@@ -71,7 +71,7 @@ router.put(
     })
 });
 
-
+///BORRAR POR CEDULA
 router.delete(
   '/:CI', function(req, res){
     let personal = req.params.CI;
