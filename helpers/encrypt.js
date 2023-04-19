@@ -4,9 +4,9 @@ const bcrypt = require("bcryptjs")
 
 const encriptar = async (Clave) => {
     const hash = await bcrypt.hash(Clave, 10)
-    const token = hash
     console.log("Este es el token: ", hash)
-    return token
+    return hash
 }
+
 
 module.exports = {encriptar};

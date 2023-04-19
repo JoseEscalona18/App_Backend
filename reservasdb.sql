@@ -37,7 +37,7 @@ CREATE TABLE `equipos` (
 
 
 CREATE TABLE `Acceso` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `id` smallint(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
   `CI` int(11) NOT NULL,
   `Clave` varchar(250) NOT NULL,
