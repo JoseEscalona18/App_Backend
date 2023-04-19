@@ -8,5 +8,9 @@ const encriptar = async (Clave) => {
     return hash
 }
 
+const comparar = async (Clave, ClaveEncrypt) => {
+    return await bcrypt.compare(Clave,ClaveEncrypt)
+}
 
-module.exports = {encriptar};
+
+module.exports = {encriptar, comparar};
