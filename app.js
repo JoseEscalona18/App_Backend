@@ -17,6 +17,7 @@ var personalRouter = require('./routes/personal');
 var solicitantesRouter = require('./routes/solicitantes');
 var reservasequiRouter = require('./routes/reservasequipo');
 var reservasespaRouter = require('./routes/reservasespacio');
+var registro = require('./routes/registro');
 
 
 
@@ -47,6 +48,7 @@ app.use('/api/personal', personalRouter);
 app.use('/api/solicitantes', solicitantesRouter)
 app.use('/api/reservasequipo', reservasequiRouter)
 app.use('/api/reservasespacio', reservasespaRouter)
+app.use('/api/registrar', registro)
 
 
 

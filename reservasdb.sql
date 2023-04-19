@@ -35,6 +35,14 @@ CREATE TABLE `equipos` (
   `Estatus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
+
+CREATE TABLE `Acceso` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(100) NOT NULL,
+  `CI` int(11) NOT NULL,
+  `Clave` varchar(250) NOT NULL,
+  `Rol` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 --
 -- Volcado de datos para la tabla `equipos`
 --
