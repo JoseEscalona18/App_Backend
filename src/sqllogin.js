@@ -13,7 +13,7 @@ class LoginFuente {
 
         return new Promise((resolve, reject) => {
             console.log('Funciona el SQL de consultar Login')
-            conection.query('SELECT * from `Acceso` WHERE CI="'+ loguear.Ci + '"'  ,
+            conection.query('select Usuario,Contraseña From personal WHERE Usuario = "'+loguear.Usuario+ '" UNION (select Usuario,Contraseña From solicitantes WHERE Usuario = "'+loguear.Usuario+'" UNION (select Usuario,Contraseña From accesoadmin WHERE Usuario = "'+loguear.Usuario+'"));'  ,
             function (error, results, fields){
                 if(error) throw error;
                 resolve(results)
@@ -25,3 +25,5 @@ class LoginFuente {
 
 const loginF = new LoginFuente();
 module.exports = loginF; 
+
+ 

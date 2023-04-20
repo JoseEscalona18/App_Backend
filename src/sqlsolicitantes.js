@@ -46,7 +46,7 @@ class solicitantesFuente {
 
         return new Promise((resolve, reject) => {
             console.log('Funciona el SQL de crear')
-            conection.query('INSERT INTO solicitantes (Nombre, CI, FechaN, Direccion, Usuario, Contraseña, Telefono) VALUES (' +nombre+ ', ' +ci+ ', ' +fechan+ ', ' +direccion+ ', '+usuario+ ',' +contraseña+ ',' +tlf+ ' )',
+            conection.query('INSERT INTO solicitantes (Nombre, CI, FechaN, Direccion, Usuario, Contraseña, Telefono, Rol) VALUES (' +nombre+ ', ' +ci+ ', ' +fechan+ ', ' +direccion+ ', '+usuario+ ',' +contraseña+ ',' +tlf+ ', "Solicitante")',
             function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha registrado al solicitante en el sistema');

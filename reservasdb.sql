@@ -36,11 +36,12 @@ CREATE TABLE `equipos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 
-CREATE TABLE `Acceso` (
+CREATE TABLE `AccesoAdmin` (
   `id` smallint(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Nombre` varchar(100) NOT NULL,
   `CI` int(11) NOT NULL,
-  `Clave` varchar(250) NOT NULL,
+  `Usuario` varchar(100) NOT NULL,
+  `Contraseña` varchar(250) NOT NULL,
   `Rol` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 --
@@ -96,6 +97,7 @@ CREATE TABLE `personal` (
   `Usuario` varchar(100) NOT NULL,
   `Contraseña` varchar(100) NOT NULL,
   `Especialidad` varchar(100) NOT NULL,
+  `Rol` varchar(100) NOT NULL,
   `Estatus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
@@ -103,13 +105,13 @@ CREATE TABLE `personal` (
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`, `Estatus`) VALUES
-('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '15925445', 'Diseñador Grafico', 'Disponible'),
-('Julio Teran', 25932874, 'Escenografia', 'JuTe', '122213', 'Director de Escenografia', 'Ocupado'),
-('Roberto Di Michele', 27292743, 'Director', 'AMII', '634332', 'Ingeniero en Computacion', 'Disponible'),
-('Jose Luis', 29302745, 'Camarografo', 'Jolu', '19432', 'Director de Fotografia', 'Ocupado'),
-('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '1516135', 'Caracterización Cinematografica a traves del Maquillaje', 'Disponible'),
-('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '12345', 'Edición de Videos', 'Disponible');
+INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`, `Rol`,`Estatus`) VALUES
+('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '15925445', 'Diseñador Grafico', 'Personal','Disponible'),
+('Julio Teran', 25932874, 'Escenografia', 'JuTe', '122213', 'Director de Escenografia', 'Personal', 'Ocupado'),
+('Roberto Di Michele', 27292743, 'Director', 'AMII', '634332', 'Ingeniero en Computacion', 'Personal', 'Disponible'),
+('Jose Luis', 29302745, 'Camarografo', 'Jolu', '19432', 'Director de Fotografia', 'Personal', 'Ocupado'),
+('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '1516135', 'Caracterización Cinematografica a traves del Maquillaje', 'Personal', 'Disponible'),
+('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '12345', 'Edición de Videos', 'Personal', 'Disponible');
 
 -- --------------------------------------------------------
 
@@ -178,20 +180,21 @@ CREATE TABLE `solicitantes` (
   `Direccion` varchar(250) DEFAULT NULL,
   `Usuario` varchar(100) NOT NULL,
   `Contraseña` varchar(100) NOT NULL,
-  `Telefono` bigint(20) DEFAULT NULL
+  `Telefono` bigint(20) DEFAULT NULL,
+  `Rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `solicitantes`
 --
 
-INSERT INTO `solicitantes` (`Nombre`, `CI`, `FechaN`, `Direccion`, `Usuario`, `Contraseña`, `Telefono`) VALUES
-('Chuck Norris', 25928384, '2005-12-22', 'Carvajal', 'Aea25', 'j213131', 4264549792),
-('Maradona Fernandez', 27352164, '1992-09-25', 'La Cejita', 'MarFer', 'Drojita', 4148957321),
-('Mauricio Verde', 28732194, '1989-03-12', 'Campo Alegre', 'Sanns2', 'Snahs123', 4269218724),
-('Paola Rojas', 28751392, '2001-07-19', 'Motatan', 'Benito2', '192223', 4148322072),
-('Mike Norris', 29837294, '2004-07-25', 'La Puerta', 'PuertitaR', 'Puertota1', 4249528721),
-('Juan Rosales', 30912875, '1999-03-19', 'Valera', 'JuaRo', 'Juandrossss', 4148329572);
+INSERT INTO `solicitantes` (`Nombre`, `CI`, `FechaN`, `Direccion`, `Usuario`, `Contraseña`, `Telefono`, `Rol`) VALUES
+('Chuck Norris', 25928384, '2005-12-22', 'Carvajal', 'Aea25', 'j213131', 4264549792, 'Solicitante'),
+('Maradona Fernandez', 27352164, '1992-09-25', 'La Cejita', 'MarFer', 'Drojita', 4148957321, 'Solicitante'),
+('Mauricio Verde', 28732194, '1989-03-12', 'Campo Alegre', 'Sanns2', 'Snahs123', 4269218724, 'Solicitante'),
+('Paola Rojas', 28751392, '2001-07-19', 'Motatan', 'Benito2', '192223', 4148322072, 'Solicitante'),
+('Mike Norris', 29837294, '2004-07-25', 'La Puerta', 'PuertitaR', 'Puertota1', 4249528721, 'Solicitante'),
+('Juan Rosales', 30912875, '1999-03-19', 'Valera', 'JuaRo', 'Juandrossss', 4148329572, 'Solicitante');
 
 --
 -- Índices para tablas volcadas

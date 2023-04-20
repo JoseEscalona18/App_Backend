@@ -59,7 +59,7 @@ class PersonalFuente {
 
         return new Promise((resolve, reject) => {
             console.log('Funciona el SQL de crear')
-            conection.query('INSERT INTO personal (Nombre, CI, Cargo, Usuario, Contraseña, Especialidad, Estatus) VALUES (' +nombre+ ', ' +ci+ ', ' +cargo+ ', ' +usuario+ ',' +contraseña+ ',' +especialidad+ ',' +estatus+ ')',
+            conection.query('INSERT INTO personal (Nombre, CI, Cargo, Usuario, Contraseña, Especialidad, Estatus, Rol) VALUES (' +nombre+ ', ' +ci+ ', ' +cargo+ ', ' +usuario+ ',' +contraseña+ ',' +especialidad+ ',' +estatus+ ', "Personal")',
             function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha registrado a la persona en el sistema');

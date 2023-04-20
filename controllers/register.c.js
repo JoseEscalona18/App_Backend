@@ -8,14 +8,14 @@ class RegistroController {
 
 registrar(register){
     return new Promise (async (resolve, reject)=>{
-        if (!register.Nombre || !register.Ci || !register.Clave || !register.Rol) {
+        if (!register.Nombre || !register.Ci || !register.Usuario || !register.Contraseña) {
             return resolve("Compruebe uno de los datos a ingresar.");
         }
         console.log("Controlador de registrar acceso")
 
     
-        const token = await encriptar(register.Clave)
-        register.Clave = token
+        const token = await encriptar(register.Contraseña)
+        register.Contraseña = token
 
         RegistroFuente.RegistrarAcceso(register)
         .then((resultado)=>{
