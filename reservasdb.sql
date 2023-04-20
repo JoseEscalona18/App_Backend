@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2023 a las 23:20:15
--- Versión del servidor: 10.10.2-MariaDB
--- Versión de PHP: 8.1.12
+-- Tiempo de generación: 20-04-2023 a las 05:26:28
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `accesoadmin`
+--
+
+CREATE TABLE `accesoadmin` (
+  `id` smallint(6) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `CI` int(11) NOT NULL,
+  `Usuario` varchar(100) NOT NULL,
+  `Contraseña` varchar(250) NOT NULL,
+  `Rol` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `equipos`
 --
 
@@ -35,15 +50,6 @@ CREATE TABLE `equipos` (
   `Estatus` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-
-CREATE TABLE `AccesoAdmin` (
-  `id` smallint(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `Nombre` varchar(100) NOT NULL,
-  `CI` int(11) NOT NULL,
-  `Usuario` varchar(100) NOT NULL,
-  `Contraseña` varchar(250) NOT NULL,
-  `Rol` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 --
 -- Volcado de datos para la tabla `equipos`
 --
@@ -105,13 +111,13 @@ CREATE TABLE `personal` (
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`, `Rol`,`Estatus`) VALUES
-('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '15925445', 'Diseñador Grafico', 'Personal','Disponible'),
-('Julio Teran', 25932874, 'Escenografia', 'JuTe', '122213', 'Director de Escenografia', 'Personal', 'Ocupado'),
-('Roberto Di Michele', 27292743, 'Director', 'AMII', '634332', 'Ingeniero en Computacion', 'Personal', 'Disponible'),
-('Jose Luis', 29302745, 'Camarografo', 'Jolu', '19432', 'Director de Fotografia', 'Personal', 'Ocupado'),
-('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '1516135', 'Caracterización Cinematografica a traves del Maquillaje', 'Personal', 'Disponible'),
-('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '12345', 'Edición de Videos', 'Personal', 'Disponible');
+INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`,`Rol`, `Estatus`) VALUES
+('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '$2a$10$3MUnJf9GSe9n7McAcK/GWulWoHAV0Ta4lbrP/hh809CK5H4TBoUG2', 'Diseñador Grafico','Personal', 'Disponible'),
+('Julio Teran', 25932874, 'Escenografia', 'JuTe', '$2a$10$FK6QKkvBbOEt/wareikqhen004MM2HfwPqGB5vPZxvoafOgZBWkOa', 'Director de Escenografia','Personal', 'Ocupado'),
+('Roberto Di Michele', 27292743, 'Director', 'AMII', '$2a$10$u20GGMyH2yQcy2WfIYnjB.e5Dzu4NzuXl4MTtL.3DmxKbBsn.Vpie', 'Ingeniero en Computacion','Personal', 'Disponible'),
+('Jose Luis', 29302745, 'Camarografo', 'Jolu', '$2a$10$iuEtvtJP3p3PSek4z/ejgeDkIDz9Cu/cILoTKdBMf4NGMdHFsEZDy', 'Director de Fotografia','Personal', 'Ocupado'),
+('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '$2a$10$hbwqVtsjSZbGZIRbXWl/OeAX19JZqObR4HY5hlUq9qi7fRnG07o7i', 'Caracterización Cinematografica a traves del Maquillaje','Personal', 'Disponible'),
+('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '$2a$10$yyklNkTtf1nGvjloQneOLe3LFrk6BmFf28YCUfflFV.nKoHBQbXQe', 'Edición de Videosasasa','Personal', 'Disponible');
 
 -- --------------------------------------------------------
 
@@ -181,7 +187,7 @@ CREATE TABLE `solicitantes` (
   `Usuario` varchar(100) NOT NULL,
   `Contraseña` varchar(100) NOT NULL,
   `Telefono` bigint(20) DEFAULT NULL,
-  `Rol` varchar(100) NOT NULL
+	`Rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -189,16 +195,22 @@ CREATE TABLE `solicitantes` (
 --
 
 INSERT INTO `solicitantes` (`Nombre`, `CI`, `FechaN`, `Direccion`, `Usuario`, `Contraseña`, `Telefono`, `Rol`) VALUES
-('Chuck Norris', 25928384, '2005-12-22', 'Carvajal', 'Aea25', 'j213131', 4264549792, 'Solicitante'),
-('Maradona Fernandez', 27352164, '1992-09-25', 'La Cejita', 'MarFer', 'Drojita', 4148957321, 'Solicitante'),
-('Mauricio Verde', 28732194, '1989-03-12', 'Campo Alegre', 'Sanns2', 'Snahs123', 4269218724, 'Solicitante'),
-('Paola Rojas', 28751392, '2001-07-19', 'Motatan', 'Benito2', '192223', 4148322072, 'Solicitante'),
-('Mike Norris', 29837294, '2004-07-25', 'La Puerta', 'PuertitaR', 'Puertota1', 4249528721, 'Solicitante'),
-('Juan Rosales', 30912875, '1999-03-19', 'Valera', 'JuaRo', 'Juandrossss', 4148329572, 'Solicitante');
+('Chuck Norris', 25928384, '2005-12-22', 'Carvajal', 'Aea25', '$2a$10$OKN2KYbV./x45XXwIDY/yOATkwIyhg0lgI/ViyozMcdhuisGU1CPu', 4264549792, 'Solicitante'),
+('Maradona Fernandez', 27352164, '1992-09-25', 'La Cejita', 'MarFer', '$2a$10$anRq3yaS46fAeqmj1tRBM.ZVbzKK5AiCizYe01Bde/efbtnJwT/3u', 4148957321, 'Solicitante'),
+('Mauricio Verde', 28732194, '1989-03-12', 'Campo Alegre', 'Sanns2', '$2a$10$DpkLYX.4Z0.PlReFCxD0a.cFCLN3LxwlL/QvdofVi5KbAHIfvCub2', 4269218724, 'Solicitante'),
+('Paola Rojas', 28751392, '2001-07-19', 'Motatan', 'Benito2', '$2a$10$Wj4Rm2N.UptiMjmcz.d4Tu8/X5oTltJbZK7M1U2Ep4CV1hvju.1x.', 4148322072, 'Solicitante'),
+('Mike Norris', 29837294, '2004-07-25', 'La Puerta', 'PuertitaR', '$2a$10$EoIV3QTn6htn2HPvDvYPYeFX5lsctdl3wKcBuXKb7INNQnQGwWHOi', 4249528721, 'Solicitante'),
+('Juan Rosales', 30912875, '1999-03-19', 'Valera', 'JuaRo', '$2a$10$9Xs5NJDtDE5PUjUNCjIxM.LQYH9WzHhadyQ.J.8wUmbN7CKta.BWm', 4148329572, 'Solicitante');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `accesoadmin`
+--
+ALTER TABLE `accesoadmin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `equipos`
@@ -223,8 +235,8 @@ ALTER TABLE `personal`
 --
 ALTER TABLE `reservasequipos`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `fk_SerialesE` (`SerialesE`),
-  ADD KEY `EquipoSCI` (`CI_Solicitante`);
+  ADD KEY `EquipoSCI` (`CI_Solicitante`),
+  ADD KEY `fk_SerialesE` (`SerialesE`);
 
 --
 -- Indices de la tabla `reservasespacios`
@@ -246,22 +258,10 @@ ALTER TABLE `solicitantes`
 --
 
 --
--- AUTO_INCREMENT de la tabla `espacios`
+-- AUTO_INCREMENT de la tabla `accesoadmin`
 --
-ALTER TABLE `espacios`
-  MODIFY `ID_Espacio` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `reservasequipos`
---
-ALTER TABLE `reservasequipos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `reservasespacios`
---
-ALTER TABLE `reservasespacios`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `accesoadmin`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -271,16 +271,16 @@ ALTER TABLE `reservasespacios`
 -- Filtros para la tabla `reservasequipos`
 --
 ALTER TABLE `reservasequipos`
-  ADD CONSTRAINT `EquipoSCI` FOREIGN KEY (`CI_Solicitante`) REFERENCES `solicitantes` (`CI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_SerialesE` FOREIGN KEY (`SerialesE`) REFERENCES `equipos` (`Serial`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `EquipoSCI` FOREIGN KEY (`CI_Solicitante`) REFERENCES `solicitantes` (`CI`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_SerialesE` FOREIGN KEY (`SerialesE`) REFERENCES `equipos` (`Serial`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reservasespacios`
 --
 ALTER TABLE `reservasespacios`
-  ADD CONSTRAINT `EspacioID` FOREIGN KEY (`ID_Espa`) REFERENCES `espacios` (`ID_Espacio`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `EspacioSCI` FOREIGN KEY (`CI_Solicitante`) REFERENCES `solicitantes` (`CI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `EspacioTCI` FOREIGN KEY (`CI_Tecnico`) REFERENCES `personal` (`CI`);
+  ADD CONSTRAINT `EspacioID` FOREIGN KEY (`ID_Espa`) REFERENCES `espacios` (`ID_Espacio`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `EspacioSCI` FOREIGN KEY (`CI_Solicitante`) REFERENCES `solicitantes` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `EspacioTCI` FOREIGN KEY (`CI_Tecnico`) REFERENCES `personal` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
