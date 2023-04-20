@@ -1,0 +1,19 @@
+** SOLICITANTES **
+Nombre ---------------- Usuario ----- Contraseña 
+
+Chuck Norris		'Aea25'       'j213131'
+Maradona Fernandez      'MarFer'      'Drojita'
+Mauricio Verde          'Sanns2'      'Snahs123'
+Paola Rojas             'Benito2'     '192223'
+Mike Norris             'PuertitaR'   'Puertota1'
+Juan Rosales            'JuaRo'       'Juandrossss'
+
+** PERSONAL **
+Nombre ---------------- Usuario ----- Contraseña
+ 
+Juan Colmenares         'Juan2'       '15925445'
+Julio Teran             'JuTe'        '122213'
+Roberto Di Michele      'AMII'        '634332'
+Jose Luis               'Jolu'        '19432'
+Valentina Balza         'Vale'        '1516135'
+Maikel Villegas         'CaTiT0rV'    '12345'
