@@ -19,7 +19,7 @@ consultar(loguear){
         
         .then(async (resultado)=>{
             if (resultado == "") {
-                resultado = "No hay registros con ese usuario"
+                resultado = "No hay registros con ese Usuario"
                 resolve (resultado)
             } 
 

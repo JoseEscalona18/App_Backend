@@ -1,6 +1,7 @@
 const { promiseImpl } = require('ejs');
 const { reject } = require('underscore');
 var solicitantesFuente = require('../src/sqlsolicitantes.js')
+const {encriptar} = require('../helpers/encrypt.js')
 
 class solicitantesController {
   listarS(){
@@ -33,11 +34,15 @@ class solicitantesController {
   ///REGISTRAR TECNICOS
 
   registrar(solicitante){
-    return new Promise ((resolve, reject)=>{
+    return new Promise (async (resolve, reject)=>{
         if (!solicitante.Nombre || !solicitante.CI || !solicitante.FechaN|| !solicitante.Direccion|| !solicitante.Usuario|| !solicitante.Contraseña|| !solicitante.Telefono) {
             return resolve("Compruebe uno de los datos a ingresar.");
         }
         console.log("Contrlador de registrar solicitantes")
+
+        const token = await encriptar(solicitante.Contraseña)
+        solicitante.Contraseña = token
+
         solicitantesFuente.RegistrarSolicitantes(solicitante)
         .then((resultado)=>{
             resolve (resultado)
