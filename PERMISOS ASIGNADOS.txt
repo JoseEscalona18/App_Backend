@@ -1,0 +1,41 @@
+******** ADMIN ***********
+
+El ADMIN puede hacer las siguientes acciones:
+
+CONSULTAR: TODO
+
+AGREGAR: TODO
+
+MODIFICAR: TODO
+
+ELIMINAR: TODO
+
+**************************
+
+******** PERSONAL ***********
+
+El PERSONAL puede hacer las siguientes acciones:
+
+CONSULTAR: Equipos, Espacios, Reserva equipos y espacios, Solicitantes
+
+AGREGAR: Equipos, Espacios, Solicitantes
+
+MODIFICAR: Equipos, Espacios, Solicitantes
+
+ELIMINAR: SIN PERMISOS
+
+**************************
+
+******** SOLICITANTE ***********
+
+El SOLICITANTE puede hacer las siguientes acciones:
+
+CONSULTAR: Equipos, Espacios, Reserva equipos y espacios, Personal
+
+AGREGAR: Reserva equipos y espacios
+
+MODIFICAR: Reserva equipos y espacios
+
+ELIMINAR: SIN PERMISOS
+
+**************************
