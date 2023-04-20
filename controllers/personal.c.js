@@ -1,6 +1,7 @@
 const { promiseImpl } = require('ejs');
 const { reject } = require('underscore');
 var personalFuente = require('../src/sqlpersonal.js')
+const {encriptar} = require('../helpers/encrypt.js')
 
 class personalController {
   ////MOSTRAR LISTA DEL PERSONAL
@@ -51,11 +52,15 @@ class personalController {
   ///REGISTRAR TECNICOS
 
   registrar(personal){
-    return new Promise ((resolve, reject)=>{
+    return new Promise (async (resolve, reject)=>{
         if (!personal.Nombre || !personal.CI || !personal.Cargo|| !personal.Usuario|| !personal.Contraseña|| !personal.Especialidad|| !personal.Estatus) {
             return resolve("Compruebe uno de los datos a ingresar.");
         }
         console.log("Contrlador de registrar tecnicos")
+
+        const token = await encriptar(personal.Contraseña)
+        personal.Contraseña = token
+        
         personalFuente.RegistrarPersonal(personal)
         .then((resultado)=>{
             resolve (resultado)

@@ -17,11 +17,8 @@ consultar(loguear){
         LoginFuente.ConsultarAcceso(loguear)
         
         .then(async (resultado)=>{
-            console.log(resultado)
-            console.log(resultado[0].Usuario + " UUs")
-            console.log(resultado[0].Contraseña + " Contr")
             if (resultado == "") {
-                resultado = "No hay registros con esta cedula"
+                resultado = "No hay registros con ese Usuario"
                 resolve (resultado)
             } 
 
