@@ -1,7 +1,16 @@
+
+** ADMIN **
+Nombre ---------------- Usuario ----- Contraseña 
+Jose Escalona           'Esca'        '1811'
+Luis Monsalve           'Fifa23'      'TqmMessi'
+Juan Rosales            'beaglz'      '7Lineas'
+Maikel Villegas         'MaiMai'      'OSUU'
+Roberto Di Michele      'Backend'     'uvmUVM'
+
 ** SOLICITANTES **
 Nombre ---------------- Usuario ----- Contraseña 
 
-Chuck Norris		'Aea25'       'j213131'
+Chuck Norris		    'Aea25'       'j213131'
 Maradona Fernandez      'MarFer'      'Drojita'
 Mauricio Verde          'Sanns2'      'Snahs123'
 Paola Rojas             'Benito2'     '192223'

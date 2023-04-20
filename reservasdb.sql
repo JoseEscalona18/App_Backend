@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2023 a las 05:26:28
+-- Tiempo de generación: 20-04-2023 a las 19:10:19
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,17 @@ CREATE TABLE `accesoadmin` (
   `Contraseña` varchar(250) NOT NULL,
   `Rol` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `accesoadmin`
+--
+
+INSERT INTO `accesoadmin` (`id`, `Nombre`, `CI`, `Usuario`, `Contraseña`, `Rol`) VALUES
+(1, 'Jose Escalona', 28206133, 'Esca', '$2a$10$Cq3tAb3tmHpaqIjk3Ph5T.qvOLvtoKnIKWR/5b7EllO0Drun9Qvhu', 'Admin'),
+(2, 'Luis Monsalve', 14563287, 'Fifa23', '$2a$10$Z9ENsSwIu8TxRzA2S3HYgefm5K4CUoPH6AoX.YRxAFfm42Rsyu5my', 'Admin'),
+(3, 'Juan Rosales', 88587942, 'beaglz', '$2a$10$TQZOPwNRWXrFTYG6ELExp.fTy5UU288puQ2l4.55r/pAG8Cjn7Rn6', 'Admin'),
+(4, 'Maikel Villegas', 78965852, 'MaiMai', '$2a$10$XldNzhQMkUoJLs64KYDfNOSqGcoQXEpLedEnroI121DftPDdWN6pm', 'Admin'),
+(5, 'Roberto Di Michele', 78965852, 'Backend', '$2a$10$a.vYASuDmHJC5UAOixyTq.EfAWHkthTVENXQu4ig2EmvAGyfTB0o6', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -111,13 +122,13 @@ CREATE TABLE `personal` (
 -- Volcado de datos para la tabla `personal`
 --
 
-INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`,`Rol`, `Estatus`) VALUES
-('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '$2a$10$3MUnJf9GSe9n7McAcK/GWulWoHAV0Ta4lbrP/hh809CK5H4TBoUG2', 'Diseñador Grafico','Personal', 'Disponible'),
-('Julio Teran', 25932874, 'Escenografia', 'JuTe', '$2a$10$FK6QKkvBbOEt/wareikqhen004MM2HfwPqGB5vPZxvoafOgZBWkOa', 'Director de Escenografia','Personal', 'Ocupado'),
-('Roberto Di Michele', 27292743, 'Director', 'AMII', '$2a$10$u20GGMyH2yQcy2WfIYnjB.e5Dzu4NzuXl4MTtL.3DmxKbBsn.Vpie', 'Ingeniero en Computacion','Personal', 'Disponible'),
-('Jose Luis', 29302745, 'Camarografo', 'Jolu', '$2a$10$iuEtvtJP3p3PSek4z/ejgeDkIDz9Cu/cILoTKdBMf4NGMdHFsEZDy', 'Director de Fotografia','Personal', 'Ocupado'),
-('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '$2a$10$hbwqVtsjSZbGZIRbXWl/OeAX19JZqObR4HY5hlUq9qi7fRnG07o7i', 'Caracterización Cinematografica a traves del Maquillaje','Personal', 'Disponible'),
-('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '$2a$10$yyklNkTtf1nGvjloQneOLe3LFrk6BmFf28YCUfflFV.nKoHBQbXQe', 'Edición de Videosasasa','Personal', 'Disponible');
+INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Especialidad`, `Rol`, `Estatus`) VALUES
+('Juan Colmenares', 24859297, 'Diseñador', 'Juan2', '$2a$10$3MUnJf9GSe9n7McAcK/GWulWoHAV0Ta4lbrP/hh809CK5H4TBoUG2', 'Diseñador Grafico', 'Personal', 'Disponible'),
+('Julio Teran', 25932874, 'Escenografia', 'JuTe', '$2a$10$FK6QKkvBbOEt/wareikqhen004MM2HfwPqGB5vPZxvoafOgZBWkOa', 'Director de Escenografia', 'Personal', 'Ocupado'),
+('Roberto Di Michele', 27292743, 'Director', 'AMII', '$2a$10$u20GGMyH2yQcy2WfIYnjB.e5Dzu4NzuXl4MTtL.3DmxKbBsn.Vpie', 'Ingeniero en Computacion', 'Personal', 'Disponible'),
+('Jose Luis', 29302745, 'Camarografo', 'Jolu', '$2a$10$iuEtvtJP3p3PSek4z/ejgeDkIDz9Cu/cILoTKdBMf4NGMdHFsEZDy', 'Director de Fotografia', 'Personal', 'Ocupado'),
+('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '$2a$10$hbwqVtsjSZbGZIRbXWl/OeAX19JZqObR4HY5hlUq9qi7fRnG07o7i', 'Caracterización Cinematografica a traves del Maquillaje', 'Personal', 'Disponible'),
+('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '$2a$10$yyklNkTtf1nGvjloQneOLe3LFrk6BmFf28YCUfflFV.nKoHBQbXQe', 'Edición de Videosasasa', 'Personal', 'Disponible');
 
 -- --------------------------------------------------------
 
@@ -187,7 +198,7 @@ CREATE TABLE `solicitantes` (
   `Usuario` varchar(100) NOT NULL,
   `Contraseña` varchar(100) NOT NULL,
   `Telefono` bigint(20) DEFAULT NULL,
-	`Rol` varchar(100) NOT NULL
+  `Rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
@@ -261,7 +272,7 @@ ALTER TABLE `solicitantes`
 -- AUTO_INCREMENT de la tabla `accesoadmin`
 --
 ALTER TABLE `accesoadmin`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

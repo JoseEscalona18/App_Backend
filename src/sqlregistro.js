@@ -9,6 +9,20 @@ const conection = mysql.createConnection({
 
 class RegistroFuente {
 
+
+    listaradmins(){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL De Listar Admins')
+            conection.query('SELECT * from `accesoadmin`',
+                function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+
     RegistrarAcceso(register){
         let nombre = '"'+register.Nombre+'"'
         let ci = '"'+register.Ci+'"'

@@ -6,6 +6,20 @@ const {encriptar} = require('../helpers/encrypt.js')
 
 class RegistroController {
 
+listarAdmin(){
+    return new Promise ((resolve, reject)=>{
+        console.log("Funciona Controlador")
+        RegistroFuente.listaradmins()
+        .then((results)=>{
+            resolve (results)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+
+}
+
 registrar(register){
     return new Promise (async (resolve, reject)=>{
         if (!register.Nombre || !register.Ci || !register.Usuario || !register.Contraseña) {
