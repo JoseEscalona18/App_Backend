@@ -1,13 +1,19 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/equipos.c')
-const checkauth = require('../middleware/verificar')
-const checkroleauth = require('../middleware/checkrolau')
-
+const checkAutenticacion = require('../middleware/verifytoken');
+const checkRole = require('../middleware/verifyRole');
 
 ///MOSTRAR TODO
 router.get(
-    '/',  function(req, res) { controller
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
         res.send(resultado);
@@ -19,7 +25,14 @@ router.get(
 
 ///MOSTRAR POR SERIAL
 router.get(
-    '/:Serial', function(req, res) { 
+    '/:Serial', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { 
       let equipo = req.params.Serial
       console.log(equipo)
     controller.mostrarEquipo(equipo)
@@ -33,7 +46,14 @@ router.get(
 
 ///MOSTRAR POR ESTATUS
 router.get(
-  '/Estatus/:Estatus', function(req, res) { 
+  '/Estatus/:Estatus', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let equipo = req.params.Estatus
     console.log(equipo)
     if (equipo == "Disponible" || equipo == "Ocupado" || equipo == "disponible" || equipo == "ocupado"){
@@ -53,7 +73,14 @@ router.get(
 ///INGRESAR UN EQUIPO
 
 router.post(
-  '/',      function(req, res){
+  '/', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let equipo = req.body;
   controller.crear(equipo)
     .then((resultado)=>{
@@ -67,7 +94,14 @@ router.post(
 ///ACTUALIZAR EQUIPO POR SERIAL
 
 router.put(
-  '/:Serial',  function(req, res, next) {
+  '/:Serial', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res, next) {
     let SerialE = req.params.Serial
     console.log(SerialE)
     let equipo = req.body;
@@ -83,7 +117,14 @@ router.put(
 ///BORRAR EQUIPO POR SERIAL
 
 router.delete(
-  '/:Serial',      function(req, res){
+  '/:Serial', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let equipo = req.params.Serial;
   controller.borrar(equipo)
     .then((resultado)=>{

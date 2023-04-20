@@ -2,12 +2,12 @@ const jwt  = require('jsonwebtoken')
 require('dotenv').config({path: ('./.env')});
 console.log(process.env.JWT_SECRET)
 
-const tokenSign = async (persona) => {
+const tokenSign = async (user) => {
     return jwt.sign (
         {
-            usuario: persona.Usuario,
-            contraseña: persona.Contraseña,
-            role: persona.Rol
+            Usuario: user.Usuario,
+            Contraseña: user.Contraseña,
+            Rol: user.Rol
         },
         process.env.JWT_SECRET,
         {

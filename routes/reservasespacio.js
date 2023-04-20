@@ -3,11 +3,19 @@ var express = require('express');
 var router = express.Router();
 
 const controller = require('../controllers/reservaespacio.c')
-
+const checkAutenticacion = require('../middleware/verifytoken');
+const checkRole = require('../middleware/verifyRole');
 
 ////VER TODAS LAS RESERVAS DE ESPACIOS
 router.get(
-    '/',  function(req, res) { controller
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal", "Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { controller
     controller.listarRES()
       .then((resultado)=>{
         res.send(resultado);
@@ -19,7 +27,14 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/:ID', function(req, res) { 
+    '/:ID', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal", "Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { 
       let reservadeespacio = req.params.ID
       console.log(reservadeespacio)
     controller.mostrarReservaES(reservadeespacio)
@@ -33,7 +48,14 @@ router.get(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/Fecha/:FechaInicio', function(req, res) { 
+  '/Fecha/:FechaInicio', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservadeespacio = req.params.FechaInicio
     console.log(reservadeespacio)
   controller.mostrarRESFecha(reservadeespacio)
@@ -47,7 +69,14 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', function(req, res) { 
+  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservadeespacio1 = req.params.FechaInicio
     let reservadeespacio2 = req.params.FechaFin
     console.log(reservadeespacio1)
@@ -65,7 +94,14 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE RESERVAS DE ESPACIOS
 router.post(
-    '/',      function(req, res){
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res){
       let reservadeespacio = req.body;
     controller.registrar(reservadeespacio)
       .then((resultado)=>{
@@ -78,7 +114,14 @@ router.post(
 
 ///ACTUALIZAR RESERVA POR ID
 router.put(
-    '/:ID',  function(req, res) {
+    '/:ID', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) {
       let IDes = req.params.ID
       console.log(IDes)
       let reservadeespacio = req.body;
@@ -94,7 +137,14 @@ router.put(
 ///BORRAR RESERVA DE ESPACIO POR ID
 
 router.delete(
-    '/:ID', function(req, res){
+    '/:ID', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res){
       let reservadeespacio = req.params.ID;
     controller.borrar(reservadeespacio)
       .then((resultado)=>{

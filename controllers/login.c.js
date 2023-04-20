@@ -2,7 +2,7 @@ const { compare } = require('bcryptjs');
 const { isEmpty } = require('underscore');
 var LoginFuente = require('../src/sqllogin.js');
 const {comparar} = require('../helpers/encrypt.js')
-const { tokenSign } = require ('../helpers/tokens')
+const { tokenSign } = require ('../helpers/tokens');
 
 
 class LoginController {
@@ -28,9 +28,18 @@ consultar(loguear){
             if (resultado != ""){
                 const CheckPassword = await comparar(loguear.Contraseña, resultado[0].Contraseña)
                 if (CheckPassword) {
-                    resultado = "Inicio de sesión correcto"
-                    const tokenSession = await tokenSign(loguear)
+                    var user = {
+                        "Usuario": resultado[0].Usuario,
+                        "Rol": resultado[0].Rol
+                    }
+                    const tokenSession = await tokenSign(user)
                     console.log(tokenSession)
+                    
+                    resultado = {
+                        'Login':"Inicio de sesión correcto",
+                        'TokenSession':tokenSession
+                    }
+
                     resolve (resultado)
 
                 }

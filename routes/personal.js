@@ -1,11 +1,20 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/personal.c')
+const checkAutenticacion = require('../middleware/verifytoken');
+const checkRole = require('../middleware/verifyRole');
 
 ///MOSTRAR TODOS LOS TECNICOS
 
 router.get(
-  '/',  function(req, res) { controller
+  '/', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { controller
   controller.listarP()
     .then((resultado)=>{
       res.send(resultado);
@@ -17,7 +26,14 @@ router.get(
 
 ///MOSTRAR POR CEDULA
 router.get(
-  '/:CI', function(req, res) { 
+  '/:CI', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let personal = req.params.CI
     console.log(personal)
   controller.mostrarPersonal(personal)
@@ -31,7 +47,14 @@ router.get(
 
 ///MOSTRAR POR CARGO
 router.get(
-  '/Cargo/:Cargo', function(req, res) { 
+  '/Cargo/:Cargo', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let personal = req.params.Cargo
     console.log(personal)
   controller.mostrarPersonalCargo(personal)
@@ -45,7 +68,15 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE TECNICOS
 router.post(
-  '/',      function(req, res){
+  '/', 
+  checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let personal = req.body;
   controller.registrar(personal)
     .then((resultado)=>{
@@ -56,9 +87,16 @@ router.post(
     })
 });
 
-///ACTUALIZAR ESPACIO POR ID
+///ACTUALIZAR PERSONAL POR ID
 router.put(
-  '/:CI',  function(req, res) {
+  '/:CI',  checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) {
     let CIp = req.params.CI
     console.log(CIp)
     let personal = req.body;
@@ -73,7 +111,14 @@ router.put(
 
 ///BORRAR POR CEDULA
 router.delete(
-  '/:CI', function(req, res){
+  '/:CI', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let personal = req.params.CI;
   controller.borrar(personal)
     .then((resultado)=>{

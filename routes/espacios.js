@@ -2,12 +2,20 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/espacios.c')
-
+const checkAutenticacion = require('../middleware/verifytoken');
+const checkRole = require('../middleware/verifyRole');
 
 ///MOSTRAR TODOS LOS ESPACIOS
 
 router.get(
-    '/',  function(req, res) { controller
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+  
+    function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
         res.send(resultado);
@@ -19,7 +27,14 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/:ID_Espacio', function(req, res) { 
+    '/:ID_Espacio', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { 
       let espacio = req.params.ID_Espacio
       console.log(espacio)
     controller.mostrarEspacio(espacio)
@@ -34,7 +49,14 @@ router.get(
 ///AGREGAR ESPACIOS
 
 router.post(
-    '/',      function(req, res){
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res){
       let espacio = req.body;
     controller.crear(espacio)
       .then((resultado)=>{
@@ -47,7 +69,14 @@ router.post(
 
 ///ACTUALIZAR ESPACIO POR ID
 router.put(
-    '/:ID_Espacio',  function(req, res) {
+    '/:ID_Espacio', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) {
       let ID_Espacio = req.params.ID_Espacio
       console.log(ID_Espacio)
       let espacio = req.body;
@@ -63,7 +92,14 @@ router.put(
 ///BORRAR ESPACIO POR ID
 
 router.delete(
-    '/:ID_Espacio',      function(req, res){
+    '/:ID_Espacio', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res){
       let espacio = req.params.ID_Espacio;
     controller.borrar(espacio)
       .then((resultado)=>{

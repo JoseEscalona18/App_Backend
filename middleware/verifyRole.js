@@ -1,11 +1,12 @@
 const { verifyToken } = require("../helpers/tokens")
 
-const checkAutenticacion = async (req, res, next, roles) => {
+const checkRole = async (req, res, next, roles) => {
     try {
         const token = req.headers.authorization.split(' ').pop()
         const tokenData = await verifyToken(token)
-        if (tokenData.id) {
-            if (roles.includes(tokenData.rol)){
+
+        if (tokenData.Usuario) {
+            if (roles.includes(tokenData.Rol)){
                 next()
             }else{
                 res.status(409)
@@ -22,4 +23,4 @@ const checkAutenticacion = async (req, res, next, roles) => {
     }
 }
 
-module.exports = checkAutenticacion
+module.exports = checkRole

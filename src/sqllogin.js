@@ -13,7 +13,7 @@ class LoginFuente {
 
         return new Promise((resolve, reject) => {
             console.log('Funciona el SQL de consultar Login')
-            conection.query('select Usuario,Contraseña From personal WHERE Usuario = "'+loguear.Usuario+ '" UNION (select Usuario,Contraseña From solicitantes WHERE Usuario = "'+loguear.Usuario+'" UNION (select Usuario,Contraseña From accesoadmin WHERE Usuario = "'+loguear.Usuario+'"));'  ,
+            conection.query('select Usuario,Contraseña,Rol From personal WHERE Usuario = "'+loguear.Usuario+ '" UNION (select Usuario,Contraseña,Rol From solicitantes WHERE Usuario = "'+loguear.Usuario+'" UNION (select Usuario,Contraseña,Rol From accesoadmin WHERE Usuario = "'+loguear.Usuario+'"));'  ,
             function (error, results, fields){
                 if(error) throw error;
                 resolve(results)

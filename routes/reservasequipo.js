@@ -4,10 +4,19 @@ var express = require('express');
 var router = express.Router();
 
 const controller = require('../controllers/reservaequipo.c')
+const checkAutenticacion = require('../middleware/verifytoken');
+const checkRole = require('../middleware/verifyRole');
 
 //VER TODO
 router.get(
-    '/',  function(req, res) { controller
+    '/', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal", "Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { controller
     controller.listarREQ()
       .then((resultado)=>{
         res.send(resultado);
@@ -19,7 +28,14 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-  '/:ID', function(req, res) { 
+  '/:ID', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservasdeequipo = req.params.ID
     console.log(reservasdeequipo)
   controller.mostrarReservaEQ(reservasdeequipo)
@@ -33,7 +49,14 @@ router.get(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/Fecha/:FechaInicio', function(req, res) { 
+  '/Fecha/:FechaInicio', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservasdeequipo = req.params.FechaInicio
     console.log(reservasdeequipo)
   controller.mostrarREQFecha(reservasdeequipo)
@@ -47,7 +70,14 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', function(req, res) { 
+  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservasdeequipo1 = req.params.FechaInicio
     let reservasdeequipo2 = req.params.FechaFin
     console.log(reservasdeequipo1)
@@ -63,7 +93,14 @@ router.get(
 
 ///MOSTRAR POR CEDULA DE SOLICITANTE
 router.get(
-  '/CedulaS/:CI_Solicitante', function(req, res) { 
+  '/CedulaS/:CI_Solicitante', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
     let reservasdeequipo = req.params.CI_Solicitante
     console.log(reservasdeequipo)
   controller.mostrarREQCedulaS(reservasdeequipo)
@@ -77,7 +114,14 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE RESERVAS
 router.post(
-  '/',      function(req, res){
+  '/', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let reservadeequipo = req.body;
   controller.registrar(reservadeequipo)
     .then((resultado)=>{
@@ -90,7 +134,14 @@ router.post(
 
 ///ACTUALIZAR RESERVA POR ID
 router.put(
-  '/:ID',  function(req, res) {
+  '/:ID', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin","Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) {
     let IDeq = req.params.ID
     console.log(IDeq)
     let reservadeequipo = req.body;
@@ -106,7 +157,14 @@ router.put(
 ///BORRAR RESERVA DE EQUIPO POR ID
 
 router.delete(
-  '/:ID', function(req, res){
+  '/:ID', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res){
     let reservadeequipo = req.params.ID;
   controller.borrar(reservadeequipo)
     .then((resultado)=>{
