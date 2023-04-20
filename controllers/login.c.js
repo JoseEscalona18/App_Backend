@@ -2,6 +2,7 @@ const { compare } = require('bcryptjs');
 const { isEmpty } = require('underscore');
 var LoginFuente = require('../src/sqllogin.js');
 const {comparar} = require('../helpers/encrypt.js')
+const { tokenSign } = require ('../helpers/tokens')
 
 
 class LoginController {
@@ -17,19 +18,21 @@ consultar(loguear){
         LoginFuente.ConsultarAcceso(loguear)
         
         .then(async (resultado)=>{
-            console.log(resultado)
-            console.log(resultado[0].Usuario + " UUs")
-            console.log(resultado[0].Contraseña + " Contr")
             if (resultado == "") {
-                resultado = "No hay registros con esta cedula"
+                resultado = "No hay registros con ese usuario"
                 resolve (resultado)
             } 
+
+            
 
             if (resultado != ""){
                 const CheckPassword = await comparar(loguear.Contraseña, resultado[0].Contraseña)
                 if (CheckPassword) {
                     resultado = "Inicio de sesión correcto"
+                    const tokenSession = await tokenSign(loguear)
+                    console.log(tokenSession)
                     resolve (resultado)
+
                 }
                 if (!CheckPassword){
                     resultado = "La contraseña no es correcta"

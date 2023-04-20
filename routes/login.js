@@ -6,6 +6,7 @@ router.post(
     '/',      function(req, res){
 
     let loguear = req.body;
+    loguear = +(Rol = "Personal")
     controller.consultar(loguear)
       .then((resultado)=>{
         res.send(resultado);

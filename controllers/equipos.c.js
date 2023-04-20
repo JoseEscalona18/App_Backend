@@ -90,6 +90,7 @@ class equiposController {
   borrar(equipo){
     console.log('Controlador de Borrado')
     return new Promise ((resolve, reject) => {
+        
         equiposFuente.BorrarE(equipo)
         .then((resultado)=>{
             resolve (resultado)

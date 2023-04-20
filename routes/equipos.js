@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/equipos.c')
+const checkauth = require('../middleware/verificar')
+const checkroleauth = require('../middleware/checkrolau')
 
 
 ///MOSTRAR TODO
