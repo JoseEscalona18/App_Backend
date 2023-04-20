@@ -10,16 +10,16 @@ const checkRole = async (req, res, next, roles) => {
                 next()
             }else{
                 res.status(409)
-                res.send('No tienes permisos con ese rol')
+                res.send('NO TIENES PERMISO CON TU ROL DE ' + tokenData.Rol)
             }
         } else {
             res.status(409)
-            res.send('No tienes acceso')
+            res.send('NO TIENES ACCESO')
         }
     }catch (e){
         console.log(e);
         res.status(409)
-        res.send('Sin acceso ')
+        res.send('SIN ACCESO')
     }
 }
 
