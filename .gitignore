@@ -1,1 +1,8 @@
 .env
+// ENV //
+HOST= localhost 
+USER= admin 
+DATABASE= reservasdb 
+PASSWORD= 123456
+JWT_SECRET= SANS
+
