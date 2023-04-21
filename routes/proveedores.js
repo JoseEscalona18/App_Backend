@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controllers/facturas.c.js')
+const controller = require('../controllers/proveedores.c.js')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifyToken')
 
@@ -24,9 +24,9 @@ router.get(
       })
 });
 
-///MOSTRAR POR ID
+///MOSTRAR POR CIF
 router.get(
-    '/:ID', checkAutenticacion,
+    '/:CIF', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
@@ -34,9 +34,9 @@ router.get(
     },
     
     function(req, res) { 
-      let factura = req.params.ID
-      console.log(factura)
-    controller.mostrarFactura(factura)
+      let proveedor = req.params.CIF
+      console.log(proveedor)
+    controller.mostrarProveedorC(proveedor)
       .then((resultado)=>{
         res.send(resultado);
       })
@@ -55,9 +55,9 @@ router.get(
     },
     
     function(req, res) { 
-      let factura = req.params.CI_Admin
-      console.log(factura)
-    controller.mostrarFacturaCI(factura)
+      let proveedor = req.params.CI_Admin
+      console.log(proveedor)
+    controller.mostrarProveedorC(proveedor)
       .then((resultado)=>{
         res.send(resultado);
       })
@@ -77,8 +77,8 @@ router.post(
     checkRole(req, res, next, roles)
   },
   function(req, res){
-    let factura = req.body;
-  controller.crear(factura)
+    let proveedor = req.body;
+  controller.crear(proveedor)
     .then((resultado)=>{
       res.send(resultado);
     })
@@ -90,18 +90,18 @@ router.post(
 ///ACTUALIZAR EQUIPO POR SERIAL
 
 router.put(
-  '/:Serial', checkAutenticacion,
+  '/:CIF', checkAutenticacion,
 
   function(req, res, next){
-    var roles = ["Admin", "Personal"];
+    var roles = ["Admin"];
     checkRole(req, res, next, roles)
   },
 
   function(req, res, next) {
-    let idF = req.params.ID
-    console.log(idF)
-    let factura = req.body;
-  controller.actualizar(factura,idF)
+    let Scif = req.params.CIF
+    console.log(Scif)
+    let proveedor = req.body;
+  controller.actualizar(proveedor,Scif)
     .then((resultado)=>{
       res.send(resultado);
     })
@@ -110,18 +110,18 @@ router.put(
     })
 });
 
-///BORRAR EQUIPO POR ID
+///BORRAR PERSONAL POR CIF
 
 router.delete(
-  '/:ID', checkAutenticacion,
+  '/:CIF', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
   },
   function(req, res){
-    let factura = req.params.ID;
-  controller.borrar(factura)
+    let proveedor = req.params.CIF;
+  controller.borrar(proveedor)
     .then((resultado)=>{
       res.send(resultado);
     })

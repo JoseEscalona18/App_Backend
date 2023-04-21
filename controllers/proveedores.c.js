@@ -1,15 +1,15 @@
 const { promiseImpl } = require('ejs');
 const { reject } = require('underscore');
-var FacturaFuente = require('../src/sqlfactura.js')
+var ProveedorFuente = require('../src/sqlproveedores.js')
 
 ///CLASE FACTURAS
 
-class FacturasController {
+class ProvController {
     //CONSULTAR EQUIPOS
   listar(){
       return new Promise ((resolve, reject)=>{
           console.log("Funciona Controlador 1")
-          FacturaFuente.listar()
+          ProveedorFuente.listar()
           .then((resultado)=>{
               resolve (resultado)
           })
@@ -21,10 +21,10 @@ class FacturasController {
 
 
 
-  mostrarFactura(factura){
+  mostrarProveedorC(proveedor){
       return new Promise ((resolve, reject)=>{
         console.log("Funciona Controlador 2")
-          FacturaFuente.mostrarFactura(factura)
+          ProveedorFuente.mostrarProveedor(proveedor)
           .then((resultado)=>{
               resolve (resultado)
           })
@@ -34,11 +34,11 @@ class FacturasController {
       })
   }
 
-  ///MOSTRAR factura por CI_Admin
-  mostrarFacturaCI(factura){
+  ///MOSTRAR proveedor por Numero TElefonico
+  mostrarNumM(proveedor){
     return new Promise ((resolve, reject)=>{
       console.log("Funciona Controlador 2")
-        FacturaFuente.mostrarFactCI(factura)
+        ProveedorFuente.mostrarporNum(proveedor)
         .then((resultado)=>{
             resolve (resultado)
         })
@@ -50,13 +50,13 @@ class FacturasController {
 
   ///CREAR EQUIPOS
 
-  crear(factura){
+  crear(proveedor){
       return new Promise ((resolve, reject)=>{
-          if (!factura.ProdCompr || !factura.PrecioTotal || !factura.FechaC || !factura.HoraC|| !factura.DomicilioF|| !factura.Proveedor|| !factura.SerialPr|| !factura.CI_Admin) {
+          if (!proveedor.Empresa || !proveedor.CIF || !proveedor.WEB || !proveedor.NumeroM|| !proveedor.TipodeS) {
               return resolve("Compruebe uno de los datos a ingresar.");
           }
           console.log("a controller")
-          FacturaFuente.crear(factura)
+          ProveedorFuente.crear(proveedor)
           .then((resultado)=>{
               resolve (resultado)
           })
@@ -68,13 +68,13 @@ class FacturasController {
 
   ///ACTUALIZAR EQUIPOS
 
-  actualizar(factura, idF){
-    console.log("Controlador de Actualizar Factura")
+  actualizar(proveedor, Scif){
+    console.log("Controlador de Actualizar proveedor")
     return new Promise ((resolve, reject) => {
-        if (!factura.ProdCompr || !factura.PrecioTotal || !factura.FechaC || !factura.HoraC|| !factura.DomicilioF|| !factura.Proveedor|| !factura.SerialPr) {
-            return resolve("No se actualizo el factura, se requiere de los parametros correctos");
+        if (!proveedor.Empresa || !proveedor.CIF || !proveedor.WEB || !proveedor.NumeroM|| !proveedor.TipodeS) {
+            return resolve("No se actualizo el proveedor, se requiere de los parametros correctos");
         }
-        FacturaFuente.ActualizarF(factura,idF)
+        ProveedorFuente.ActualizarP(proveedor,Scif)
         .then((resultado)=>{
             resolve (resultado)
         })
@@ -85,11 +85,11 @@ class FacturasController {
 }
 
     ///BORRAR FACTURAS POR ID
-  borrar(factura){
+  borrar(proveedor){
     console.log('Controlador de Borrado')
     return new Promise ((resolve, reject) => {
         
-        FacturaFuente.BorrarF(factura)
+        ProveedorFuente.BorrarP(proveedor)
         .then((resultado)=>{
             resolve (resultado)
         })
@@ -102,6 +102,6 @@ class FacturasController {
 
 }
 
-const facturasC = new FacturasController()
+const proveedoresC = new ProvController()
 
-module.exports = facturasC
+module.exports = proveedoresC
