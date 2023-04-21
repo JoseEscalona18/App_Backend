@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const controller = require('../controllers/equipos.c')
+const controller = require('../controllers/facturas.c.js')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifyToken')
 
@@ -10,7 +10,7 @@ router.get(
    '/', checkAutenticacion,
 
     function(req, res, next){
-    var roles = ["Admin", "Personal","Solicitante"];
+    var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
     },
     
@@ -24,19 +24,19 @@ router.get(
       })
 });
 
-///MOSTRAR POR SERIAL
+///MOSTRAR POR ID
 router.get(
-    '/:Serial', checkAutenticacion,
+    '/:ID', checkAutenticacion,
 
     function(req, res, next){
-      var roles = ["Admin", "Personal","Solicitante"];
+      var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
     },
     
     function(req, res) { 
-      let equipo = req.params.Serial
-      console.log(equipo)
-    controller.mostrarEquipo(equipo)
+      let factura = req.params.ID
+      console.log(factura)
+    controller.mostrarFactura(factura)
       .then((resultado)=>{
         res.send(resultado);
       })
@@ -45,43 +45,40 @@ router.get(
       })
 });
 
-///MOSTRAR POR ESTATUS
+///MOSTRAR POR CI_Admin
 router.get(
-  '/Estatus/:Estatus', checkAutenticacion,
-
+    '/CIADMIN/:CI_Admin', checkAutenticacion,
+  
     function(req, res, next){
-    var roles = ["Admin", "Personal","Solicitante"];
-    checkRole(req, res, next, roles)
+      var roles = ["Admin", "Personal"];
+      checkRole(req, res, next, roles)
     },
+    
     function(req, res) { 
-    let equipo = req.params.Estatus
-    console.log(equipo)
-    if (equipo == "Disponible" || equipo == "Ocupado" || equipo == "disponible" || equipo == "ocupado"){
-      controller.mostrarEquipoEstatus(equipo)
+      let factura = req.params.CI_Admin
+      console.log(factura)
+    controller.mostrarFacturaCI(factura)
       .then((resultado)=>{
         res.send(resultado);
       })
       .catch((err)=>{
         res.send(err)
       })
+  });
 
-    } else
-      res.send("Estatus Erroneo")
-    
-});
 
-///INGRESAR UN EQUIPO
+///INGRESAR UNA FACTURA
 
 router.post(
   '/', checkAutenticacion,
 
   function(req, res, next){
-    var roles = ["Admin", "Personal"];
+    var roles = ["Admin"];
     checkRole(req, res, next, roles)
   },
   function(req, res){
-    let equipo = req.body;
-  controller.crear(equipo)
+    let factura = req.body;
+  controller.crear(factura)
     .then((resultado)=>{
       res.send(resultado);
     })
@@ -101,10 +98,10 @@ router.put(
   },
 
   function(req, res, next) {
-    let SerialE = req.params.Serial
-    console.log(SerialE)
-    let equipo = req.body;
-  controller.actualizar(equipo,SerialE)
+    let idF = req.params.Serial
+    console.log(idF)
+    let factura = req.body;
+  controller.actualizar(factura,idF)
     .then((resultado)=>{
       res.send(resultado);
     })
@@ -113,18 +110,18 @@ router.put(
     })
 });
 
-///BORRAR EQUIPO POR SERIAL
+///BORRAR EQUIPO POR ID
 
 router.delete(
-  '/:Serial', checkAutenticacion,
+  '/:ID', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
   },
   function(req, res){
-    let equipo = req.params.Serial;
-  controller.borrar(equipo)
+    let factura = req.params.ID;
+  controller.borrar(factura)
     .then((resultado)=>{
       res.send(resultado);
     })

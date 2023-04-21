@@ -19,6 +19,7 @@ var reservasequiRouter = require('./routes/reservasequipo');
 var reservasespaRouter = require('./routes/reservasespacio');
 var registro = require('./routes/registro');
 var Login = require('./routes/login')
+var facturasRouter = require('./routes/facturas')
 
 
 
@@ -49,6 +50,7 @@ app.use('/api/personal', personalRouter);
 app.use('/api/solicitantes', solicitantesRouter)
 app.use('/api/reservasequipo', reservasequiRouter)
 app.use('/api/reservasespacio', reservasespaRouter)
+app.use('/api/facturas', facturasRouter);
 app.use('/api/registrar', registro)
 app.use('/api/ingresar', Login)
 
