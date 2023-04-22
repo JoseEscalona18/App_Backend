@@ -16,7 +16,6 @@ class RegistroFuente {
             conection.query('SELECT * from `accesoadmin`',
                 function (error, results, fields) {
                 if (error) throw error;
-                console.log(results);
                 resolve(results);
             });
 
