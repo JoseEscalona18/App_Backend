@@ -3,6 +3,7 @@ const { isEmpty } = require('underscore');
 var LoginFuente = require('../src/sqllogin.js');
 const {comparar} = require('../helpers/encrypt.js')
 const { tokenSign } = require ('../helpers/tokens');
+const {axioslogeo} = require('../helpers/axios')
 
 
 class LoginController {

@@ -87,6 +87,28 @@ router.get(
       })
   });
 
+  ///MOSTRAR POR NOMBRE
+
+  router.get(
+    '/Nombre/:Empresa', checkAutenticacion,
+  
+    function(req, res, next){
+      var roles = ["Admin","Solicitante"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { 
+      let proveedor = req.params.Empresa
+      console.log(proveedor)
+    controller.mostrarProvNombre(proveedor)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+  });
+
 
 ///INGRESAR UNA FACTURA
 

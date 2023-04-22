@@ -110,8 +110,39 @@ class FacturasController {
         })
     })
 }
+  ///MOSTRAR UNA FACTURA POR FECHA
+  CFechaCompra(factura){
+    return new Promise ((resolve, reject)=>{
+      FacturaFuente.mostrarFacF(factura)
+        .then((resultado)=>{
+          if (resultado == ""){
+            resultado = "No se encontro ningun registro con esa fecha"
+            resolve (resultado)
+          }else
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  } 
 
-
+    ///MOSTRAR UNA RESERVA DE EQUIPO POR RANGO DE FECHAS
+    mostrarFRangoFecha(factura1, factura2){
+        return new Promise ((resolve, reject)=>{
+            FacturaFuente.mostrarFRango(factura1, factura2)
+            .then((resultado)=>{
+              if (resultado == ""){
+                resultado = "No se encontro ningun registro en ese rango de fechas"
+                resolve (resultado)
+              }else
+                resolve (resultado)
+            })
+            .catch((err)=>{
+              reject(err)
+            });
+        })
+      } 
 }
 
 const facturasC = new FacturasController()

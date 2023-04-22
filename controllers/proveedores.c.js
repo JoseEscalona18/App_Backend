@@ -109,7 +109,23 @@ class ProvController {
             reject(err)
         })
     })
+
 }
+mostrarProvNombre(proveedor){
+    return new Promise ((resolve, reject)=>{
+        ProveedorFuente.mostrarProvporNom(proveedor)
+        .then((resultado)=>{
+          if (resultado == ""){
+            resultado = "No se encontro ningun proveedor con ese nombre"
+            resolve (resultado)
+        }else
+            resolve (resultado)
+        })
+        .catch((err)=>{
+          reject(err)
+        });
+    })
+  }
 
 
 }

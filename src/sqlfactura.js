@@ -107,6 +107,31 @@ class FacturaFuente {
         })
 
     }
+    
+    mostrarREQF(reservadeequipo){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar una factura por fecha')
+            console.log(reservadeequipo)
+            conection.query('SELECT * FROM reservasequipos WHERE FechaInicio = "'+ reservadeequipo + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
+
+    mostrarFRango(factura1, factura2){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar facturas por rango de fechas')
+            conection.query('SELECT * FROM facturas WHERE FechaC BETWEEN "'+ factura1 + '" AND "' + factura2 + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+    }
 }
 
 const facturaF = new FacturaFuente();

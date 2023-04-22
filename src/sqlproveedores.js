@@ -98,6 +98,19 @@ class ProveedorFuente {
         })
 
     }
+    mostrarProvporNom(proveedor){
+        return new Promise((resolve, reject)=>{
+            console.log('Funciona el SQL de Mostrar el Personal segun su cargo')
+            conection.query('SELECT * FROM `proveedores` WHERE Empresa = "'+ proveedor + '"', function (error, results, fields) {
+                if (error) throw error;
+                console.log(results);
+                resolve(results);
+            });
+
+        })
+
+    }
+
 }
 
 const proveedorF = new ProveedorFuente();
