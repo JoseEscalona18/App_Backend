@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/trabajos.c.js')
 const checkRole = require('../middleware/verifyRole')
-const checkAutenticacion = require('../middleware/verifyToken')
+const checkAutenticacion = require('../middleware/verifytoken')
 
 
 ///MOSTRAR TODO

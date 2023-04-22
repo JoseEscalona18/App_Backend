@@ -2,9 +2,14 @@ var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/login.c')
 
-router.post(
-    '/',      function(req, res){
+router.get('/', function(req, res, next) {
+res.render('login')
+});
 
+router.post(
+    '/',      
+    function(req, res){
+      console.log(req.body)
     let loguear = req.body;
     controller.consultar(loguear)
       .then((resultado)=>{

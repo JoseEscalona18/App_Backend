@@ -39,7 +39,7 @@ consultar(loguear){
                         'Login':"Inicio de sesión correcto",
                         'TokenSession':tokenSession
                     }
-
+                    
                     resolve (resultado)
 
                 }
