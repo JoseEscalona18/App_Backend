@@ -45,6 +45,28 @@ router.get(
       })
 });
 
+//// MOSTRAR POR NUM DE MOVIL
+
+router.get(
+    '/Num/:NumeroM', checkAutenticacion,
+
+    function(req, res, next){
+      var roles = ["Admin", "Personal"];
+      checkRole(req, res, next, roles)
+    },
+    
+    function(req, res) { 
+      let proveedor = req.params.NumeroM
+      console.log(proveedor)
+    controller.mostrarNumM(proveedor)
+      .then((resultado)=>{
+        res.send(resultado);
+      })
+      .catch((err)=>{
+        res.send(err)
+      })
+});
+
 ///MOSTRAR POR CI_Admin
 router.get(
     '/CIADMIN/:CI_Admin', checkAutenticacion,
