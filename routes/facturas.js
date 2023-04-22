@@ -130,6 +130,50 @@ router.delete(
     })
 });
 
+///MOSTRAR POR FECHA
+router.get(
+  '/Fecha/:FechaC', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
+    let factura = req.params.FechaC
+    console.log(factura)
+  controller.CFechaCompra(factura)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
+///MOSTRAR POR RANGO DE FECHAS
+router.get(
+  '/Fecha1/:FechaF1/Fecha2/:FechaF2', checkAutenticacion,
+
+  function(req, res, next){
+    var roles = ["Admin", "Personal", "Solicitante"];
+    checkRole(req, res, next, roles)
+  },
+  
+  function(req, res) { 
+    let factura1 = req.params.FechaF1
+    let factura2 = req.params.FechaF2
+    console.log(factura1)
+    console.log(factura2)
+  controller.mostrarFRangoFecha(factura1, factura2)
+    .then((resultado)=>{
+      res.send(resultado);
+    })
+    .catch((err)=>{
+      res.send(err)
+    })
+});
+
 
 //EXPORTAR EL ROUTER
 

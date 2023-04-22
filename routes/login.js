@@ -6,6 +6,8 @@ router.get('/', function(req, res, next) {
 res.render('login')
 });
 
+
+
 router.post(
     '/',      
     function(req, res){
@@ -13,6 +15,7 @@ router.post(
     let loguear = req.body;
     controller.consultar(loguear)
       .then((resultado)=>{
+        
         res.send(resultado);
       })
       .catch((err)=>{
