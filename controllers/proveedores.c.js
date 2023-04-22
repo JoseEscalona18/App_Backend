@@ -11,6 +11,10 @@ class ProvController {
           console.log("Funciona Controlador 1")
           ProveedorFuente.listar()
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No se encontraron Proveedores en la Base de Datos"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{
@@ -26,6 +30,10 @@ class ProvController {
         console.log("Funciona Controlador 2")
           ProveedorFuente.mostrarProveedor(proveedor)
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No se encontraron proveedores con ese CIF"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{
@@ -40,6 +48,10 @@ class ProvController {
       console.log("Funciona Controlador 2")
         ProveedorFuente.mostrarporNum(proveedor)
         .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No se encontro algún proveedor con ese Número Telefónico"
+                resolve(resultado)
+            }
             resolve (resultado)
         })
         .catch((err)=>{

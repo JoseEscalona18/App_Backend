@@ -9,6 +9,10 @@ class solicitantesController {
         console.log("Funciona Controlador 1")
         solicitantesFuente.listarSoli()
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontraron solicitantes"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{
@@ -23,6 +27,10 @@ class solicitantesController {
       console.log("Funciona Controlador 2")
         solicitantesFuente.mostrarSolicitante(solicitante)
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontro al solicitante con esa Cedula de Identidad"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{

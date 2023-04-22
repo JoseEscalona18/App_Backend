@@ -9,6 +9,10 @@ class espaciosController {
         console.log("Funciona Controlador 1")
         espaciosFuente.listar()
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontraron espacios"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{
@@ -23,6 +27,10 @@ class espaciosController {
         console.log("Funciona Controlador 2")
           espaciosFuente.mostrarEspacio(espacio)
           .then((resultado)=>{
+            if(resultado == ""){
+              resultado = "No se encontraron espacios con ese ID"
+              resolve(resultado)
+          }
               resolve (resultado)
           })
           .catch((err)=>{
