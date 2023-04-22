@@ -4,20 +4,26 @@ const controller = require('../controllers/personal.c')
 const checkAutenticacion = require('../middleware/verifytoken');
 const checkRole = require('../middleware/verifyRole');
 
+
+router.get('/', function(req, res, next) {
+  res.render('aggpersonal', {Agregado: "Ingrese los datos"})
+  });
+
+
 ///MOSTRAR TODOS LOS TECNICOS
 
 router.get(
-  '/', checkAutenticacion,
+  '/listar/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { controller
   controller.listarP()
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarpersonal', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -26,19 +32,19 @@ router.get(
 
 ///MOSTRAR POR CEDULA
 router.get(
-  '/:CI', checkAutenticacion,
+  '/listar/:CI', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let personal = req.params.CI
     console.log(personal)
   controller.mostrarPersonal(personal)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarpersonal', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -47,19 +53,19 @@ router.get(
 
 ///MOSTRAR POR CARGO
 router.get(
-  '/Cargo/:Cargo', checkAutenticacion,
+  '/listar/Cargo/:Cargo', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let personal = req.params.Cargo
     console.log(personal)
   controller.mostrarPersonalCargo(personal)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarpersonal', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -69,18 +75,18 @@ router.get(
 ///AGREGAR AL REGISTRO DE TECNICOS
 router.post(
   '/', 
-  checkAutenticacion,
+  /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res){
     let personal = req.body;
   controller.registrar(personal)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggpersonal', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

@@ -19,7 +19,7 @@ router.get(
   function(req, res) { controller
   controller.listarAdmin()
     .then((resultado)=>{
-      res.render('listar', {"JSON": JSON.stringify(resultado)});
+      res.render('listaradmins', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
