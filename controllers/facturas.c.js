@@ -5,12 +5,16 @@ var FacturaFuente = require('../src/sqlfactura.js')
 ///CLASE FACTURAS
 
 class FacturasController {
-    //CONSULTAR EQUIPOS
+    //CONSULTAR FACTURAS
   listar(){
       return new Promise ((resolve, reject)=>{
           console.log("Funciona Controlador 1")
           FacturaFuente.listar()
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No hay facturas en la base de datos"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{
@@ -26,6 +30,10 @@ class FacturasController {
         console.log("Funciona Controlador 2")
           FacturaFuente.mostrarFactura(factura)
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No se encontro ninguna factura con ese ID"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{
@@ -40,6 +48,10 @@ class FacturasController {
       console.log("Funciona Controlador 2")
         FacturaFuente.mostrarFactCI(factura)
         .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No hay ninguna factura proveniente de esa Cedula de Identidad de Admin"
+                resolve(resultado)
+            }
             resolve (resultado)
         })
         .catch((err)=>{

@@ -11,6 +11,10 @@ class equiposController {
           console.log("Funciona Controlador 1")
           equiposFuente.listar()
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No hay equipos en la base de datos"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{
@@ -26,6 +30,10 @@ class equiposController {
         console.log("Funciona Controlador 2")
           equiposFuente.mostrarEquipo(equipo)
           .then((resultado)=>{
+            if(resultado == ""){
+                resultado = "No se encontro algun equipo con ese serial"
+                resolve(resultado)
+            }
               resolve (resultado)
           })
           .catch((err)=>{

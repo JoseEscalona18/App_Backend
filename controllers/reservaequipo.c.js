@@ -11,6 +11,10 @@ class reservadeequipoontroller {
         console.log("Funciona Controlador 1")
         reservasequiFuente.listarRequi()
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontraron reservas de equipos en la base de datos"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{
@@ -26,6 +30,10 @@ class reservadeequipoontroller {
       console.log("Funciona Controlador 2")
         reservasequiFuente.mostrarREQ(reservadeequipo)
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontraron reservas de equipos con ese ID"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{

@@ -10,6 +10,10 @@ class personalController {
         console.log("Funciona Controlador 1")
         personalFuente.listar()
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontraron miembros del Personal"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{
@@ -24,6 +28,10 @@ class personalController {
       console.log("Funciona Controlador 2")
         personalFuente.mostrarPersonal(personal)
         .then((resultado)=>{
+          if(resultado == ""){
+            resultado = "No se encontro ninguna persona con ese CI"
+            resolve(resultado)
+        }
             resolve (resultado)
         })
         .catch((err)=>{
