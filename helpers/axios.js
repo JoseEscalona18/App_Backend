@@ -3,7 +3,7 @@ const axios = require("axios")
 function axioslogeo(data) {
     axios.post("user/login", data
     .then(res => {
-        localStorage.setItem('accessToken', res.data.TokenSession);
+        localStorage.getItem('accessToken', res.data.TokenSession);
 
     }))
 }
