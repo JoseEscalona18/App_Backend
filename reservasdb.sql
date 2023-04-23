@@ -272,7 +272,7 @@ CREATE TABLE `trabajos` (
   `Nombre_Solicitante` varchar(100) NOT NULL,
   `ID_ReservaEs` int(11) DEFAULT NULL,
   `ID_ReservaEq` int(11) DEFAULT NULL,
-  `Descripción` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL
+  `Descripcion` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
