@@ -51,7 +51,7 @@ class TrabajosFuente {
         let nombres = '"'+trabajo.Nombre_Solicitante+'"'
         let idreservaes = '"'+trabajo.ID_ReservaEs+'"'
         let idreservaeq = '"'+trabajo.ID_ReservaEq+'"'
-        let descripcion = '"'+trabajo.Descripción+'"'
+        let descripcion = '"'+trabajo.Descripcion+'"'
 
 
         return new Promise((resolve, reject) => {
@@ -78,7 +78,7 @@ class TrabajosFuente {
 
         return new Promise((resolve, reject) => {
             console.log('Fuente de Actualizar')
-            conection.query('UPDATE trabajos SET Trabajo = '+trabajon+', Nombre_Solicitante = '+nombres+', ID_ReservaEs = '+idreservaes+', ID_ReservaEq = '+idreservaeq+', Descripción = '+descripcion+' WHERE ID_Trabajo = '+IDT,
+            conection.query('UPDATE trabajos SET Trabajo = '+trabajon+', Nombre_Solicitante = '+nombres+', ID_ReservaEs = '+idreservaes+', ID_ReservaEq = '+idreservaeq+', Descripcion = '+descripcion+' WHERE ID_Trabajo = '+IDT,
             function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha actualizado el trabajo ', results);

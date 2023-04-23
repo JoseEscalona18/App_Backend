@@ -4,20 +4,23 @@ const controller = require('../controllers/facturas.c.js')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifytoken')
 
+router.get('/', function(req, res, next) {
+  res.render('aggfacturas', {Agregado: "Ingrese los datos"})
+});
 
 ///MOSTRAR TODO
 router.get(
-   '/', checkAutenticacion,
+   '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarfacturas', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -26,19 +29,19 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/:ID', checkAutenticacion,
+    '/listar/:ID', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let factura = req.params.ID
       console.log(factura)
     controller.mostrarFactura(factura)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarfacturas', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -47,19 +50,19 @@ router.get(
 
 ///MOSTRAR POR CI_Admin
 router.get(
-    '/CIADMIN/:CI_Admin', checkAutenticacion,
+    '/listar/CIADMIN/:CI_Admin', /*checkAutenticacion,
   
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let factura = req.params.CI_Admin
       console.log(factura)
     controller.mostrarFacturaCI(factura)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarfacturas', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -70,12 +73,12 @@ router.get(
 ///INGRESAR UNA FACTURA
 
 router.post(
-  '/', checkAutenticacion,
+  '/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   function(req, res){
     let factura = req.body;
   controller.crear(factura)

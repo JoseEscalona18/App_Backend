@@ -4,20 +4,23 @@ const controller = require('../controllers/equipos.c')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifytoken')
 
+router.get('/', function(req, res, next) {
+  res.render('aggequipos', {Agregado: "Ingrese los datos"})
+  });
 
 ///MOSTRAR TODO
 router.get(
-   '/', checkAutenticacion,
+   '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal","Solicitante"];
     checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarequipos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -26,19 +29,19 @@ router.get(
 
 ///MOSTRAR POR SERIAL
 router.get(
-    '/:Serial', checkAutenticacion,
+    '/listar/:Serial', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal","Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let equipo = req.params.Serial
       console.log(equipo)
     controller.mostrarEquipo(equipo)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarequipos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -47,19 +50,19 @@ router.get(
 
 ///MOSTRAR POR ESTATUS
 router.get(
-  '/Estatus/:Estatus', checkAutenticacion,
+  '/listar/Estatus/:Estatus', /*checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal","Solicitante"];
     checkRole(req, res, next, roles)
-    },
+    },*/
     function(req, res) { 
     let equipo = req.params.Estatus
     console.log(equipo)
     if (equipo == "Disponible" || equipo == "Ocupado" || equipo == "disponible" || equipo == "ocupado"){
       controller.mostrarEquipoEstatus(equipo)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarequipos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -73,17 +76,17 @@ router.get(
 ///INGRESAR UN EQUIPO
 
 router.post(
-  '/', checkAutenticacion,
+  '/',/* checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   function(req, res){
     let equipo = req.body;
   controller.crear(equipo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggequipos', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

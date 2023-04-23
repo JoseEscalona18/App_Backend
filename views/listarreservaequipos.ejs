@@ -2,22 +2,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Listar Admins</title>
+        <title>Lista de Reserva Equipos</title>
         <link rel="stylesheet" href="/stylesheets/indexlistar.css"/>
     </head>
     <body>
 
         <div>
           <table class="table table-bordered table-striped" id="TablaListar">
-            <caption style="font-size: 50px;"><b>Lista de Admins</b></caption>
+            <caption style="font-size: 50px;"><b>Lista de Reserva Equipos</b></caption>
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nombre</th>
-                  <th>Ci</th>
-                  <th>Usuario</th>
-                  <th>Constraseña</th>
-                  <th>Rol</th>
+                  <th>ID</th>
+                  <th>Nombre_Solicitante</th>
+                  <th>CI_Solicitante</th>
+                  <th>FechaInicio</th>
+                  <th>FechaFin</th>
+                  <th>HoraInicio</th>
+                  <th>HoraFi</th>
+                  <th>SerialesE</th>
+                  <th>Equipos</th>
+                  <th>Motivo</th>
                 </tr>
               </thead>
               <tbody id="Datostabla">
@@ -37,12 +41,16 @@
             res.innerHTML += `
         
               <tr>
-                <td> ${item.id} </td>
-                <td> ${item.Nombre} </td>
-                <td> ${item.CI} </td>
-                <td> ${item.Usuario} </td>
-                <td> ${item.Contraseña} </td>
-                <td> ${item.Rol} </td>
+                <td> ${item.ID} </td>
+                <td> ${item.Nombre_Solicitante} </td>
+                <td> ${item.CI_Solicitante} </td>
+                <td> ${item.FechaInicio} </td>
+                <td> ${item.FechaFin} </td>
+                <td> ${item.HoraInicio} </td>
+                <td> ${item.HoraFi} </td>
+                <td> ${item.SerialesE} </td>
+                <td> ${item.Equipos} </td>
+                <td> ${item.Motivo} </td>
               </tr>
             `
           }

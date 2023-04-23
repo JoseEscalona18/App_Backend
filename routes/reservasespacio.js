@@ -6,19 +6,24 @@ const controller = require('../controllers/reservaespacio.c')
 const checkAutenticacion = require('../middleware/verifytoken');
 const checkRole = require('../middleware/verifyRole');
 
+
+router.get('/', function(req, res, next) {
+  res.render('aggreservaespacios', {Agregado: "Ingrese los datos"})
+});
+
 ////VER TODAS LAS RESERVAS DE ESPACIOS
 router.get(
-    '/', checkAutenticacion,
+    '/listar/',/* checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal", "Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listarRES()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarreservaespacios', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -27,19 +32,19 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/:ID', checkAutenticacion,
+    '/listar/:ID', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal", "Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let reservadeespacio = req.params.ID
       console.log(reservadeespacio)
     controller.mostrarReservaES(reservadeespacio)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarreservaespacios', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -48,19 +53,19 @@ router.get(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/Fecha/:FechaInicio', checkAutenticacion,
+  '/listar/Fecha/:FechaInicio', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservadeespacio = req.params.FechaInicio
     console.log(reservadeespacio)
   controller.mostrarRESFecha(reservadeespacio)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaespacios', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -69,12 +74,12 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', checkAutenticacion,
+  '/listar/Fecha1/:FechaInicio/Fecha2/:FechaFin',/* checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservadeespacio1 = req.params.FechaInicio
@@ -83,7 +88,7 @@ router.get(
     console.log(reservadeespacio2)
   controller.mostrarRESRangoFecha(reservadeespacio1, reservadeespacio2)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaespacios', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -94,18 +99,18 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE RESERVAS DE ESPACIOS
 router.post(
-    '/', checkAutenticacion,
+    '/', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin","Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res){
       let reservadeespacio = req.body;
     controller.registrar(reservadeespacio)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('aggreservaespacios', {Agregado: "Agregado correctamente"});
       })
       .catch((err)=>{
         res.send(err)

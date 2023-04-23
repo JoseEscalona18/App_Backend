@@ -2,22 +2,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Listar Admins</title>
+        <title>Listar Facturas</title>
         <link rel="stylesheet" href="/stylesheets/indexlistar.css"/>
     </head>
     <body>
 
         <div>
           <table class="table table-bordered table-striped" id="TablaListar">
-            <caption style="font-size: 50px;"><b>Lista de Admins</b></caption>
+            <caption style="font-size: 50px;"><b>Lista de Facturas</b></caption>
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nombre</th>
-                  <th>Ci</th>
-                  <th>Usuario</th>
-                  <th>Constraseña</th>
-                  <th>Rol</th>
+                  <th>ID</th>
+                  <th>ProdCompr</th>
+                  <th>PrecioTotal</th>
+                  <th>FechaC</th>
+                  <th>HoraC</th>
+                  <th>DomicilioF</th>
+                  <th>Proveedor</th>
+                  <th>CIF_P</th>
+                  <th>SerialPr</th>
+                  <th>CI_Admin</th>
                 </tr>
               </thead>
               <tbody id="Datostabla">
@@ -37,12 +41,16 @@
             res.innerHTML += `
         
               <tr>
-                <td> ${item.id} </td>
-                <td> ${item.Nombre} </td>
-                <td> ${item.CI} </td>
-                <td> ${item.Usuario} </td>
-                <td> ${item.Contraseña} </td>
-                <td> ${item.Rol} </td>
+                <td> ${item.ID} </td>
+                <td> ${item.ProdCompr} </td>
+                <td> ${item.PrecioTotal} </td>
+                <td> ${item.FechaC} </td>
+                <td> ${item.HoraC} </td>
+                <td> ${item.DomicilioF} </td>
+                <td> ${item.Proveedor} </td>
+                <td> ${item.CIF_P} </td>
+                <td> ${item.SerialPr} </td>
+                <td> ${item.CI_Admin} </td>
               </tr>
             `
           }

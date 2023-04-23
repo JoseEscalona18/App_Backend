@@ -7,18 +7,22 @@ const checkRole = require('../middleware/verifyRole');
 
 ///MOSTRAR TODOS LOS ESPACIOS
 
+router.get('/', function(req, res, next) {
+  res.render('aggsolicitantes', {Agregado: "Ingrese los datos"})
+  });
+
 router.get(
-    '/', checkAutenticacion,
+    '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listarS()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarsolicitantes', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -27,19 +31,19 @@ router.get(
 
 ///MOSTRAR POR CEDULA
 router.get(
-  '/:CI', checkAutenticacion,
+  '/listar/:CI', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let solicitante = req.params.CI
     console.log(solicitante)
   controller.mostrarSolicitante(solicitante)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarsolicitantes', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -48,18 +52,18 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE SOLICITANTES
 router.post(
-  '/', checkAutenticacion,
+  '/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res){
     let solicitante = req.body;
   controller.registrar(solicitante)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggsolicitantes', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

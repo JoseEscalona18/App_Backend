@@ -2,36 +2,41 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Registrar Admins</title>
+        <title>Registrar Trabajos</title>
         <link rel="stylesheet" href="/stylesheets/indexAgregar.css"/>
     </head>
     <body>
         <section>
-            <div class="centro" style="height:550px;">
+            <div class="centro" style="height: 600px;">
                 <div>
                     <form action="" method="POST">
-                        <h2>Registrar</h2>
+                        <h2>Agregar Trabajos</h2>
+                        <div class="cajastexto">
+                            <ion-icon name="storefront-outline"></ion-icon>
+                            <input type="text" name="Trabajo" required>
+                            <label for="">Trabajo</label>
+                        </div>
                         <div class="cajastexto">
                             <ion-icon name="text-outline"></ion-icon>
-                            <input type="text" name="Nombre" required>
-                            <label for="">Nombre</label>
+                            <input type="text" name="Nombre_Solicitante" required>
+                            <label for="">Nombre Solicitante</label>
                         </div>
                         <div class="cajastexto">
-                            <ion-icon name="id-card-outline"></ion-icon>
-                            <input type="text" name="Ci" required>
-                            <label for="">Cedula</label>
+                            <ion-icon name="copy-outline"></ion-icon>
+                            <input type="text" name="ID_ReservaEs" required>
+                            <label for="">ID Reserva Espacio</label>
                         </div>
                         <div class="cajastexto">
-                            <ion-icon name="person-outline"></ion-icon>
-                            <input type="text" name="Usuario" required>
-                            <label for="">Usuario</label>
+                            <ion-icon name="copy-outline"></ion-icon>
+                            <input type="text" name="ID_ReservaEq" required>
+                            <label for="">ID Reserva Equipo</label>
                         </div>
                         <div class="cajastexto">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                            <input type="password" name="Contraseña" required>
-                            <label for="">Contraseña</label>
+                            <ion-icon name="newspaper-outline"></ion-icon>
+                            <input type="text" name="Descripcion" required>
+                            <label for="">Descripción</label>
                         </div>
-                        <button type="submit">Registrar</button>
+                        <button type="submit">Agregar</button>
                         <p id="Emergente" style="color: green; text-align: center; padding-top: 5px;"> <%= Agregado %> </p>
                     </form>
                 </div>
@@ -43,7 +48,7 @@
         </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        
+
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>

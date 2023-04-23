@@ -7,19 +7,24 @@ const controller = require('../controllers/reservaequipo.c')
 const checkAutenticacion = require('../middleware/verifytoken');
 const checkRole = require('../middleware/verifyRole');
 
+
+router.get('/', function(req, res, next) {
+  res.render('aggreservaequipos', {Agregado: "Ingrese los datos"})
+});
+
 //VER TODO
 router.get(
-    '/', checkAutenticacion,
+    '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal", "Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listarREQ()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarreservaequipos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -28,19 +33,19 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-  '/:ID', checkAutenticacion,
+  '/listar/:ID', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservasdeequipo = req.params.ID
     console.log(reservasdeequipo)
   controller.mostrarReservaEQ(reservasdeequipo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaequipos', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -49,19 +54,19 @@ router.get(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/Fecha/:FechaInicio', checkAutenticacion,
+  '/listar/Fecha/:FechaInicio', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservasdeequipo = req.params.FechaInicio
     console.log(reservasdeequipo)
   controller.mostrarREQFecha(reservasdeequipo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaequipos', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -70,12 +75,12 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/Fecha1/:FechaInicio/Fecha2/:FechaFin', checkAutenticacion,
+  '/listar/Fecha1/:FechaInicio/Fecha2/:FechaFin', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservasdeequipo1 = req.params.FechaInicio
@@ -84,7 +89,7 @@ router.get(
     console.log(reservasdeequipo2)
   controller.mostrarREQRangoFecha(reservasdeequipo1, reservasdeequipo2)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaequipos', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -93,19 +98,19 @@ router.get(
 
 ///MOSTRAR POR CEDULA DE SOLICITANTE
 router.get(
-  '/CedulaS/:CI_Solicitante', checkAutenticacion,
+  '/listar/CedulaS/:CI_Solicitante', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res) { 
     let reservasdeequipo = req.params.CI_Solicitante
     console.log(reservasdeequipo)
   controller.mostrarREQCedulaS(reservasdeequipo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarreservaequipos', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -114,18 +119,18 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE RESERVAS
 router.post(
-  '/', checkAutenticacion,
+  '/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   
   function(req, res){
     let reservadeequipo = req.body;
   controller.registrar(reservadeequipo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggreservaequipos', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

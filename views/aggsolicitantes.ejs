@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Registrar Personal</title>
+        <title>Registrar Solicitantes</title>
         <link rel="stylesheet" href="/stylesheets/indexAgregar.css"/>
     </head>
     <body>
@@ -10,7 +10,7 @@
             <div class="centro" style="height: 750px;">
                 <div>
                     <form action="" method="POST">
-                        <h2>Agregar Personal</h2>
+                        <h2>Agregar Solicitantes</h2>
                         <div class="cajastexto">
                             <ion-icon name="text-outline"></ion-icon>
                             <input type="text" name="Nombre" required>
@@ -21,10 +21,14 @@
                             <input type="text" name="CI" required>
                             <label for="">Cedula</label>
                         </div>
+                        <div class="cajasFecha">
+                            <input type="date" name="FechaN" required>
+                            <label for="">Nacimiento</label>
+                        </div>
                         <div class="cajastexto">
-                            <ion-icon name="receipt-outline"></ion-icon>
-                            <input type="text" name="Cargo" required>
-                            <label for="">Cargo</label>
+                            <ion-icon name="location-outline"></ion-icon>
+                            <input type="text" name="Direccion" required>
+                            <label for="">Direccion</label>
                         </div>
                         <div class="cajastexto">
                             <ion-icon name="person-outline"></ion-icon>
@@ -37,14 +41,9 @@
                             <label for="">Contraseña</label>
                         </div>
                         <div class="cajastexto">
-                            <ion-icon name="briefcase-outline"></ion-icon>
-                            <input type="text" name="Especialidad" required>
-                            <label for="">Especialidad</label>
-                        </div>
-                        <div class="cajastexto">
-                            <ion-icon name="ban-outline"></ion-icon>
-                            <input type="text" name="Estatus" required>
-                            <label for="">Estatus</label>
+                            <ion-icon name="call-outline"></ion-icon>
+                            <input type="tel" name="Telefono" required>
+                            <label for="">Telefono</label>
                         </div>
                         <button type="submit">Agregar</button>
                         <p id="Emergente" style="color: green; text-align: center; padding-top: 5px;"> <%= Agregado %> </p>

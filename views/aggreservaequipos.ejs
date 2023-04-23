@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Registrar Reserva de Equipos</title>
+        <link rel="stylesheet" href="/stylesheets/indexAgregar.css"/>
+    </head>
+    <body>
+        <section style="padding: 50px;">
+            <div class="centro" style="height:950px; width:500px;">
+                <div>
+                    <form action="" method="POST">
+                        <h2>Reservas de Equipos</h2>
+                        <div class="cajastexto">
+                            <ion-icon name="text-outline"></ion-icon>
+                            <input type="text" name="Nombre_Solicitante" required>
+                            <label for="">Nombre solicitante</label>
+                        </div>
+                        <div class="cajastexto">
+                            <ion-icon name="id-card-outline"></ion-icon>
+                            <input type="text" name="CI_Solicitante" required>
+                            <label for="">CI solicitante</label>
+                        </div>
+                        <div class="cajasFecha">
+                            <input type="date" name="FechaInicio" required>
+                            <label for="">Fecha Inicio</label>
+                        </div>
+                        <div class="cajasFecha">
+                            <input type="date" name="FechaFin" required>
+                            <label for="">Fecha Fin</label>
+                        </div>
+                        <div class="cajasFecha">
+                            <input type="time" name="HoraInicio" required>
+                            <label for="">Hora Inicio</label>
+                        </div>
+                        <div class="cajasFecha">
+                            <input type="time" name="HoraFi" required>
+                            <label for="">Hora Fin</label>
+                        </div>
+                        <div class="cajastexto">
+                            <ion-icon name="qr-code-outline"></ion-icon>
+                            <input type="text" name="SerialesE" required>
+                            <label for="">Serial Equipo</label>
+                        </div>
+                        <div class="cajastexto">
+                            <ion-icon name="desktop-outline"></ion-icon>
+                            <input type="text" name="Equipos" required>
+                            <label for="">Equipo</label>
+                        </div>
+                        <div class="cajastexto">
+                            <ion-icon name="document-outline"></ion-icon>
+                            <input type="text" name="Motivo" required>
+                            <label for="">Motivo</label>
+                        </div>
+                        <button type="submit">Agregar</button>
+                        <p id="Emergente" style="color: green; text-align: center; padding-top: 5px;"> <%= Agregado %> </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            setTimeout(function() { $('#Emergente').fadeOut('fast'); }, 2000);
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </body>
+</html>

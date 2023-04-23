@@ -2,22 +2,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Listar Admins</title>
+        <title>Listar Proveedores</title>
         <link rel="stylesheet" href="/stylesheets/indexlistar.css"/>
     </head>
     <body>
 
         <div>
           <table class="table table-bordered table-striped" id="TablaListar">
-            <caption style="font-size: 50px;"><b>Lista de Admins</b></caption>
+            <caption style="font-size: 50px;"><b>Lista de Proveedores</b></caption>
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nombre</th>
-                  <th>Ci</th>
-                  <th>Usuario</th>
-                  <th>Constraseña</th>
-                  <th>Rol</th>
+                  <th>Empresa</th>
+                  <th>CIF</th>
+                  <th>WEB</th>
+                  <th>NumeroM</th>
+                  <th>TipodeS</th>
                 </tr>
               </thead>
               <tbody id="Datostabla">
@@ -37,12 +36,11 @@
             res.innerHTML += `
         
               <tr>
-                <td> ${item.id} </td>
-                <td> ${item.Nombre} </td>
-                <td> ${item.CI} </td>
-                <td> ${item.Usuario} </td>
-                <td> ${item.Contraseña} </td>
-                <td> ${item.Rol} </td>
+                <td> ${item.Empresa} </td>
+                <td> ${item.CIF} </td>
+                <td> ${item.WEB} </td>
+                <td> ${item.NumeroM} </td>
+                <td> ${item.TipodeS} </td>
               </tr>
             `
           }

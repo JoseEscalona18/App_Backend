@@ -64,7 +64,7 @@ class TrabajoController {
 
   crear(trabajo){
       return new Promise ((resolve, reject)=>{
-          if (!trabajo.Trabajo || !trabajo.Nombre_Solicitante || !trabajo.ID_ReservaEs || !trabajo.ID_ReservaEq|| !trabajo.Descripción) {
+          if (!trabajo.Trabajo || !trabajo.Nombre_Solicitante || !trabajo.ID_ReservaEs || !trabajo.ID_ReservaEq|| !trabajo.Descripcion) {
               return resolve("Compruebe uno de los datos a ingresar.");
           }
           console.log("a controller")
@@ -83,7 +83,7 @@ class TrabajoController {
   actualizar(trabajo, IDT){
     console.log("Controlador de Actualizar trabajo")
     return new Promise ((resolve, reject) => {
-        if (!trabajo.Trabajo || !trabajo.Nombre_Solicitante || !trabajo.ID_ReservaEs || !trabajo.ID_ReservaEq|| !trabajo.Descripción) {
+        if (!trabajo.Trabajo || !trabajo.Nombre_Solicitante || !trabajo.ID_ReservaEs || !trabajo.ID_ReservaEq|| !trabajo.Descripcion) {
             return resolve("No se actualizo el trabajo, se requiere de los parametros correctos");
         }
         TrabajosFuente.ActualizarT(trabajo,IDT)

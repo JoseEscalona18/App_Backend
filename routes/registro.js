@@ -5,7 +5,7 @@ const checkAutenticacion = require('../middleware/verifytoken');
 const checkRole = require('../middleware/verifyRole');
 
 router.get('/', function(req, res, next) {
-  res.render('registrar')
+  res.render('registrar', {Agregado: "Ingrese los datos"})
   });
 
 router.get(
@@ -27,19 +27,19 @@ router.get(
 });
 
 router.post(
-    '/', checkAutenticacion,
+    '/', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res){
 
     let register = req.body;
     controller.registrar(register)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('registrar', {Agregado: "Admin Registrado Correctamente"});
       })
       .catch((err)=>{
         res.send(err)

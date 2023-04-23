@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2023 a las 19:10:19
+-- Tiempo de generación: 22-04-2023 a las 15:33:41
 -- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.0.25
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,7 +44,7 @@ INSERT INTO `accesoadmin` (`id`, `Nombre`, `CI`, `Usuario`, `Contraseña`, `Rol`
 (1, 'Jose Escalona', 28206133, 'Esca', '$2a$10$Cq3tAb3tmHpaqIjk3Ph5T.qvOLvtoKnIKWR/5b7EllO0Drun9Qvhu', 'Admin'),
 (2, 'Luis Monsalve', 14563287, 'Fifa23', '$2a$10$Z9ENsSwIu8TxRzA2S3HYgefm5K4CUoPH6AoX.YRxAFfm42Rsyu5my', 'Admin'),
 (3, 'Juan Rosales', 88587942, 'beaglz', '$2a$10$TQZOPwNRWXrFTYG6ELExp.fTy5UU288puQ2l4.55r/pAG8Cjn7Rn6', 'Admin'),
-(4, 'Maikel Villegas', 78965852, 'MaiMai', '$2a$10$XldNzhQMkUoJLs64KYDfNOSqGcoQXEpLedEnroI121DftPDdWN6pm', 'Admin'),
+(4, 'Maikel Villegas', 30302836, 'MaiMai', '$2a$10$XldNzhQMkUoJLs64KYDfNOSqGcoQXEpLedEnroI121DftPDdWN6pm', 'Admin'),
 (5, 'Roberto Di Michele', 78965852, 'Backend', '$2a$10$a.vYASuDmHJC5UAOixyTq.EfAWHkthTVENXQu4ig2EmvAGyfTB0o6', 'Admin');
 
 -- --------------------------------------------------------
@@ -104,6 +104,32 @@ INSERT INTO `espacios` (`ID_Espacio`, `Nombre`, `Descripcion`, `Direccion`, `Est
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `facturas`
+--
+
+CREATE TABLE `facturas` (
+  `ID` smallint(6) NOT NULL,
+  `ProdCompr` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `PrecioTotal` varchar(100) NOT NULL,
+  `FechaC` date NOT NULL,
+  `HoraC` time NOT NULL,
+  `DomicilioF` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Proveedor` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CIF_P` varchar(128) DEFAULT NULL,
+  `SerialPr` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CI_Admin` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `facturas`
+--
+
+INSERT INTO `facturas` (`ID`, `ProdCompr`, `PrecioTotal`, `FechaC`, `HoraC`, `DomicilioF`, `Proveedor`, `CIF_P`, `SerialPr`, `CI_Admin`) VALUES
+(1, 'Rode NT1A', '280$', '2022-10-01', '14:00:00', 'Mirabel', 'Amazon', 92918, '25445454', 30302836);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `personal`
 --
 
@@ -129,6 +155,27 @@ INSERT INTO `personal` (`Nombre`, `CI`, `Cargo`, `Usuario`, `Contraseña`, `Espe
 ('Jose Luis', 29302745, 'Camarografo', 'Jolu', '$2a$10$iuEtvtJP3p3PSek4z/ejgeDkIDz9Cu/cILoTKdBMf4NGMdHFsEZDy', 'Director de Fotografia', 'Personal', 'Ocupado'),
 ('Valentina Balza', 30214932, 'Maquillaje', 'Vale', '$2a$10$hbwqVtsjSZbGZIRbXWl/OeAX19JZqObR4HY5hlUq9qi7fRnG07o7i', 'Caracterización Cinematografica a traves del Maquillaje', 'Personal', 'Disponible'),
 ('Maikel Villegas', 30302836, 'Editor', 'CaTiT0rV', '$2a$10$yyklNkTtf1nGvjloQneOLe3LFrk6BmFf28YCUfflFV.nKoHBQbXQe', 'Edición de Videosasasa', 'Personal', 'Disponible');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proveedores`
+--
+
+CREATE TABLE `proveedores` (
+  `Empresa` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CIF` varchar(128) NOT NULL,
+  `WEB` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `NumeroM` int(8) DEFAULT NULL,
+  `TipodeS` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proveedores`
+--
+
+INSERT INTO `proveedores` (`Empresa`, `CIF`, `WEB`, `NumeroM`, `TipodeS`) VALUES
+('Waconsin', '92918', 'www.wascons.com', 42493528, 'Proveedor de Espacios');
 
 -- --------------------------------------------------------
 
@@ -213,6 +260,28 @@ INSERT INTO `solicitantes` (`Nombre`, `CI`, `FechaN`, `Direccion`, `Usuario`, `C
 ('Mike Norris', 29837294, '2004-07-25', 'La Puerta', 'PuertitaR', '$2a$10$EoIV3QTn6htn2HPvDvYPYeFX5lsctdl3wKcBuXKb7INNQnQGwWHOi', 4249528721, 'Solicitante'),
 ('Juan Rosales', 30912875, '1999-03-19', 'Valera', 'JuaRo', '$2a$10$9Xs5NJDtDE5PUjUNCjIxM.LQYH9WzHhadyQ.J.8wUmbN7CKta.BWm', 4148329572, 'Solicitante');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trabajos`
+--
+
+CREATE TABLE `trabajos` (
+  `ID_Trabajo` int(11) NOT NULL,
+  `Trabajo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Nombre_Solicitante` varchar(100) NOT NULL,
+  `ID_ReservaEs` int(11) DEFAULT NULL,
+  `ID_ReservaEq` int(11) DEFAULT NULL,
+  `Descripción` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `trabajos`
+--
+
+INSERT INTO `trabajos` (`ID_Trabajo`, `Trabajo`, `Nombre_Solicitante`, `ID_ReservaEs`, `ID_ReservaEq`, `Descripción`) VALUES
+(1, 'Edición de Videos', 'Mauricio Verde', 0, 1, 'Editar un video referente a los metaversos, intentando hacerlo divertido para niños, con 20 mins de duración');
+
 --
 -- Índices para tablas volcadas
 --
@@ -236,10 +305,25 @@ ALTER TABLE `espacios`
   ADD PRIMARY KEY (`ID_Espacio`);
 
 --
+-- Indices de la tabla `facturas`
+--
+ALTER TABLE `facturas`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `AdminComprando` (`CI_Admin`),
+  ADD KEY `CIF-PP` (`CIF_P`),
+  ADD KEY `EquiposSEriales` (`SerialPr`);
+
+--
 -- Indices de la tabla `personal`
 --
 ALTER TABLE `personal`
   ADD PRIMARY KEY (`CI`);
+
+--
+-- Indices de la tabla `proveedores`
+--
+ALTER TABLE `proveedores`
+  ADD PRIMARY KEY (`CIF`);
 
 --
 -- Indices de la tabla `reservasequipos`
@@ -265,18 +349,40 @@ ALTER TABLE `solicitantes`
   ADD PRIMARY KEY (`CI`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- Indices de la tabla `trabajos`
 --
+ALTER TABLE `trabajos`
+  ADD PRIMARY KEY (`ID_Trabajo`),
+  ADD KEY `IDEquiposR` (`ID_ReservaEq`);
 
 --
+-- AUTO_INCREMENT de las tablas volcadas
+ALTER TABLE `espacios` MODIFY `ID_Espacio` smallint(6) NOT NULL AUTO_INCREMENT;
+  
+ALTER TABLE `facturas` MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `reservasequipos` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+   
+ALTER TABLE `reservasespacios` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+   
+ALTER TABLE `trabajos` MODIFY `ID_Trabajo` int(11) NOT NULL AUTO_INCREMENT;
+  
 -- AUTO_INCREMENT de la tabla `accesoadmin`
 --
 ALTER TABLE `accesoadmin`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `facturas`
+--
+ALTER TABLE `facturas`
+  ADD CONSTRAINT `AdminComprando` FOREIGN KEY (`CI_Admin`) REFERENCES `personal` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `CIF-PP` FOREIGN KEY (`CIF_P`) REFERENCES `proveedores` (`CIF`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `EquiposSEriales` FOREIGN KEY (`SerialPr`) REFERENCES `equipos` (`Serial`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `reservasequipos`
@@ -292,6 +398,12 @@ ALTER TABLE `reservasespacios`
   ADD CONSTRAINT `EspacioID` FOREIGN KEY (`ID_Espa`) REFERENCES `espacios` (`ID_Espacio`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `EspacioSCI` FOREIGN KEY (`CI_Solicitante`) REFERENCES `solicitantes` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `EspacioTCI` FOREIGN KEY (`CI_Tecnico`) REFERENCES `personal` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `trabajos`
+--
+ALTER TABLE `trabajos`
+  ADD CONSTRAINT `IDEquiposR` FOREIGN KEY (`ID_ReservaEq`) REFERENCES `reservasequipos` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

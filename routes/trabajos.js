@@ -4,20 +4,23 @@ const controller = require('../controllers/trabajos.c.js')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifytoken')
 
+router.get('/', function(req, res, next) {
+  res.render('aggtrabajos', {Agregado: "Ingrese los datos"})
+  });
 
 ///MOSTRAR TODO
 router.get(
-   '/', checkAutenticacion,
+   '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listartrabajos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -26,19 +29,19 @@ router.get(
 
 ///MOSTRAR POR ID_TRABAJO
 router.get(
-    '/:ID_Trabajo', checkAutenticacion,
+    '/listar/:ID_Trabajo',/* checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let trabajo = req.params.ID_Trabajo
       console.log(trabajo)
     controller.mostrar(trabajo)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listartrabajos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -48,42 +51,39 @@ router.get(
 //// MOSTRAR POR ID_Reserva de Eq
 
 router.get(
-    '/ReservaEq/:ID_ReservaEq', checkAutenticacion,
+    '/listar/ReservaEq/:ID_ReservaEq', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let trabajo = req.params.ID_ReservaEq
       console.log(trabajo)
     controller.mostrarporResEQ(trabajo)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listartrabajos', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
       })
 });
 
-
-
-
 ///INGRESAR UN TRABAJO
 
 router.post(
-  '/', checkAutenticacion,
+  '/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   function(req, res){
     let trabajo = req.body;
   controller.crear(trabajo)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggtrabajos', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

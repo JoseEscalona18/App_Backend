@@ -4,19 +4,23 @@ const controller = require('../controllers/proveedores.c.js')
 const checkRole = require('../middleware/verifyRole')
 const checkAutenticacion = require('../middleware/verifytoken')
 
+router.get('/', function(req, res, next) {
+  res.render('aggproveedores', {Agregado: "Ingrese los datos"})
+});
+
 ///MOSTRAR TODO
 router.get(
-   '/', checkAutenticacion,
+   '/listar/', /*checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -25,19 +29,19 @@ router.get(
 
 ///MOSTRAR POR CIF
 router.get(
-    '/:CIF', checkAutenticacion,
+    '/listar/:CIF', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let proveedor = req.params.CIF
       console.log(proveedor)
     controller.mostrarProveedorC(proveedor)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -47,19 +51,19 @@ router.get(
 //// MOSTRAR POR NUM DE MOVIL
 
 router.get(
-    '/Num/:NumeroM', checkAutenticacion,
+    '/listar/Num/:NumeroM', /*checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let proveedor = req.params.NumeroM
       console.log(proveedor)
     controller.mostrarNumM(proveedor)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -68,19 +72,19 @@ router.get(
 
 ///MOSTRAR POR CI_Admin
 router.get(
-    '/CIADMIN/:CI_Admin', checkAutenticacion,
+    '/listar/CIADMIN/:CI_Admin', /*checkAutenticacion,
   
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let proveedor = req.params.CI_Admin
       console.log(proveedor)
     controller.mostrarProveedorC(proveedor)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -90,19 +94,19 @@ router.get(
   ///MOSTRAR POR NOMBRE
 
   router.get(
-    '/Nombre/:Empresa', checkAutenticacion,
+    '/listar/Nombre/:Empresa', /*checkAutenticacion,
   
     function(req, res, next){
       var roles = ["Admin","Solicitante"];
       checkRole(req, res, next, roles)
-    },
+    },*/
     
     function(req, res) { 
       let proveedor = req.params.Empresa
       console.log(proveedor)
     controller.mostrarProvNombre(proveedor)
       .then((resultado)=>{
-        res.send(resultado);
+        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
       })
       .catch((err)=>{
         res.send(err)
@@ -113,17 +117,17 @@ router.get(
 ///INGRESAR UNA FACTURA
 
 router.post(
-  '/', checkAutenticacion,
+  '/', /*checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },
+  },*/
   function(req, res){
     let proveedor = req.body;
   controller.crear(proveedor)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggproveedores', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

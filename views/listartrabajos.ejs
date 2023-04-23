@@ -2,22 +2,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Listar Admins</title>
+        <title>Listar Trabajos</title>
         <link rel="stylesheet" href="/stylesheets/indexlistar.css"/>
     </head>
     <body>
 
         <div>
           <table class="table table-bordered table-striped" id="TablaListar">
-            <caption style="font-size: 50px;"><b>Lista de Admins</b></caption>
+            <caption style="font-size: 50px;"><b>Lista de Trabajos</b></caption>
               <thead>
                 <tr>
-                  <th>Id</th>
-                  <th>Nombre</th>
-                  <th>Ci</th>
-                  <th>Usuario</th>
-                  <th>Constraseña</th>
-                  <th>Rol</th>
+                  <th>ID Trabajo</th>
+                  <th>Trabajo</th>
+                  <th>Nombre Solicitante</th>
+                  <th>ID Reserva Espacio</th>
+                  <th>ID Reserva Equipo</th>
+                  <th>Descripcion</th>
+
                 </tr>
               </thead>
               <tbody id="Datostabla">
@@ -37,12 +38,12 @@
             res.innerHTML += `
         
               <tr>
-                <td> ${item.id} </td>
-                <td> ${item.Nombre} </td>
-                <td> ${item.CI} </td>
-                <td> ${item.Usuario} </td>
-                <td> ${item.Contraseña} </td>
-                <td> ${item.Rol} </td>
+                <td> ${item.ID_Trabajo} </td>
+                <td> ${item.Trabajo} </td>
+                <td> ${item.Nombre_Solicitante} </td>
+                <td> ${item.ID_ReservaEs} </td>
+                <td> ${item.ID_ReservaEq} </td>
+                <td> ${item.Descripcion} </td>
               </tr>
             `
           }
