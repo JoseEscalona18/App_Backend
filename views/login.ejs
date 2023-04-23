@@ -9,16 +9,16 @@
         <section>
             <div class="centro">
                 <div>
-                    <form action="" method="POST">
+                    <form action="" method="POST" id="loginForm">
                         <h2>Login</h2>
                         <div class="cajastexto">
                             <ion-icon name="person-outline"></ion-icon>
-                            <input type="User" name="Usuario" required>
+                            <input type="User" name="Usuario" id="Usuario" required>
                             <label for="">Usuario</label>
                         </div>
                         <div class="cajastexto">
                             <ion-icon name="lock-closed-outline"></ion-icon>
-                            <input type="password" name="Contraseña" required>
+                            <input type="password" name="Contraseña" id="Contraseña" required>
                             <label for="">Contraseña</label>
                         </div>
                         <button type="submit">Ingresar</button>
@@ -28,5 +28,33 @@
         </section>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script>
+            let loginForm = document.getElementById("loginForm");
+
+            loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let username = document.getElementById("Usuario");
+            let password = document.getElementById("Contraseña");
+            
+            const data = {
+                "Usuario": username.value,
+                "Contraseña": password.value
+            }
+
+            fetch("http://localhost:3000/api/ingresar", {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+            .catch(error => console.error('Error:', error))
+            .then(response => {
+                localStorage.setItem('accessToken', response.TokenSession)
+                window.location.href = "http://localhost:3000"
+            });
+        });
+        </script>
     </body>
 </html>

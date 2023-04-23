@@ -26,5 +26,4 @@ const verifyToken = async (token) => {
 }
 
 
-
 module.exports = {tokenSign, verifyToken}
