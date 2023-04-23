@@ -142,7 +142,7 @@ router.put(
   '/:ID', checkAutenticacion,
 
   function(req, res, next){
-    var roles = ["Admin","Solicitante"];
+    var roles = ["Admin","Personal"];
     checkRole(req, res, next, roles)
   },
   

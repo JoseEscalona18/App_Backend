@@ -82,6 +82,7 @@ class TrabajoController {
 
   actualizar(trabajo, IDT){
     console.log("Controlador de Actualizar trabajo")
+    console.log(trabajo)
     return new Promise ((resolve, reject) => {
         if (!trabajo.Trabajo || !trabajo.Nombre_Solicitante || !trabajo.ID_ReservaEs || !trabajo.ID_ReservaEq|| !trabajo.Descripcion) {
             return resolve("No se actualizo el trabajo, se requiere de los parametros correctos");

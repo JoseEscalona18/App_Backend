@@ -290,7 +290,8 @@ INSERT INTO `trabajos` (`ID_Trabajo`, `Trabajo`, `Nombre_Solicitante`, `ID_Reser
 -- Indices de la tabla `accesoadmin`
 --
 ALTER TABLE `accesoadmin`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `CI` (`CI`);
 
 --
 -- Indices de la tabla `equipos`
@@ -309,9 +310,9 @@ ALTER TABLE `espacios`
 --
 ALTER TABLE `facturas`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `AdminComprando` (`CI_Admin`),
   ADD KEY `CIF-PP` (`CIF_P`),
-  ADD KEY `EquiposSEriales` (`SerialPr`);
+  ADD KEY `EquiposSEriales` (`SerialPr`),
+  ADD KEY `CI_Admin` (`CI_Admin`);
 
 --
 -- Indices de la tabla `personal`
@@ -357,20 +358,43 @@ ALTER TABLE `trabajos`
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
-ALTER TABLE `espacios` MODIFY `ID_Espacio` smallint(6) NOT NULL AUTO_INCREMENT;
-  
-ALTER TABLE `facturas` MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT;
+--
 
-ALTER TABLE `reservasequipos` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-   
-ALTER TABLE `reservasespacios` MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-   
-ALTER TABLE `trabajos` MODIFY `ID_Trabajo` int(11) NOT NULL AUTO_INCREMENT;
-  
+--
 -- AUTO_INCREMENT de la tabla `accesoadmin`
 --
 ALTER TABLE `accesoadmin`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `espacios`
+--
+ALTER TABLE `espacios`
+  MODIFY `ID_Espacio` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `facturas`
+--
+ALTER TABLE `facturas`
+  MODIFY `ID` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `reservasequipos`
+--
+ALTER TABLE `reservasequipos`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `reservasespacios`
+--
+ALTER TABLE `reservasespacios`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `trabajos`
+--
+ALTER TABLE `trabajos`
+  MODIFY `ID_Trabajo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -380,8 +404,8 @@ ALTER TABLE `accesoadmin`
 -- Filtros para la tabla `facturas`
 --
 ALTER TABLE `facturas`
-  ADD CONSTRAINT `AdminComprando` FOREIGN KEY (`CI_Admin`) REFERENCES `personal` (`CI`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `CIF-PP` FOREIGN KEY (`CIF_P`) REFERENCES `proveedores` (`CIF`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `Admins` FOREIGN KEY (`CI_Admin`) REFERENCES `accesoadmin` (`CI`),
+  ADD CONSTRAINT `CIF-PP` FOREIGN KEY (`CIF_P`) REFERENCES `proveedores` (`CIF`) ON DELETE SET NULL ON UPDATE SET NULL,
   ADD CONSTRAINT `EquiposSEriales` FOREIGN KEY (`SerialPr`) REFERENCES `equipos` (`Serial`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --

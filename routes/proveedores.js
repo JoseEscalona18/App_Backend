@@ -93,7 +93,7 @@ router.get(
   });
 
 
-///INGRESAR UNA FACTURA
+///INGRESAR UN PROVEEDOR
 
 router.post(
   '/', checkAutenticacion,
@@ -113,7 +113,7 @@ router.post(
     })
 });
 
-///ACTUALIZAR EQUIPO POR SERIAL
+///ACTUALIZAR PROVEEDOR POR CIF
 
 router.put(
   '/:CIF', checkAutenticacion,
