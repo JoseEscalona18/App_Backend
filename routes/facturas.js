@@ -90,10 +90,10 @@ router.post(
     })
 });
 
-///ACTUALIZAR EQUIPO POR SERIAL
+///ACTUALIZAR FACTURA
 
 router.put(
-  '/:Serial', checkAutenticacion,
+  '/:ID', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
