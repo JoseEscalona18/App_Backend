@@ -3,12 +3,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Listar %= title %</title>
-        <link rel="stylesheet" href="/stylesheets/indexlogin.css"/>
+        <link rel="stylesheet" href="/stylesheets/indexlistar.css"/>
     </head>
     <body>
 
         <div>
           <table class="table table-bordered table-striped" id="TablaListar">
+            <caption style="font-size: 50px;"><b>Lista de Admins</b></caption>
               <thead>
                 <tr>
                   <th>Id</th>
@@ -23,7 +24,7 @@
               </tbody>
           </table>
         </div>
-        <p id="Datos"> <%= JSON %> </p>
+        <p id="Datos" class="invisible"> <%= JSON %> </p>
 
         <script>
 
