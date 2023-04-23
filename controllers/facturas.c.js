@@ -113,7 +113,7 @@ class FacturasController {
   ///MOSTRAR UNA FACTURA POR FECHA
   CFechaCompra(factura){
     return new Promise ((resolve, reject)=>{
-      FacturaFuente.mostrarFacF(factura)
+      FacturaFuente.mostrarFFecha(factura)
         .then((resultado)=>{
           if (resultado == ""){
             resultado = "No se encontro ningun registro con esa fecha"

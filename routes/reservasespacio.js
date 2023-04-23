@@ -13,12 +13,12 @@ router.get('/', function(req, res, next) {
 
 ////VER TODAS LAS RESERVAS DE ESPACIOS
 router.get(
-    '/listar/',/* checkAutenticacion,
+    '/listar/', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal", "Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listarRES()
@@ -32,12 +32,12 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/listar/:ID', /*checkAutenticacion,
+    '/listar/:ID', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal", "Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let reservadeespacio = req.params.ID
@@ -53,12 +53,12 @@ router.get(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/listar/Fecha/:FechaInicio', /*checkAutenticacion,
+  '/listar/Fecha/:FechaInicio', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { 
     let reservadeespacio = req.params.FechaInicio
@@ -74,12 +74,12 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/listar/Fecha1/:FechaInicio/Fecha2/:FechaFin',/* checkAutenticacion,
+  '/listar/Fecha1/:FechaInicio/Fecha2/:FechaFin', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { 
     let reservadeespacio1 = req.params.FechaInicio
@@ -99,12 +99,12 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE RESERVAS DE ESPACIOS
 router.post(
-    '/', /*checkAutenticacion,
+    '/', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin","Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res){
       let reservadeespacio = req.body;

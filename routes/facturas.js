@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
 
 ///MOSTRAR TODO
 router.get(
-   '/listar/', /*checkAutenticacion,
+   '/listar/', checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listar()
@@ -29,12 +29,12 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/listar/:ID', /*checkAutenticacion,
+    '/listar/:ID', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let factura = req.params.ID
@@ -50,12 +50,12 @@ router.get(
 
 ///MOSTRAR POR CI_Admin
 router.get(
-    '/listar/CIADMIN/:CI_Admin', /*checkAutenticacion,
+    '/listar/CIADMIN/:CI_Admin', checkAutenticacion,
   
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let factura = req.params.CI_Admin
@@ -73,12 +73,12 @@ router.get(
 ///INGRESAR UNA FACTURA
 
 router.post(
-  '/', /*checkAutenticacion,
+  '/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   function(req, res){
     let factura = req.body;
   controller.crear(factura)
@@ -135,7 +135,7 @@ router.delete(
 
 ///MOSTRAR POR FECHA
 router.get(
-  '/Fecha/:FechaC', checkAutenticacion,
+  '/listar/Fecha/:FechaC', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
@@ -147,7 +147,7 @@ router.get(
     console.log(factura)
   controller.CFechaCompra(factura)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarfacturas', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)
@@ -156,7 +156,7 @@ router.get(
 
 ///MOSTRAR POR RANGO DE FECHAS
 router.get(
-  '/Fecha1/:FechaF1/Fecha2/:FechaF2', checkAutenticacion,
+  '/listar/Fecha1/:FechaF1/Fecha2/:FechaF2', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal", "Solicitante"];
@@ -170,7 +170,7 @@ router.get(
     console.log(factura2)
   controller.mostrarFRangoFecha(factura1, factura2)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('listarfacturas', {"JSON": JSON.stringify(resultado)});
     })
     .catch((err)=>{
       res.send(err)

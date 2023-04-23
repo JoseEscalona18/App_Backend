@@ -12,13 +12,13 @@ router.get('/', function(req, res, next) {
 ///MOSTRAR TODOS LOS ESPACIOS
 
 router.get(
-    '/listar/', /*checkAutenticacion,
+    '/listar/', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal","Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
-  
+    },
+
     function(req, res) { controller
     controller.listar()
       .then((resultado)=>{
@@ -31,12 +31,12 @@ router.get(
 
 ///MOSTRAR POR ID
 router.get(
-    '/listar/:ID_Espacio', /*checkAutenticacion,
+    '/listar/:ID_Espacio', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal","Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let espacio = req.params.ID_Espacio
@@ -53,12 +53,12 @@ router.get(
 ///AGREGAR ESPACIOS
 
 router.post(
-    '/', /*checkAutenticacion,
+    '/', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res){
       let espacio = req.body;

@@ -108,11 +108,11 @@ class FacturaFuente {
 
     }
     
-    mostrarREQF(reservadeequipo){
+    mostrarFFecha(factura){
         return new Promise((resolve, reject)=>{
             console.log('Funciona el SQL de Mostrar una factura por fecha')
-            console.log(reservadeequipo)
-            conection.query('SELECT * FROM reservasequipos WHERE FechaInicio = "'+ reservadeequipo + '"', function (error, results, fields) {
+            console.log(factura)
+            conection.query('SELECT * FROM facturas WHERE FechaC = "'+ factura + '"', function (error, results, fields) {
                 if (error) throw error;
                 console.log(results);
                 resolve(results);

@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
 
 ///MOSTRAR TODO
 router.get(
-   '/listar/', /*checkAutenticacion,
+   '/listar/', checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listar()
@@ -29,12 +29,12 @@ router.get(
 
 ///MOSTRAR POR CIF
 router.get(
-    '/listar/:CIF', /*checkAutenticacion,
+    '/listar/:CIF', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let proveedor = req.params.CIF
@@ -51,12 +51,12 @@ router.get(
 //// MOSTRAR POR NUM DE MOVIL
 
 router.get(
-    '/listar/Num/:NumeroM', /*checkAutenticacion,
+    '/listar/Num/:NumeroM', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let proveedor = req.params.NumeroM
@@ -70,36 +70,15 @@ router.get(
       })
 });
 
-///MOSTRAR POR CI_Admin
-router.get(
-    '/listar/CIADMIN/:CI_Admin', /*checkAutenticacion,
-  
-    function(req, res, next){
-      var roles = ["Admin", "Personal"];
-      checkRole(req, res, next, roles)
-    },*/
-    
-    function(req, res) { 
-      let proveedor = req.params.CI_Admin
-      console.log(proveedor)
-    controller.mostrarProveedorC(proveedor)
-      .then((resultado)=>{
-        res.render('listarproveedores', {"JSON": JSON.stringify(resultado)});
-      })
-      .catch((err)=>{
-        res.send(err)
-      })
-  });
-
   ///MOSTRAR POR NOMBRE
 
   router.get(
-    '/listar/Nombre/:Empresa', /*checkAutenticacion,
+    '/listar/Nombre/:Empresa', checkAutenticacion,
   
     function(req, res, next){
       var roles = ["Admin","Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let proveedor = req.params.Empresa
@@ -117,12 +96,12 @@ router.get(
 ///INGRESAR UNA FACTURA
 
 router.post(
-  '/', /*checkAutenticacion,
+  '/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   function(req, res){
     let proveedor = req.body;
   controller.crear(proveedor)

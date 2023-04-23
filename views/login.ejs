@@ -52,6 +52,7 @@
             .catch(error => console.error('Error:', error))
             .then(response => {
                 localStorage.setItem('accessToken', response.TokenSession)
+                document.cookie = "accessToken=" + response.TokenSession + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
                 window.location.href = "http://localhost:3000"
             });
         });

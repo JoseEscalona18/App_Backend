@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
 
 ///MOSTRAR TODO
 router.get(
-   '/listar/', /*checkAutenticacion,
+   '/listar/', checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal","Solicitante"];
     checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listar()
@@ -29,12 +29,12 @@ router.get(
 
 ///MOSTRAR POR SERIAL
 router.get(
-    '/listar/:Serial', /*checkAutenticacion,
+    '/listar/:Serial', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal","Solicitante"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let equipo = req.params.Serial
@@ -50,12 +50,12 @@ router.get(
 
 ///MOSTRAR POR ESTATUS
 router.get(
-  '/listar/Estatus/:Estatus', /*checkAutenticacion,
+  '/listar/Estatus/:Estatus', checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal","Solicitante"];
     checkRole(req, res, next, roles)
-    },*/
+    },
     function(req, res) { 
     let equipo = req.params.Estatus
     console.log(equipo)
@@ -76,12 +76,12 @@ router.get(
 ///INGRESAR UN EQUIPO
 
 router.post(
-  '/',/* checkAutenticacion,
+  '/',checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   function(req, res){
     let equipo = req.body;
   controller.crear(equipo)

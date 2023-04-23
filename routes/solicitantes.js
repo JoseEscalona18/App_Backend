@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
   });
 
 router.get(
-    '/listar/', /*checkAutenticacion,
+    '/listar/', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listarS()
@@ -31,12 +31,12 @@ router.get(
 
 ///MOSTRAR POR CEDULA
 router.get(
-  '/listar/:CI', /*checkAutenticacion,
+  '/listar/:CI', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { 
     let solicitante = req.params.CI
@@ -52,12 +52,12 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE SOLICITANTES
 router.post(
-  '/', /*checkAutenticacion,
+  '/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res){
     let solicitante = req.body;

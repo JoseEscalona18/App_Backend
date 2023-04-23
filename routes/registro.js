@@ -9,12 +9,12 @@ router.get('/', function(req, res, next) {
   });
 
 router.get(
-  '/listar/',/* checkAutenticacion,
+  '/listar/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { controller
   controller.listarAdmin()

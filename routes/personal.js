@@ -13,12 +13,12 @@ router.get('/', function(req, res, next) {
 ///MOSTRAR TODOS LOS TECNICOS
 
 router.get(
-  '/listar/', /*checkAutenticacion,
+  '/listar/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { controller
   controller.listarP()
@@ -32,12 +32,12 @@ router.get(
 
 ///MOSTRAR POR CEDULA
 router.get(
-  '/listar/:CI', /*checkAutenticacion,
+  '/listar/:CI', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { 
     let personal = req.params.CI
@@ -53,12 +53,12 @@ router.get(
 
 ///MOSTRAR POR CARGO
 router.get(
-  '/listar/Cargo/:Cargo', /*checkAutenticacion,
+  '/listar/Cargo/:Cargo', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin","Solicitante"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res) { 
     let personal = req.params.Cargo
@@ -74,13 +74,12 @@ router.get(
 
 ///AGREGAR AL REGISTRO DE TECNICOS
 router.post(
-  '/', 
-  /*checkAutenticacion,
+  '/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   
   function(req, res){
     let personal = req.body;

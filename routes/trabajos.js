@@ -10,12 +10,12 @@ router.get('/', function(req, res, next) {
 
 ///MOSTRAR TODO
 router.get(
-   '/listar/', /*checkAutenticacion,
+   '/listar/', checkAutenticacion,
 
     function(req, res, next){
     var roles = ["Admin", "Personal"];
     checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { controller
     controller.listar()
@@ -29,12 +29,12 @@ router.get(
 
 ///MOSTRAR POR ID_TRABAJO
 router.get(
-    '/listar/:ID_Trabajo',/* checkAutenticacion,
+    '/listar/:ID_Trabajo', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let trabajo = req.params.ID_Trabajo
@@ -51,12 +51,12 @@ router.get(
 //// MOSTRAR POR ID_Reserva de Eq
 
 router.get(
-    '/listar/ReservaEq/:ID_ReservaEq', /*checkAutenticacion,
+    '/listar/ReservaEq/:ID_ReservaEq', checkAutenticacion,
 
     function(req, res, next){
       var roles = ["Admin", "Personal"];
       checkRole(req, res, next, roles)
-    },*/
+    },
     
     function(req, res) { 
       let trabajo = req.params.ID_ReservaEq
@@ -73,12 +73,12 @@ router.get(
 ///INGRESAR UN TRABAJO
 
 router.post(
-  '/', /*checkAutenticacion,
+  '/', checkAutenticacion,
 
   function(req, res, next){
     var roles = ["Admin"];
     checkRole(req, res, next, roles)
-  },*/
+  },
   function(req, res){
     let trabajo = req.body;
   controller.crear(trabajo)

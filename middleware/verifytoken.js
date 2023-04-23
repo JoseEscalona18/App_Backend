@@ -3,7 +3,7 @@ const { verifyToken } = require ('../helpers/tokens')
 
 const checkroleauth = async (req, res, next) => {
     try{
-        const token = req.headers.authorization.split(' ').pop()
+        const token = req.cookies.accessToken
         const tokenData = await verifyToken(token)
        console.log(tokenData)
         if(tokenData.Usuario){

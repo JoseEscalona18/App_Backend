@@ -2,7 +2,7 @@ const { verifyToken } = require("../helpers/tokens")
 
 const checkRole = async (req, res, next, roles) => {
     try {
-        const token = req.headers.authorization.split(' ').pop()
+        const token = req.cookies.accessToken
         const tokenData = await verifyToken(token)
 
         if (tokenData.Usuario) {
