@@ -56,10 +56,12 @@ class FacturaFuente {
         let serialpr =  '"'+factura.SerialPr+'"'
         let cideladmin =  '"'+factura.CI_Admin+'"'
 
+        console.log(factura)
+
 
         return new Promise((resolve, reject) => {
             console.log('Funciona el SQL de crear')
-            conection.query('INSERT INTO facturas (ProdCompr, PrecioTotal, FechaC, HoraC, DomicilioF, Proveedor, CIF_P SerialPr, CI_Admin) VALUES (' +prodcompr+ ', ' +preciototal+ ', ' +fechac+ ', ' +horac+ ', ' +domicilio+ ', ' +proveedor+ ', '+cif+', ' +serialpr+ ', ' +cideladmin+ ')',
+            conection.query('INSERT INTO facturas (ProdCompr, PrecioTotal, FechaC, HoraC, DomicilioF, Proveedor, CIF_P, SerialPr, CI_Admin) VALUES (' +prodcompr+ ', ' +preciototal+ ', ' +fechac+ ', ' +horac+ ', ' +domicilio+ ', ' +proveedor+ ', '+cif+', ' +serialpr+ ', ' +cideladmin+ ')',
             function (error, results, fields){
                 if(error) throw error;
                 console.log('Se ha guardado el registro');

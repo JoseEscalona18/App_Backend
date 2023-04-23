@@ -83,7 +83,7 @@ router.post(
     let factura = req.body;
   controller.crear(factura)
     .then((resultado)=>{
-      res.send(resultado);
+      res.render('aggfacturas', {Agregado: "Agregado correctamente"});
     })
     .catch((err)=>{
       res.send(err)

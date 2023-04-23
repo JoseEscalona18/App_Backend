@@ -63,6 +63,7 @@ class equiposController {
   crear(equipo){
       return new Promise ((resolve, reject)=>{
           if (!equipo.Nombre || !equipo.Descripcion || !equipo.Serial || !equipo.Adquisicion|| !equipo.Estatus) {
+              console.log('Compruebe uno de los datos a Ingresar')
               return resolve("Compruebe uno de los datos a ingresar.");
           }
           console.log("a controller")
@@ -82,6 +83,7 @@ class equiposController {
     console.log("Controlador de Actualizar Equipo")
     return new Promise ((resolve, reject) => {
         if (!equipo.Nombre|| !equipo.Serial || !equipo.Descripcion || !equipo.Adquisicion || !equipo.Estatus ) {
+            console.log("No se actualizo el equipo, se requiere de los parametros correctos")
             return resolve("No se actualizo el equipo, se requiere de los parametros correctos");
         }
         equiposFuente.ActualizarE(equipo,SerialE)

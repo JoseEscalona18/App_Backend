@@ -39,11 +39,12 @@ class espaciosController {
       })
   }
 
-  ///CREAR EQUIPOS
+  ///CREAR ESPACIOS
 
   crear(espacio){
     return new Promise ((resolve, reject)=>{
         if (!espacio.Nombre || !espacio.Descripcion || !espacio.Direccion|| !espacio.Estatus) {
+            console.log("Compruebe uno de los datos a ingresar.")
             return resolve("Compruebe uno de los datos a ingresar.");
         }
         console.log("Contrlador de Crear Espacio")
@@ -57,13 +58,14 @@ class espaciosController {
     })
 
   }
-    ///ACTUALIZAR EQUIPOS
+    ///ACTUALIZAR ESPACIOS
 
   actualizar(espacio, ID_Espacio){
       console.log("Controlador de Actualizar Espacio")
 
       return new Promise ((resolve, reject) => {
           if (!espacio.Nombre || !espacio.Descripcion || !espacio.Direccion|| !espacio.Estatus) {
+              console.log("No se actualizo el equipo, se requiere de los parametros correctos")
               return resolve("No se actualizo el espacio, se requiere de los parametros correctos");
           }
           espaciosFuente.ActualizarEspa(espacio,ID_Espacio)
@@ -76,7 +78,7 @@ class espaciosController {
       })
   }
 
-  ///BORRAR EQUIPOS POR SERIAL
+  ///BORRAR ESPACIO POR SERIAL
   borrar(espacio){
     console.log('Controlador de Borrado')
     return new Promise ((resolve, reject) => {
