@@ -279,7 +279,7 @@ CREATE TABLE `trabajos` (
 -- Volcado de datos para la tabla `trabajos`
 --
 
-INSERT INTO `trabajos` (`ID_Trabajo`, `Trabajo`, `Nombre_Solicitante`, `ID_ReservaEs`, `ID_ReservaEq`, `Descripción`) VALUES
+INSERT INTO `trabajos` (`ID_Trabajo`, `Trabajo`, `Nombre_Solicitante`, `ID_ReservaEs`, `ID_ReservaEq`, `Descripcion`) VALUES
 (1, 'Edición de Videos', 'Mauricio Verde', 0, 1, 'Editar un video referente a los metaversos, intentando hacerlo divertido para niños, con 20 mins de duración');
 
 --
